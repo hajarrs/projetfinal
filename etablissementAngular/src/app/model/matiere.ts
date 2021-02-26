@@ -4,8 +4,7 @@ private _nom: string;
 private _couleur: string;
 
 
-	constructor(id?: number, nom: string ='', couleur: string ='') {
-		this._id = id;
+	constructor(id?: number, nom: string='', couleur: string='') {
 		this._nom = nom;
 		this._couleur = couleur;
 	}

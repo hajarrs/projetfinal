@@ -1,12 +1,11 @@
 export class Login {
-    private _id: number;
+    private _id!: number;
     private _login: string;
     private _password: string;
-    private _premiereConnexione: boolean;
+    private _premiereConnexione: boolean = true;
     
 
-	constructor(id: number, login: string, password: string, premiereConnexione: boolean) {
-		this._id = id;
+	constructor(id?: number, login: string='', password: string='', premiereConnexione: boolean=true) {
 		this._login = login;
 		this._password = password;
 		this._premiereConnexione = premiereConnexione;
