@@ -17,11 +17,11 @@ public class SalleClasse {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String nom;
-	@ManyToMany
-	private List<Matiere> matieresExclues;
+	@ManyToMany(mappedBy = "salles")
+    private List<Matiere> matieresExclues;
 	private Integer capacite;
-//	@OneToOne
-//	private Cours cours;
+	@OneToOne
+	private Cours cours;
 	@Version
 	private int version;
 	
@@ -56,13 +56,13 @@ public class SalleClasse {
 		this.capacite = capacite;
 	}
 
-//	public Cours getCours() {
-//		return cours;
-//	}
-//
-//	public void setCours(Cours cours) {
-//		this.cours = cours;
-//	}
+	public Cours getCours() {
+		return cours;
+	}
+
+	public void setCours(Cours cours) {
+		this.cours = cours;
+	}
 
 	@Override
 	public int hashCode() {

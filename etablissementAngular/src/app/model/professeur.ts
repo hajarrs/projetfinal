@@ -6,10 +6,27 @@ export class Professeur extends Utilisateur {
 
 	
 
-	constructor(matieres: Matiere[] ) {
+	constructor(matieres?: Matiere[]) {
         super();
-		this._matieres = matieres;
+        
 	}
 
 
+    /**
+     * Getter matieres
+     * @return {Matiere[] }
+     */
+	public get matieres(): Matiere[]  {
+		return this._matieres;
+	}
+
+    /**
+     * Setter matieres
+     * @param {Matiere[] } value
+     */
+	public set matieres(value: Matiere[] ) {
+		this._matieres = value;
+	}
+
+	
 }

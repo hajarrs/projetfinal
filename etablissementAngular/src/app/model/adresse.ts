@@ -1,12 +1,11 @@
 export class Adresse {
-    private _id: number;
+    private _id!: number;
     private _numRue: number;
     private _nomRue: string;
     private _ville: string;
 
 
-	constructor(id: number, numRue: number, nomRue: string, ville: string) {
-		this._id = id;
+	constructor(id?: number, numRue: number = 0, nomRue: string='', ville: string='') {
 		this._numRue = numRue;
 		this._nomRue = nomRue;
 		this._ville = ville;

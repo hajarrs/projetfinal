@@ -3,23 +3,22 @@ import { Etablissement } from "./etablissement";
 import { Login } from "./login";
 
 export class Utilisateur {
-    private _id: number;
-    private _login: Login;
+    private _id!: number;
+    private _login!: Login;
     private _nom: string;
     private _prenom: string;
-    private _adresse: Adresse;
+    private _adresse!: Adresse;
     private _dateNaissance: string;
-    private _etablissement: Etablissement;
+    private _etablissement!: Etablissement;
 
 
-	constructor(id: number, login: Login, nom: string, prenom: string, adresse: Adresse, dateNaissance: string, etablissement: Etablissement) {
-		this._id = id;
-		this._login = login;
+	constructor(id?: number, login?: Login, nom: string='', prenom: string='', adresse?: Adresse, dateNaissance: string='', etablissement?: Etablissement) {
+		
+		
 		this._nom = nom;
 		this._prenom = prenom;
-		this._adresse = adresse;
 		this._dateNaissance = dateNaissance;
-		this._etablissement = etablissement;
+		
 	}
 
 

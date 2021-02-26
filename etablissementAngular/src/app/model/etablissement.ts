@@ -1,17 +1,16 @@
 import { Adresse } from "./adresse";
 
 export class Etablissement {
-    private _id: number;
+    private _id!: number;
     private _nom: string;
-    private _adresse: Adresse;
+    private _adresse!: Adresse;
     private _numTel: string;
     private _image: string;
 
 
-	constructor(id: number, nom: string, adresse: Adresse, numTel: string, image: string) {
-		this._id = id;
+	constructor(id?: number, nom: string='', adresse?: Adresse, numTel: string='', image: string='') {
+		
 		this._nom = nom;
-		this._adresse = adresse;
 		this._numTel = numTel;
 		this._image = image;
 	}

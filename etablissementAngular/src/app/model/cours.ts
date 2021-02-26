@@ -4,23 +4,20 @@ import { SalleClasse } from "./salle-classe";
 
 export class Cours {
 
-private _id: number;
+private _id!: number;
 private _heureDebut: string;
 private _heureFin: string;
-private _professeur: Professeur;
-private _matiere: Matiere
-private _salle: SalleClasse;
+private _professeur!: Professeur;
+private _matiere!: Matiere
+private _salle!: SalleClasse;
 
 
-	constructor(id: number, heureDebut: string , heureFin: string, professeur: Professeur, matiere: Matiere, salle: SalleClasse) {
-		this._id = id;
+	constructor(id?: number, heureDebut: string='', heureFin: string='', professeur?: Professeur, matiere?: Matiere, salle?: SalleClasse) {
 		
 		this._heureDebut = heureDebut;
 		this._heureFin = heureFin;
-		this._professeur = professeur;
-		this._matiere = matiere;
-		this._salle = salle;
-	}
+		
+			}
 
 
     /**

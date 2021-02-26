@@ -1,18 +1,16 @@
 import { Matiere } from "./matiere";
 
 export class SalleClasse {
-    private _id: number;
+    private _id!: number;
     private _nom: string;
-    private _matieresExclues: Matiere;
+    private _matieresExclues!: Matiere;
     private _matieres: Matiere[] = [];
     private _capacite: number;
 
 
-	constructor(id: number, nom: string, matieresExclues: Matiere, matieres: Matiere[] , capacite: number) {
-		this._id = id;
+	constructor(id?: number, nom: string='', matieresExclues?: Matiere, matieres?: Matiere[] , capacite: number=0) {
+		
 		this._nom = nom;
-		this._matieresExclues = matieresExclues;
-		this._matieres = matieres;
 		this._capacite = capacite;
 	}
 
