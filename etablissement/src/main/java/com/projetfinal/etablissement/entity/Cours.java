@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -15,11 +16,11 @@ public class Cours {
 	private Integer id;
 	private LocalDateTime dateHeureDebut;
 	private LocalDateTime dateHeureFin;
-	@OneToOne
+	@ManyToOne
 	private Professeur professeur;
-	@OneToOne
+	@ManyToOne
 	private Matiere matiere;
-	@OneToOne
+	@ManyToOne
 	private SalleClasse salle;
 	
 	public Cours() {

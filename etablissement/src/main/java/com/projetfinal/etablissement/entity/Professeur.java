@@ -12,10 +12,10 @@ public class Professeur extends Utilisateur{
 	
 	@ManyToMany
 	private List<Matiere> matieres;
-	@OneToOne
-	private Cours cours;
-	@OneToMany
-	private List<GroupeClasse> groupes;
+//	@OneToOne
+//	private Cours cours;
+//	@OneToMany
+//	private List<GroupeClasse> groupes;
 	public Professeur() {
 	}
 
@@ -27,20 +27,20 @@ public class Professeur extends Utilisateur{
 		this.matieres = matieres;
 	}
 
-	public Cours getCours() {
-		return cours;
-	}
-
-	public void setCours(Cours cours) {
-		this.cours = cours;
-	}
-
-	public List<GroupeClasse> getGroupes() {
-		return groupes;
-	}
-
-	public void setGroupes(List<GroupeClasse> groupes) {
-		this.groupes = groupes;
-	}
+//	public Cours getCours() {
+//		return cours;
+//	}
+//
+//	public void setCours(Cours cours) {
+//		this.cours = cours;
+//	}
+//
+//	public List<GroupeClasse> getGroupes() {
+//		return groupes;
+//	}
+//
+//	public void setGroupes(List<GroupeClasse> groupes) {
+//		this.groupes = groupes;
+//	}
 	
 }

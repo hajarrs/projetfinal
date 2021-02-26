@@ -17,8 +17,8 @@ public class Matiere {
 	private Integer id;
 	private String nom;
 	private String couleur;
-	@OneToOne
-	private Cours cours;
+//	@OneToOne
+//	private Cours cours;
 	@ManyToMany
 	private List<Professeur> professeurs;
 	@ManyToMany
@@ -47,13 +47,13 @@ public class Matiere {
 		this.couleur = couleur;
 	}
 
-	public Cours getCours() {
-		return cours;
-	}
-
-	public void setCours(Cours cours) {
-		this.cours = cours;
-	}
+//	public Cours getCours() {
+//		return cours;
+//	}
+//
+//	public void setCours(Cours cours) {
+//		this.cours = cours;
+//	}
 
 	public List<Professeur> getProfesseurs() {
 		return professeurs;

@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Version;
 
 @Entity
 public class SalleClasse {
@@ -19,8 +20,10 @@ public class SalleClasse {
 	@ManyToMany
 	private List<Matiere> matieresExclues;
 	private Integer capacite;
-	@OneToOne
-	private Cours cours;
+//	@OneToOne
+//	private Cours cours;
+	@Version
+	private int version;
 	
 	public SalleClasse() {
 	}
@@ -53,13 +56,13 @@ public class SalleClasse {
 		this.capacite = capacite;
 	}
 
-	public Cours getCours() {
-		return cours;
-	}
-
-	public void setCours(Cours cours) {
-		this.cours = cours;
-	}
+//	public Cours getCours() {
+//		return cours;
+//	}
+//
+//	public void setCours(Cours cours) {
+//		this.cours = cours;
+//	}
 
 	@Override
 	public int hashCode() {
