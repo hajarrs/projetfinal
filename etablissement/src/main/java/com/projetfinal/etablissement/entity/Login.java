@@ -18,4 +18,103 @@ public class Login {
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private TypeUtilisateur typeUtilisateur;
+	
+	
+	public Login() {
+	}
+
+
+	public Login(@NotEmpty String login, @NotEmpty String password, @NotNull TypeUtilisateur typeUtilisateur) {
+		this.login = login;
+		this.password = password;
+		this.typeUtilisateur = typeUtilisateur;
+	}
+
+
+	public String getLogin() {
+		return login;
+	}
+
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public boolean isPremiereConnexion() {
+		return premiereConnexion;
+	}
+
+
+	public void setPremiereConnexion(boolean premiereConnexion) {
+		this.premiereConnexion = premiereConnexion;
+	}
+
+
+	public TypeUtilisateur getTypeUtilisateur() {
+		return typeUtilisateur;
+	}
+
+
+	public void setTypeUtilisateur(TypeUtilisateur typeUtilisateur) {
+		this.typeUtilisateur = typeUtilisateur;
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + (premiereConnexion ? 1231 : 1237);
+		result = prime * result + ((typeUtilisateur == null) ? 0 : typeUtilisateur.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Login other = (Login) obj;
+		if (login == null) {
+			if (other.login != null)
+				return false;
+		} else if (!login.equals(other.login))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (premiereConnexion != other.premiereConnexion)
+			return false;
+		if (typeUtilisateur != other.typeUtilisateur)
+			return false;
+		return true;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Login [login=" + login + ", password=" + password + ", premiereConnexion=" + premiereConnexion
+				+ ", typeUtilisateur=" + typeUtilisateur + "]";
+	}
+	
+	
 }
