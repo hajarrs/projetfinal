@@ -7,10 +7,24 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.projetfinal.etablissement.repository.AdresseRepo;
+import com.projetfinal.etablissement.repository.EtablissementRepo;
+import com.projetfinal.etablissement.repository.LoginRepo;
+import com.projetfinal.etablissement.repository.UtilisateurRepo;
+
 @Service
 public class ConsoleService implements CommandLineRunner {
 
-	Logger logger = LoggerFactory.getLogger(ConsoleService.class);
+	@Autowired
+	private AdresseRepo adresseRepo;
+	@Autowired
+	private EtablissementRepo etablissementRepo;
+	@Autowired
+	private LoginRepo loginRepo;
+	@Autowired
+	private UtilisateurRepo utillisateurRepo;
+	
+	
 
 
 	@Override
