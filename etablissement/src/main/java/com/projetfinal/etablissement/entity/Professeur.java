@@ -2,26 +2,21 @@ package com.projetfinal.etablissement.entity;
 
 import java.util.List;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Professeur extends Utilisateur{
 	
 	
-	@ManyToMany
+	@ManyToMany(mappedBy = "professeurs")
 	private List<Matiere> matieres;
-//	@OneToOne
-//	private Cours cours;
-//	@OneToMany
-//	private List<GroupeClasse> groupes;
+	@OneToOne
+	private Cours cours;
+	@OneToMany(mappedBy = "professeurPrincipal")
+	private List<GroupeClasse> groupes;
 	public Professeur() {
 	}
 
@@ -33,20 +28,20 @@ public class Professeur extends Utilisateur{
 		this.matieres = matieres;
 	}
 
-//	public Cours getCours() {
-//		return cours;
-//	}
-//
-//	public void setCours(Cours cours) {
-//		this.cours = cours;
-//	}
-//
-//	public List<GroupeClasse> getGroupes() {
-//		return groupes;
-//	}
-//
-//	public void setGroupes(List<GroupeClasse> groupes) {
-//		this.groupes = groupes;
-//	}
+	public Cours getCours() {
+		return cours;
+	}
+
+	public void setCours(Cours cours) {
+		this.cours = cours;
+	}
+
+	public List<GroupeClasse> getGroupes() {
+		return groupes;
+	}
+
+	public void setGroupes(List<GroupeClasse> groupes) {
+		this.groupes = groupes;
+	}
 	
 }
