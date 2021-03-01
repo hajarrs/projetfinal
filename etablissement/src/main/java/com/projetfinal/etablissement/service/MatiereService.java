@@ -1,55 +1,55 @@
 package com.projetfinal.etablissement.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.projetfinal.etablissement.entity.Matiere;
+import com.projetfinal.etablissement.repository.MatiereRepo;
 
 @Service
 public class MatiereService {
-//	@Autowired
-//	private RepositoryProfesseur professeurRepo;
-//
-//	// definir tous les traitements disponible sur l'entite Matiere
-//
-	public void creationProfesseur(Matiere p) {
-//		if (p.getPrenom() != null && !p.getPrenom().isEmpty() && p.getNom() != null && !p.getNom().isEmpty()) {
-//			personneRepo.save(p);
-//		} else {
-//			System.out.println("la personne n'a pas toute les infos obligatoires");
-//		}
+	@Autowired
+	private MatiereRepo matiereRepo;
+
+// definir tous les traitements disponible sur l'entite Matiere
+
+	public void creationMatiere(Matiere m) {
+		if (m.getNom() != null && !m.getNom().isEmpty() && m.getCouleur() != null && !m.getCouleur().isEmpty()) {
+			matiereRepo.save(m);
+		} else {
+			System.out.println("la matière n'a pas toute les infos obligatoires");
+		}
 	}
 
-	public void creationMatiere(String prenom, String nom) {
+//	public void creationMatiere(String prenom, String nom) {
 //		creationProfesseur(new Professeur(prenom, nom));
-	}
+//	}
 
 	public List<Matiere> allMatiere() {
-//		return personneRepo.findAll();
-		return null;
+		return matiereRepo.findAll();
 	}
 
-	public void delete(Matiere p) {
-//		personneRepo.delete(p);
+	public void delete(Matiere m) {
+		matiereRepo.delete(m);
 	}
 
 	public void delete(Integer id) {
-//		personneRepo.deleteById(id);
+		matiereRepo.deleteById(id);
 	}
 
 	public Matiere save(Matiere p) {
-//		return personneRepo.save(p);
-		return null;
+		return matiereRepo.save(p);
 	}
 
 	public Matiere find(Integer id) {
-//		Optional<Professeur> opt = personneRepo.findById(id);
-//		if (opt.isPresent()) {
-//			return opt.get();
-//		}
-//		return new Personne();
-		return null;
+		Optional<Matiere> opt = matiereRepo.findById(id);
+		if (opt.isPresent()) {
+			return opt.get();
+		}
+		return new Matiere();
 	}
 
 }
