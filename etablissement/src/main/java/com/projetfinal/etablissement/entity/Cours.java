@@ -27,13 +27,14 @@ public class Cours {
 	}
 
 	public Cours(LocalDateTime dateHeureDebut, LocalDateTime dateHeureFin, Professeur professeur, Matiere matiere,
-			SalleClasse salle) {
+			SalleClasse salle, int day) {
 		super();
 		this.dateHeureDebut = dateHeureDebut;
 		this.dateHeureFin = dateHeureFin;
 		this.professeur = professeur;
 		this.matiere = matiere;
 		this.salle = salle;
+		this.day = day;
 	}
 
 	public Integer getId() {
