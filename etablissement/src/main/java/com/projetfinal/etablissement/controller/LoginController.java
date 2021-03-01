@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.projetfinal.etablissement.entity.UserDetailsWithUtilisateur;
 import com.projetfinal.etablissement.entity.Utilisateur;
+import com.projetfinal.etablissement.service.CustomUserDetails;
 
 
 
@@ -20,7 +20,8 @@ import com.projetfinal.etablissement.entity.Utilisateur;
 public class LoginController {
 	@GetMapping("")
 	public ResponseEntity<Utilisateur> login(Authentication auth) {
-		Utilisateur utilisateur = ((UserDetailsWithUtilisateur)auth.getPrincipal()).getUtilisateur();
+		Utilisateur utilisateur = ((CustomUserDetails)auth.getPrincipal()).getUser();
+		System.out.println("\n\n\n utilisateur: " + utilisateur);
 		return new ResponseEntity<Utilisateur>(utilisateur,HttpStatus.OK);
 	}
 }

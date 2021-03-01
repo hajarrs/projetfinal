@@ -7,10 +7,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  //user: string = sessionStorage.getItem('login');
+  
   
   constructor(private router: Router) {
   }
 
+  get user() : string | null {
+    return sessionStorage.getItem('login');
+  }
 
 }

@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   pswCtrl: FormControl;
   form: FormGroup;
   erreur: boolean = false;
-  //login:Login;
 
   constructor(private loginService: LoginService, private router: Router,private fb: FormBuilder) {
     this.loginCtrl=this.fb.control('',Validators.required);
@@ -40,7 +39,7 @@ export class LoginComponent implements OnInit {
           btoa(`${this.loginCtrl.value}:${this.pswCtrl.value}`)
         );
         sessionStorage.setItem('login', this.loginCtrl.value);
-        this.router.navigate(['/salarie/list']);
+        this.router.navigate(['/suite']);
       },
       (error) => {
         this.erreur = true;
