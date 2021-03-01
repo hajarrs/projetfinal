@@ -30,6 +30,7 @@ public class ConsoleService implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
+
 		Adresse adresse1 = new Adresse("Rue Rouge", 1, "06000", "Nice");
 		Adresse adresse2 = new Adresse("Rue vert", 1, "06000", "Nice");
 		Adresse adresse3 = new Adresse("Rue bleu", 1, "06000", "Nice");
@@ -39,6 +40,15 @@ public class ConsoleService implements CommandLineRunner {
 		etablissement2 = etablissementService.save(etablissement2);
 		Etablissement etablissement3 = new Etablissement("Ecole", adresse3, TypeEtablissement.ECOLE, "0600000003", "logo");
 		etablissement3 = etablissementService.save(etablissement3);
+		
+		
+		
+		Login login = new Login("hajars","hajar1",TypeUtilisateur.UTILISATEUR);
+		//login.setPassword(passwordEncoder.encode(login.getPassword()));
+		
+		//Professeur(@NotNull Login login, @NotEmpty String nom, @NotEmpty String prenom, @NotNull Adresse adresse,
+		//		@NotNull LocalDate dateNaissance, @NotNull Etablissement etablissement, @NotEmpty Cours cours);
+
 		
 		Adresse adresse4 = new Adresse("Rue violet", 2, "06000", "Nice");
 		LocalDate dateNaissance = LocalDate.of(1968, Month.JANUARY, 1);

@@ -1,11 +1,14 @@
 package com.projetfinal.etablissement.entity;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Professeur extends Utilisateur{
@@ -17,7 +20,14 @@ public class Professeur extends Utilisateur{
 	private Cours cours;
 	@OneToMany(mappedBy = "professeurPrincipal")
 	private List<GroupeClasse> groupes;
+	
 	public Professeur() {
+	}
+
+	public Professeur(@NotNull Login login, @NotEmpty String nom, @NotEmpty String prenom, @NotNull Adresse adresse,
+			@NotNull LocalDate dateNaissance, @NotNull Etablissement etablissement, @NotEmpty Cours cours) {
+		super(login,nom,prenom,adresse,dateNaissance,etablissement);
+		this.cours = cours;
 	}
 
 	public List<Matiere> getMatieres() {
