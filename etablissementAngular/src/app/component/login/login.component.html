@@ -1,0 +1,38 @@
+<div class="row" id="log">
+
+
+    <div class="col-md-6 mx-auto">
+        <div class="card rounded-0" id="card-log">
+            <div class="card-header">
+                <h1 id="title-conn">Se connecter</h1>
+            </div>
+            <div class="card-body">
+                <form (ngSubmit)="logging() " [formGroup]="form ">
+                    <div class="form-group ">
+                        <label class="labelle" for="login ">Login:</label>
+                        <input class="form-control " name="login " [formControl]="loginCtrl " />
+                        <div *ngIf="loginCtrl.dirty && loginCtrl.hasError( 'required') " class="alert alert-danger ">
+                            Login obligatoire
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label class="labelle" for="psw ">Mot de passe:</label>
+                        <input class="form-control " name="psw " [formControl]="pswCtrl " />
+                        <div *ngIf="pswCtrl.dirty && pswCtrl.hasError( 'required') " class="alert alert-danger ">
+                            Password obligatoire
+                        </div>
+                    </div>
+                    <div *ngIf="erreur " class="alert alert-warning ">
+                        Mot de passe ou login invalide
+                    </div>
+                    <div class="form-group ">
+                        <button type="submit " class="btn btn-primary " [disabled]="form.invalid ">
+        Se connecter
+    </button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
