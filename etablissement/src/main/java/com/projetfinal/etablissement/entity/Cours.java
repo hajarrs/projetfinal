@@ -15,6 +15,7 @@ public class Cours {
 	private Integer id;
 	private LocalDateTime dateHeureDebut;
 	private LocalDateTime dateHeureFin;
+	private int day; // 0 à 6, pour être utilisé avec les méthodes de java.util.Date.getDay()
 	@ManyToOne
 	private Professeur professeur;
 	@ManyToOne
@@ -102,6 +103,14 @@ public class Cours {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
 	}
 	
 	
