@@ -20,6 +20,12 @@ public class GroupeClasse {
 	
 	public GroupeClasse() {
 	}
+	
+	public GroupeClasse(String nom, Professeur professeurPrincipal) {
+		this.nom = nom;
+		this.professeurPrincipal = professeurPrincipal;
+	}
+
 	public Integer getId() {
 		return id;
 	}

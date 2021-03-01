@@ -26,6 +26,14 @@ public class Matiere {
 	
 	public Matiere() {
 	}
+	
+
+	public Matiere(String nom, String couleur) {
+		super();
+		this.nom = nom;
+		this.couleur = couleur;
+	}
+
 
 	public Integer getId() {
 		return id;

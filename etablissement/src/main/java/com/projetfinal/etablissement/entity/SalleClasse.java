@@ -28,6 +28,11 @@ public class SalleClasse {
 	public SalleClasse() {
 	}
 
+	public SalleClasse(String nom, Integer capacite) {
+		this.nom = nom;
+		this.capacite = capacite;
+	}
+
 	public Integer getId() {
 		return id;
 	}
