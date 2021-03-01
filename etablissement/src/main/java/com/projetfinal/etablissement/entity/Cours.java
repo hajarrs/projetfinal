@@ -25,6 +25,16 @@ public class Cours {
 	public Cours() {
 	}
 
+	public Cours(LocalDateTime dateHeureDebut, LocalDateTime dateHeureFin, Professeur professeur, Matiere matiere,
+			SalleClasse salle) {
+		super();
+		this.dateHeureDebut = dateHeureDebut;
+		this.dateHeureFin = dateHeureFin;
+		this.professeur = professeur;
+		this.matiere = matiere;
+		this.salle = salle;
+	}
+
 	public Integer getId() {
 		return id;
 	}

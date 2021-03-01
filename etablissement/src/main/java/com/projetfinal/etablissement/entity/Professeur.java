@@ -25,9 +25,8 @@ public class Professeur extends Utilisateur{
 	}
 
 	public Professeur(@NotNull Login login, @NotEmpty String nom, @NotEmpty String prenom, @NotNull Adresse adresse,
-			@NotNull LocalDate dateNaissance, @NotNull Etablissement etablissement, @NotEmpty Cours cours) {
+			@NotNull LocalDate dateNaissance, @NotNull Etablissement etablissement) {
 		super(login,nom,prenom,adresse,dateNaissance,etablissement);
-		this.cours = cours;
 	}
 
 	public List<Matiere> getMatieres() {
