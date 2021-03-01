@@ -9,7 +9,13 @@ private _couleur: string;
 		this._couleur = couleur;
 	}
 
-
+/**
+     * Getter id
+     * @return {number}
+     */
+	public get id(): number {
+		return this._id;
+	}
     /**
      * Getter nom
      * @return {string}
@@ -25,7 +31,13 @@ private _couleur: string;
 	public get couleur(): string {
 		return this._couleur;
 	}
-
+  /**
+     * Setter id
+     * @param {number} value
+     */
+	public set id(value: number) {
+		this._id = value;
+	}
     /**
      * Setter nom
      * @param {string} value
