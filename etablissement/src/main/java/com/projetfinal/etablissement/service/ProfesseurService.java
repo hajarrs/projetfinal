@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.projetfinal.etablissement.entity.Professeur;
@@ -14,6 +15,9 @@ public class ProfesseurService {
 	@Autowired
 	private ProfesseurRepo professeurRepo;
 
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
 	// definir tous les traitements disponible sur l'entite professeur
 
 	public void creationProfesseur(Professeur p) {
@@ -42,6 +46,7 @@ public class ProfesseurService {
 	}
 
 	public Professeur save(Professeur p) {
+		p.getLogin().setPassword(passwordEncoder.encode(p.getLogin().getPassword()));
 		return professeurRepo.save(p);
 	}
 

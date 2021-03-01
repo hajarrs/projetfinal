@@ -5,11 +5,13 @@ import java.time.Month;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.projetfinal.etablissement.entity.Adresse;
 import com.projetfinal.etablissement.entity.Etablissement;
 import com.projetfinal.etablissement.entity.Login;
+import com.projetfinal.etablissement.entity.Professeur;
 import com.projetfinal.etablissement.entity.TypeEtablissement;
 import com.projetfinal.etablissement.entity.TypeUtilisateur;
 import com.projetfinal.etablissement.entity.Utilisateur;
@@ -20,28 +22,37 @@ import com.projetfinal.etablissement.repository.UtilisateurRepo;
 public class ConsoleService implements CommandLineRunner {
 
 	@Autowired
-	private EtablissementRepo etablissementRepo;
+	private EtablissementService etablissementService;
 	@Autowired
-	private UtilisateurRepo utilisateurRepo;
-	
-	
+	private UtilisateurService utilisateurService;
 
 
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Adresse adresse1 = new Adresse("nomRue", 1, "06333", "ville");
-		//adresse1 = adresseRepo.save(adresse1);
-		Etablissement etablissement1 = new Etablissement("etablissement1", adresse1, TypeEtablissement.COLLEGE, "0666666666", "logo");
-		etablissementRepo.save(etablissement1);
+		Adresse adresse1 = new Adresse("Rue Rouge", 1, "06000", "Nice");
+		Adresse adresse2 = new Adresse("Rue vert", 1, "06000", "Nice");
+		Adresse adresse3 = new Adresse("Rue bleu", 1, "06000", "Nice");
+		Etablissement etablissement1 = new Etablissement("College", adresse1, TypeEtablissement.COLLEGE, "0600000001", "logo");
+		etablissement1 = etablissementService.save(etablissement1);
+		Etablissement etablissement2 = new Etablissement("Lycee", adresse2, TypeEtablissement.LYCEE, "0600000002", "logo");
+		etablissement2 = etablissementService.save(etablissement2);
+		Etablissement etablissement3 = new Etablissement("Ecole", adresse3, TypeEtablissement.ECOLE, "0600000003", "logo");
+		etablissement3 = etablissementService.save(etablissement3);
 		
-//		Adresse adresse2 = new Adresse("nomRue", 2, "06333", "ville");
-//		adresse2 = adresseRepo.save(adresse2);
-//		LocalDate dateNaissance = LocalDate.of(2014, Month.JANUARY, 1);
-//		Login login1 = new Login("login", "pass", TypeUtilisateur.ADMIN);
-//		login1 = loginRepo.save(login1);
-//		Utilisateur utilisateur1 = new Utilisateur(login1, "nom1", "prenom1", adresse2, dateNaissance, etablissement1);
-//		utilisateurRepo.save(utilisateur1);
+		Adresse adresse4 = new Adresse("Rue violet", 2, "06000", "Nice");
+		LocalDate dateNaissance = LocalDate.of(1968, Month.JANUARY, 1);
+		Login login1 = new Login("admin", "pass", TypeUtilisateur.ADMIN);
+		Utilisateur utilisateur1 = new Utilisateur(login1, "admin", "admin", adresse4, dateNaissance, etablissement1);
+		utilisateurService.save(utilisateur1);
+		Login login2 = new Login("user", "pass", TypeUtilisateur.UTILISATEUR);
+		Utilisateur utilisateur2 = new Utilisateur(login2, "user", "user", adresse4, dateNaissance, etablissement2);
+		utilisateurService.save(utilisateur2);
+		
+		Login login3 = new Login("TestPass", TypeUtilisateur.UTILISATEUR);
+		Utilisateur testUserGeneratePassword = new Utilisateur(login3, "userTestPass", "userTestPass", adresse4, dateNaissance, etablissement2);
+		System.out.println("\n\n\n Password temp = " + login3.getPassword());
+		utilisateurService.save(testUserGeneratePassword);
 		
 	}
 

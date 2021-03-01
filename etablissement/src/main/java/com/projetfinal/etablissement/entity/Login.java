@@ -1,5 +1,7 @@
 package com.projetfinal.etablissement.entity;
 
+import java.util.Random;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
@@ -10,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Embeddable
 public class Login {
@@ -34,8 +39,24 @@ public class Login {
 		this.password = password;
 		this.typeUtilisateur = typeUtilisateur;
 	}
+	
+	public Login(@NotEmpty String login, @NotNull TypeUtilisateur typeUtilisateur) {
+		this.login = login;
+		this.password = generatePassword();
+		this.typeUtilisateur = typeUtilisateur;
+	}
 
 
+	public String generatePassword() {
+		Random rand = new Random();
+		String password="";
+		for(int i = 0 ; i < 5 ; i++){
+		  char c = (char)(rand.nextInt(26) + 97);
+		  password += c;
+		}
+		return password;
+	}
+		
 	public String getLogin() {
 		return login;
 	}
