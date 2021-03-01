@@ -1,64 +1,92 @@
 package com.projetfinal.etablissement.controller;
 
+import java.net.URI;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.projetfinal.etablissement.entity.Etablissement;
+import com.projetfinal.etablissement.exception.InvalidException;
+import com.projetfinal.etablissement.exception.NotFoundException;
 import com.projetfinal.etablissement.service.EtablissementService;
 
-@Controller
+@RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/etablissement")
 public class EtablissementController {
 
 	@Autowired
 	private EtablissementService etablissementService;
 
-	@GetMapping("")
-	public String list(Model model) {
-		model.addAttribute("etablissements", etablissementService.allEtablissement());
-		Etablissement p = new Etablissement();
-		return "etablissement/list";
+	@GetMapping({ "", "/" })
+	public List<Etablissement> list() {
+		return etablissementService.allEtablissement();
 	}
 
-	@GetMapping("/delete")
-	public String delete(@RequestParam Integer id) {
-		etablissementService.delete(id);
-		return "redirect:/etablissement";
-	}
-
-	@PostMapping("/save")
-	public String save(@Valid @ModelAttribute("etablissement") Etablissement etablissement, BindingResult br,
-			Model model) {
-		if (br.hasErrors()) {
-			return goEdit(etablissement, model);
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
+		Etablissement etablissementEnBase = etablissementService.find(id);
+		if (etablissementEnBase.getId() == null) {
+			throw new NotFoundException();
 		}
-		etablissementService.save(etablissement);
-		return "redirect:/etablissement";
+		etablissementService.delete(id);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
-	@GetMapping("/edit")
-	public String edit(@RequestParam Integer id, Model model) {
-		return goEdit(etablissementService.find(id), model);
+	@PutMapping("/{id}")
+	public Etablissement update(@Valid @RequestBody Etablissement e, BindingResult br, @PathVariable("id") Integer id) {
+		if (br.hasErrors()) {
+			throw new InvalidException();
+		}
+		Etablissement etablissementEnBase = etablissementService.find(id);
+		if (etablissementEnBase.getId() == null) {
+			throw new NotFoundException();
+		}
+		etablissementEnBase.setAdresse(e.getAdresse());
+		etablissementEnBase.setLogo(e.getLogo());
+		etablissementEnBase.setNom(e.getNom());
+		etablissementEnBase.setNumTel(e.getNumTel());
+		etablissementEnBase.setTypeEtablissement(e.getTypeEtablissement());
+		etablissementService.save(etablissementEnBase);
+		return etablissementEnBase;
 	}
 
-	@GetMapping("/add")
-	public String add(Model model) {
-		return goEdit(new Etablissement(), model);
+	@PostMapping({ "", "/" })
+	public ResponseEntity<Etablissement> addPersonne(@Valid @RequestBody Etablissement e, BindingResult br,
+			UriComponentsBuilder uCB) {
+		if (br.hasErrors()) {
+			throw new InvalidException();
+		}
+		etablissementService.creationEtablissement(e);
+		URI uri = uCB.path("/etablissement/{id}").buildAndExpand(e.getId()).toUri();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setLocation(uri);
+		return new ResponseEntity<Etablissement>(e, headers, HttpStatus.CREATED);
 	}
 
-	private String goEdit(Etablissement etablissement, Model model) {
-		model.addAttribute("etablissement", etablissement);
-		// si on a des donnees en plus dans le model on ecrit le code 1 fois
-		return "etablissement/editAvecSpring";
+	@GetMapping("/{id}")
+	public Etablissement findById(@PathVariable("id") Integer id) {
+		Etablissement e = etablissementService.find(id);
+		if (e.getId() != null) {
+			return e;
+		}
+		throw new NotFoundException();
 	}
 
 }

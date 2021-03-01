@@ -1,63 +1,92 @@
 package com.projetfinal.etablissement.controller;
 
+import java.net.URI;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.projetfinal.etablissement.entity.Matiere;
+import com.projetfinal.etablissement.exception.InvalidException;
+import com.projetfinal.etablissement.exception.NotFoundException;
 import com.projetfinal.etablissement.service.MatiereService;
 
-@Controller
+@RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/matiere")
 public class MatiereController {
 
 	@Autowired
 	private MatiereService matiereService;
 
-	@GetMapping("")
-	public String list(Model model) {
-		model.addAttribute("matieres", matiereService.allMatiere());
-		Matiere p = new Matiere();
-		return "matiere/list";
+	@GetMapping({ "", "/" })
+	public List<Matiere> list() {
+		return matiereService.allMatiere();
 	}
 
-	@GetMapping("/delete")
-	public String delete(@RequestParam Integer id) {
-		matiereService.delete(id);
-		return "redirect:/matiere";
-	}
-
-	@PostMapping("/save")
-	public String save(@Valid @ModelAttribute("matiere") Matiere matiere, BindingResult br, Model model) {
-		if (br.hasErrors()) {
-			return goEdit(matiere, model);
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
+		Matiere matiereEnBase = matiereService.find(id);
+		if (matiereEnBase.getId() == null) {
+			throw new NotFoundException();
 		}
-		matiereService.save(matiere);
-		return "redirect:/matiere";
+		matiereService.delete(id);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
-	@GetMapping("/edit")
-	public String edit(@RequestParam Integer id, Model model) {
-		return goEdit(matiereService.find(id), model);
+	@PutMapping("/{id}")
+	public Matiere update(@Valid @RequestBody Matiere m, BindingResult br, @PathVariable("id") Integer id) {
+		if (br.hasErrors()) {
+			throw new InvalidException();
+		}
+		Matiere matiereEnBase = matiereService.find(id);
+		if (matiereEnBase.getId() == null) {
+			throw new NotFoundException();
+		}
+		matiereEnBase.setCouleur(m.getCouleur());
+		matiereEnBase.setCours(m.getCours());
+		matiereEnBase.setNom(m.getNom());
+		matiereEnBase.setProfesseurs(m.getProfesseurs());
+		matiereEnBase.setSalles(m.getSalles());
+		matiereService.save(matiereEnBase);
+		return matiereEnBase;
 	}
 
-	@GetMapping("/add")
-	public String add(Model model) {
-		return goEdit(new Matiere(), model);
+	@PostMapping({ "", "/" })
+	public ResponseEntity<Matiere> addPersonne(@Valid @RequestBody Matiere m, BindingResult br,
+			UriComponentsBuilder uCB) {
+		if (br.hasErrors()) {
+			throw new InvalidException();
+		}
+		matiereService.creationMatiere(m);
+		URI uri = uCB.path("/matiere/{id}").buildAndExpand(m.getId()).toUri();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setLocation(uri);
+		return new ResponseEntity<Matiere>(m, headers, HttpStatus.CREATED);
 	}
 
-	private String goEdit(Matiere matiere, Model model) {
-		model.addAttribute("matiere", matiere);
-		// si on a des donnees en plus dans le model on ecrit le code 1 fois
-		return "matiere/editAvecSpring";
+	@GetMapping("/{id}")
+	public Matiere findById(@PathVariable("id") Integer id) {
+		Matiere c = matiereService.find(id);
+		if (c.getId() != null) {
+			return c;
+		}
+		throw new NotFoundException();
 	}
 
 }
