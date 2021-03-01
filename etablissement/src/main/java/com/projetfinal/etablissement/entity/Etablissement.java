@@ -1,5 +1,6 @@
 package com.projetfinal.etablissement.entity;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -22,6 +23,7 @@ public class Etablissement {
 	@NotEmpty
 	private String nom;
 	@NotNull
+	@Embedded
 	private Adresse adresse;
 	@NotNull
 	@Enumerated(EnumType.STRING)

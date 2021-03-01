@@ -1,10 +1,14 @@
 package com.projetfinal.etablissement.entity;
 
 import javax.persistence.Embeddable;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
 @Embeddable
 public class Adresse {
+
 	@NotEmpty
 	private String nomRue;
 	@NotEmpty

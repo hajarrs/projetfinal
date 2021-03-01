@@ -2,6 +2,7 @@ package com.projetfinal.etablissement.entity;
 
 import java.time.LocalDate;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -23,10 +25,12 @@ public class Utilisateur {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqUtilisateur")
 	private Integer id;
 	@NotNull
+	@Embedded
 	private Login login;
 	@NotEmpty
 	private String nom, prenom;
 	@NotNull
+	@Embedded
 	private Adresse adresse;
 	@NotNull
 	private LocalDate dateNaissance;
