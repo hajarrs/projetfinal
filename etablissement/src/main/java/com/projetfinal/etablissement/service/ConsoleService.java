@@ -3,6 +3,7 @@ package com.projetfinal.etablissement.service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -66,7 +67,7 @@ public class ConsoleService implements CommandLineRunner {
 		LocalDateTime dateHeureFin = LocalDateTime.of(2022, Month.JANUARY, 3,10, 0);
 		Matiere matiere = new Matiere("Maths", "blue");
 		matiereService.save(matiere);
-		Cours cours = new Cours(dateHeureDebut, dateHeureFin, professeur, matiere, salle);
+		Cours cours = new Cours(dateHeureDebut, dateHeureFin, professeur, matiere, salle, 3);
 		cours = coursService.save(cours);
 		matiere.setCours(cours);
 		professeur.setCours(cours);
@@ -76,7 +77,6 @@ public class ConsoleService implements CommandLineRunner {
 		professeurService.save(professeur);
 		GroupeClasse groupe = new GroupeClasse("A", professeur);
 		groupe = groupeService.save(groupe);
-		
 		
 		Adresse adresse4 = new Adresse("Rue violet", 2, "06000", "Nice");
 		LocalDate dateNaissance = LocalDate.of(1968, Month.JANUARY, 1);
