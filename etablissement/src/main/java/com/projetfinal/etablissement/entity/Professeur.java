@@ -6,19 +6,22 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Professeur extends Utilisateur{
 	
 	
 	@ManyToMany//(mappedBy = "professeurs")
+	@JsonView(Vue.Common.class)
 	private List<Matiere> matieres;
 //	@OneToOne
 //	private Cours cours;
 	@OneToMany(mappedBy = "professeurPrincipal")
+	@JsonView(Vue.Common.class)
 	private List<GroupeClasse> groupes;
 	
 	public Professeur() {
