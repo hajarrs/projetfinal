@@ -6,8 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 @Entity
@@ -17,7 +20,10 @@ public class SalleClasse {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String nom;
-	@ManyToMany(mappedBy = "salles")
+	@ManyToMany//(mappedBy = "salles")
+//	@JoinTable(	name="salles_matieres_association",
+//				joinColumns = @JoinColumn(name ="id"),
+//				inverseJoinColumns = @JoinColumn(name="id"))
     private List<Matiere> matieresExclues;
 	private Integer capacite;
 //	@OneToOne

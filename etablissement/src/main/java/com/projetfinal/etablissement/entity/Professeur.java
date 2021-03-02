@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 public class Professeur extends Utilisateur{
 	
 	
-	@ManyToMany(mappedBy = "professeurs")
+	@ManyToMany//(mappedBy = "professeurs")
 	private List<Matiere> matieres;
 //	@OneToOne
 //	private Cours cours;
