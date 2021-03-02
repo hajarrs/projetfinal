@@ -12,23 +12,30 @@ import javax.persistence.Version;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @SequenceGenerator(name = "seqEtablissement", sequenceName = "seq_etablissement", initialValue = 10, allocationSize = 1)
 public class Etablissement {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqEtablissement")
+	@JsonView(Vue.Common.class)
 	private Integer id;
 	
 	@NotEmpty
+	@JsonView(Vue.Common.class)
 	private String nom;
 	@NotNull
 	@Embedded
+	@JsonView(Vue.Common.class)
 	private Adresse adresse;
 	@NotNull
 	@Enumerated(EnumType.STRING)
+	@JsonView(Vue.Common.class)
 	private TypeEtablissement typeEtablissement;
 	@NotEmpty
+	@JsonView(Vue.Common.class)
 	private String numTel;
 	private String logo;
 	@Version

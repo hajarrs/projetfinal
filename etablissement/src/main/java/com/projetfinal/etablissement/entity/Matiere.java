@@ -11,19 +11,28 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Matiere {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(Vue.Common.class)
 	private Integer id;
+	@JsonView(Vue.Common.class)
 	private String nom;
+	@JsonView(Vue.Common.class)
 	private String couleur;
 //	@OneToOne
 //	private Cours cours;
+
 //	@ManyToMany
+//	@JsonIgnore
 //	private List<Professeur> professeurs;
 //	@ManyToMany
+//	@JsonIgnore
 //	private List<SalleClasse> salles;
 	
 	public Matiere() {
