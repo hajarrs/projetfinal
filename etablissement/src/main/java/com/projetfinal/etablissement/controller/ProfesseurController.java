@@ -1,5 +1,6 @@
 package com.projetfinal.etablissement.controller;
 
+import java.io.Serializable;
 import java.net.URI;
 import java.util.List;
 
@@ -21,10 +22,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.projetfinal.etablissement.entity.Professeur;
+import com.projetfinal.etablissement.entity.Vue;
 import com.projetfinal.etablissement.exception.InvalidException;
 import com.projetfinal.etablissement.exception.NotFoundException;
 import com.projetfinal.etablissement.service.ProfesseurService;
+
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -38,6 +42,7 @@ public class ProfesseurController {
 	public List<Professeur> list() {
 		return professeurService.allProfesseur();
 	}
+	
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
