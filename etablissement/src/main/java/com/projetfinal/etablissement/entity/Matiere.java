@@ -24,9 +24,6 @@ public class Matiere {
 	@ManyToMany
 	private List<Professeur> professeurs;
 	@ManyToMany
-//	@JoinTable(	name="salles_matieres_association",
-//	joinColumns = @JoinColumn(name ="id"),
-//	inverseJoinColumns = @JoinColumn(name="id"))
 	private List<SalleClasse> salles;
 	
 	public Matiere() {

@@ -21,9 +21,6 @@ public class SalleClasse {
 	private Integer id;
 	private String nom;
 	@ManyToMany//(mappedBy = "salles")
-//	@JoinTable(	name="salles_matieres_association",
-//				joinColumns = @JoinColumn(name ="id"),
-//				inverseJoinColumns = @JoinColumn(name="id"))
     private List<Matiere> matieresExclues;
 	private Integer capacite;
 //	@OneToOne
