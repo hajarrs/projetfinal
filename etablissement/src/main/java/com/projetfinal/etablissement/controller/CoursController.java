@@ -24,6 +24,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.projetfinal.etablissement.entity.Cours;
 import com.projetfinal.etablissement.exception.InvalidException;
 import com.projetfinal.etablissement.exception.NotFoundException;
+import com.projetfinal.etablissement.exception.OverlapException;
 import com.projetfinal.etablissement.service.CoursService;
 
 @RestController
@@ -64,20 +65,26 @@ public class CoursController {
 		coursEnBase.setMatiere(c.getMatiere());
 		coursEnBase.setProfesseur(c.getProfesseur());
 		coursEnBase.setSalle(c.getSalle());
-		coursService.save(coursEnBase);
-		return coursEnBase;
+		Cours result = coursService.save(coursEnBase);
+		if (result == null) {
+			throw new OverlapException();
+		}
+		return result;
 	}
 
 	@PostMapping({ "", "/" })
-	public ResponseEntity<Cours> addPersonne(@Valid @RequestBody Cours c, BindingResult br, UriComponentsBuilder uCB) {
+	public ResponseEntity<Cours> addCours(@Valid @RequestBody Cours c, BindingResult br, UriComponentsBuilder uCB) {
 		if (br.hasErrors()) {
 			throw new InvalidException();
 		}
-		coursService.creationCours(c);
-		URI uri = uCB.path("/cours/{id}").buildAndExpand(c.getId()).toUri();
+		Cours result = coursService.creationCours(c);
+		if (result == null) {
+			throw new InvalidException();
+		}
+		URI uri = uCB.path("/cours/{id}").buildAndExpand(result.getId()).toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
-		return new ResponseEntity<Cours>(c, headers, HttpStatus.CREATED);
+		return new ResponseEntity<Cours>(result, headers, HttpStatus.CREATED);
 	}
 
 	@GetMapping("/{id}")
