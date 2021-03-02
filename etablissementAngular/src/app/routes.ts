@@ -6,6 +6,7 @@ import { ListeClassesComponent } from './admin/liste-classes/liste-classes.compo
 import { ListeMatieresComponent } from './admin/liste-matieres/liste-matieres.component';
 import { ListeProfesseursComponent } from './admin/liste-professeurs/liste-professeurs.component';
 import { ListeSallesComponent } from './admin/liste-salles/liste-salles.component';
+import { PlanningComponent } from "./planning/planning.component";
 
 
 export const routes: Routes = [
@@ -15,5 +16,6 @@ export const routes: Routes = [
   { path: 'listematieres', component: ListeMatieresComponent},
   { path: 'listeprofesseurs', component: ListeProfesseursComponent},
   { path: 'listesalles', component: ListeSallesComponent},
+  { path: 'planning', component: PlanningComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
