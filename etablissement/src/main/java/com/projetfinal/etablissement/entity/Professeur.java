@@ -16,8 +16,8 @@ public class Professeur extends Utilisateur{
 	
 	@ManyToMany(mappedBy = "professeurs")
 	private List<Matiere> matieres;
-	@OneToOne
-	private Cours cours;
+//	@OneToOne
+//	private Cours cours;
 	@OneToMany(mappedBy = "professeurPrincipal")
 	private List<GroupeClasse> groupes;
 	
@@ -37,13 +37,13 @@ public class Professeur extends Utilisateur{
 		this.matieres = matieres;
 	}
 
-	public Cours getCours() {
-		return cours;
-	}
-
-	public void setCours(Cours cours) {
-		this.cours = cours;
-	}
+//	public Cours getCours() {
+//		return cours;
+//	}
+//
+//	public void setCours(Cours cours) {
+//		this.cours = cours;
+//	}
 
 	public List<GroupeClasse> getGroupes() {
 		return groupes;

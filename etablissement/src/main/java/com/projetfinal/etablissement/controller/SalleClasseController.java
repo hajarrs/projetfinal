@@ -59,7 +59,7 @@ public class SalleClasseController {
 			throw new NotFoundException();
 		}
 		salleClasseEnBase.setCapacite(c.getCapacite());
-		salleClasseEnBase.setCours(c.getCours());
+//		salleClasseEnBase.setCours(c.getCours());
 		salleClasseEnBase.setMatieresExclues(c.getMatieresExclues());
 		salleClasseEnBase.setNom(c.getNom());
 		salleClasseService.save(salleClasseEnBase);

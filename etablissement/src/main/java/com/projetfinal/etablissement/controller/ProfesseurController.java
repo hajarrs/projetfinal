@@ -59,7 +59,7 @@ public class ProfesseurController {
 			throw new NotFoundException();
 		}
 		professeurEnBase.setAdresse(p.getAdresse());
-		professeurEnBase.setCours(p.getCours());
+//		professeurEnBase.setCours(p.getCours());
 		professeurEnBase.setDateNaissance(p.getDateNaissance());
 		professeurEnBase.setEtablissement(p.getEtablissement());
 		professeurEnBase.setGroupes(p.getGroupes());

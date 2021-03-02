@@ -59,7 +59,7 @@ public class MatiereController {
 			throw new NotFoundException();
 		}
 		matiereEnBase.setCouleur(m.getCouleur());
-		matiereEnBase.setCours(m.getCours());
+//		matiereEnBase.setCours(m.getCours());
 		matiereEnBase.setNom(m.getNom());
 		matiereEnBase.setProfesseurs(m.getProfesseurs());
 		matiereEnBase.setSalles(m.getSalles());
