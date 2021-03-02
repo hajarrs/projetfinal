@@ -82,6 +82,7 @@ public class CoursService {
 				|| c.getDateHeureFin() == null
 				|| c.getMatiere() == null
 				|| c.getProfesseur() == null
+				|| c.getProfesseur().getMatieres() == null
 				|| c.getSalle() == null) {
 			return false;
 		} else {
@@ -89,8 +90,13 @@ public class CoursService {
 			Matiere matiere = c.getMatiere();
 			
 			// vérifie si la salle permet d'enseigner cette matière
-			if (salleClasse.getMatieresExclues().contains(matiere)) {
+			if (salleClasse.getMatieresExclues() != null && salleClasse.getMatieresExclues().contains(matiere)) {
 				return false;
+			}
+
+			// vérifie si le prof enseigne cette matière
+			if (!c.getProfesseur().getMatieres().contains(c.getMatiere())) {
+				return false;				
 			}
 			
 			// vérifier qu'il n'y a pas de chevauchements de cours dans la même salle ou de prof déjà occupé

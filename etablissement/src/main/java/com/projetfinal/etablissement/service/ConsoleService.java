@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.projetfinal.etablissement.entity.Adresse;
 import com.projetfinal.etablissement.entity.Cours;
 import com.projetfinal.etablissement.entity.Etablissement;
@@ -45,7 +46,13 @@ public class ConsoleService implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		
+
+		testsLogin();
+		//testsCours();
+	}
+
+	
+	private void testsLogin() {
 		Adresse adresse1 = new Adresse("Rue Rouge", 1, "06000", "Nice");
 		Adresse adresse2 = new Adresse("Rue vert", 1, "06000", "Nice");
 		Adresse adresse3 = new Adresse("Rue bleu", 1, "06000", "Nice");
@@ -107,7 +114,101 @@ public class ConsoleService implements CommandLineRunner {
 		Utilisateur testUserGeneratePassword = new Utilisateur(login3, "userTestPass", "userTestPass", adresse4, dateNaissance, etablissement2);
 		System.out.println("\n\n\n Password temp = " + login3.getPassword());
 		utilisateurService.creationUtilisateur(testUserGeneratePassword);
+	}
+	
+	
+	private void testsCours() {
+		Adresse adresse1 = new Adresse("Rue Rouge", 1, "06000", "Nice");
+		Etablissement etablissement1 = new Etablissement("College", adresse1, TypeEtablissement.COLLEGE, "0600000001", "logo");
+		etablissement1 = etablissementService.save(etablissement1);
+		
+		
+		
+		Login login = new Login("hajars1", "hajar1", TypeUtilisateur.UTILISATEUR);
+		Adresse adresse = new Adresse("Chemin des monts", 1, "13127", "Vitrolles");
+		LocalDate dateNaissance1 = LocalDate.of(1995, Month.JUNE, 15);
+		Professeur professeurBioMath = new Professeur(login, "ram", "hajar", adresse, dateNaissance1, etablissement1);
+		
+
+		Login login2 = new Login("hajars2", "hajar2", TypeUtilisateur.UTILISATEUR);
+		Adresse adresse2 = new Adresse("Chemin des monts", 1, "13127", "Vitrolles");
+		LocalDate dateNaissance2 = LocalDate.of(1995, Month.JUNE, 15);
+		Professeur professeurBio = new Professeur(login2, "ram2", "hajar2", adresse2, dateNaissance2, etablissement1);
+
+		
+		
+		SalleClasse sallePolyvalente = new SalleClasse("salle1", 30);
+		sallePolyvalente = salleClasseService.save(sallePolyvalente);
+
+		SalleClasse salleStandard = new SalleClasse("salle2", 30);
+		salleStandard = salleClasseService.save(salleStandard);
+
+		
+
+		Matiere matiereMath = new Matiere("Maths", "blue");
+		matiereService.save(matiereMath);
+
+		Matiere matiereBio = new Matiere("Bio", "green");
+		matiereService.save(matiereBio);
+
+		
+		List<Matiere> matieres1 = new ArrayList<Matiere>();
+		matieres1.add(matiereMath);
+		matieres1.add(matiereBio);
+		professeurBioMath.setMatieres(matieres1);
+		
+		List<Matiere> matieres2 = new ArrayList<Matiere>();
+		matieres2.add(matiereBio);
+		professeurBio.setMatieres(matieres2);
+		
+		professeurService.save(professeurBio);
+		professeurService.save(professeurBioMath);
+		
+		
+		List<Matiere> matieresExclues = new ArrayList<Matiere>();
+		matieresExclues.add(matiereBio);
+		salleStandard.setMatieresExclues(matieresExclues);
+		
+		salleClasseService.save(salleStandard);
+		salleClasseService.save(sallePolyvalente);
+		
+
+		LocalDateTime dateHeureDebut1 = LocalDateTime.of(2022, Month.JANUARY, 3,8, 0);
+		LocalDateTime dateHeureFin1 = LocalDateTime.of(2022, Month.JANUARY, 3,10, 0);
+		LocalDateTime dateHeureDebut2 = LocalDateTime.of(2022, Month.JANUARY, 3,9, 0);
+		LocalDateTime dateHeureFin2 = LocalDateTime.of(2022, Month.JANUARY, 3,11, 0);
+		LocalDateTime dateHeureDebut3 = LocalDateTime.of(2022, Month.JANUARY, 3,10, 0);
+		LocalDateTime dateHeureFin3 = LocalDateTime.of(2022, Month.JANUARY, 3,12, 0);
+
+		
+		Cours cours1 = new Cours(dateHeureDebut1, dateHeureFin1, professeurBio, matiereMath, salleStandard, 3);
+		System.out.println("retour attendu null (prof ne donne pas de cours de math) : " + coursService.save(cours1));
+		
+		cours1 = new Cours(dateHeureDebut1, dateHeureFin1, professeurBio, matiereBio, salleStandard, 3);
+		System.out.println("retour attendu null (bio pas possible dans la salle) : " + coursService.save(cours1));
+
+		cours1 = new Cours(dateHeureDebut1, dateHeureFin1, professeurBio, matiereBio, sallePolyvalente, 3);
+		cours1 = coursService.save(cours1);
+		System.out.println("retour attendu non null : " + cours1);
+
+		Cours cours2 = new Cours(dateHeureDebut2, dateHeureFin2, professeurBioMath, matiereMath, sallePolyvalente, 3);
+		System.out.println("retour attendu null (salle déja occupée sur ce créneau) : " + coursService.save(cours2));
+		
+		cours2 = new Cours(dateHeureDebut2, dateHeureFin2, professeurBio, matiereBio, salleStandard, 2);
+		System.out.println("retour attendu null (prof déja occupé sur ce créneau dans une autre salle) : " + coursService.save(cours2));
+		
+		cours2 = new Cours(dateHeureDebut2, dateHeureFin2, professeurBioMath, matiereMath, salleStandard, 3);
+		cours2 = coursService.save(cours2);
+		System.out.println("retour attendu non null : " + cours2);
+
+		Cours cours3 = new Cours(dateHeureDebut3, dateHeureFin3, professeurBioMath, matiereBio, sallePolyvalente, 3);
+		System.out.println("retour attendu null (prof déja occupé sur ce créneau dans une autre salle) : " + coursService.save(cours3));
+		
+		cours3 = new Cours(dateHeureDebut3, dateHeureFin3, professeurBio, matiereBio, sallePolyvalente, 3);
+		cours3 = coursService.save(cours3);
+		System.out.println("retour attendu non null : " + cours3);
 		
 	}
-
+	
+	
 }
