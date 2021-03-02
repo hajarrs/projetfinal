@@ -61,8 +61,8 @@ public class MatiereController {
 		matiereEnBase.setCouleur(m.getCouleur());
 //		matiereEnBase.setCours(m.getCours());
 		matiereEnBase.setNom(m.getNom());
-		matiereEnBase.setProfesseurs(m.getProfesseurs());
-		matiereEnBase.setSalles(m.getSalles());
+//		matiereEnBase.setProfesseurs(m.getProfesseurs());
+//		matiereEnBase.setSalles(m.getSalles());
 		matiereService.save(matiereEnBase);
 		return matiereEnBase;
 	}

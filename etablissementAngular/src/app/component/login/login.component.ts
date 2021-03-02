@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
           btoa(`${this.loginCtrl.value}:${this.pswCtrl.value}`)
         );
         sessionStorage.setItem('login', this.loginCtrl.value);
-        this.router.navigate(['/suite']);
+        this.router.navigate(['/homeadmin']);
       },
       (error) => {
         this.erreur = true;
