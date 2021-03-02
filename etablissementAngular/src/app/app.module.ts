@@ -22,6 +22,7 @@ import { SalleClasseRowComponent } from './admin-row/salle-classe-row/salle-clas
 import { MatiereRowComponent } from './admin-row/matiere-row/matiere-row.component';
 import { ProfesseurRowComponent } from './admin-row/professeur-row/professeur-row.component';
 import { GroupeClasseRowComponent } from './admin-row/groupe-classe-row/groupe-classe-row.component';
+import { PlanningComponent } from './planning/planning.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ HomeAdminComponent,
     MatiereRowComponent,
     ProfesseurRowComponent,
     GroupeClasseRowComponent,
+    PlanningComponent,
   ],
   imports: [
     BrowserModule,
