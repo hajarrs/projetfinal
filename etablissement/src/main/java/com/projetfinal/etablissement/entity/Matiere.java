@@ -21,10 +21,10 @@ public class Matiere {
 	private String couleur;
 //	@OneToOne
 //	private Cours cours;
-	@ManyToMany
-	private List<Professeur> professeurs;
-	@ManyToMany
-	private List<SalleClasse> salles;
+//	@ManyToMany
+//	private List<Professeur> professeurs;
+//	@ManyToMany
+//	private List<SalleClasse> salles;
 	
 	public Matiere() {
 	}
@@ -65,21 +65,21 @@ public class Matiere {
 //		this.cours = cours;
 //	}
 
-	public List<Professeur> getProfesseurs() {
-		return professeurs;
-	}
-
-	public void setProfesseurs(List<Professeur> professeurs) {
-		this.professeurs = professeurs;
-	}
-
-	public List<SalleClasse> getSalles() {
-		return salles;
-	}
-
-	public void setSalles(List<SalleClasse> salles) {
-		this.salles = salles;
-	}
+//	public List<Professeur> getProfesseurs() {
+//		return professeurs;
+//	}
+//
+//	public void setProfesseurs(List<Professeur> professeurs) {
+//		this.professeurs = professeurs;
+//	}
+//
+//	public List<SalleClasse> getSalles() {
+//		return salles;
+//	}
+//
+//	public void setSalles(List<SalleClasse> salles) {
+//		this.salles = salles;
+//	}
 
 	@Override
 	public int hashCode() {
