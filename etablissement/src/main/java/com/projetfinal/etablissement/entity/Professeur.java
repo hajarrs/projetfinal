@@ -1,5 +1,6 @@
 package com.projetfinal.etablissement.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -11,17 +12,19 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+
+
 @Entity
-public class Professeur extends Utilisateur{
+public class Professeur extends Utilisateur implements Serializable{
 	
 	
 	@ManyToMany//(mappedBy = "professeurs")
-	@JsonView(Vue.Common.class)
+	@JsonView(Vue.CommonProfesseurWithMatiere.class)
 	private List<Matiere> matieres;
 //	@OneToOne
 //	private Cours cours;
+	@JsonView(Vue.CommonProfesseurWithGroupes.class)
 	@OneToMany(mappedBy = "professeurPrincipal")
-	@JsonView(Vue.Common.class)
 	private List<GroupeClasse> groupes;
 	
 	public Professeur() {

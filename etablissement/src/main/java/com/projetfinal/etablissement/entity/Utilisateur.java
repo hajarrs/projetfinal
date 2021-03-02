@@ -1,5 +1,6 @@
 package com.projetfinal.etablissement.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Embedded;
@@ -15,26 +16,36 @@ import javax.persistence.Version;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @SequenceGenerator(name = "seqUtilisateur", sequenceName = "seq_utilisateur", initialValue = 10, allocationSize = 1)
-public class Utilisateur {
+public class Utilisateur  implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqUtilisateur")
+	@JsonView(Vue.Common.class)
 	private Integer id;
 	@NotNull
 	@Embedded
+	@JsonView(Vue.Common.class)
 	private Login login;
 	@NotEmpty
+	@JsonView(Vue.Common.class)
 	private String nom, prenom;
 	@NotNull
 	@Embedded
+	@JsonView(Vue.Common.class)
 	private Adresse adresse;
 	@NotNull
+	@JsonView(Vue.Common.class)
 	private LocalDate dateNaissance;
 	@NotNull
 	@ManyToOne
+	@JsonView(Vue.Common.class)
 	private Etablissement etablissement;
 	@Version
 	private int version;
