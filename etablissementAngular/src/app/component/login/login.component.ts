@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
   }
 
   public logging() {
-    console.log(this.loginCtrl.value + "  " + this.pswCtrl.value)
     this.loginService.auth(new Login(this.loginCtrl.value,this.pswCtrl.value)).subscribe(
       (result) => {
         sessionStorage.setItem(

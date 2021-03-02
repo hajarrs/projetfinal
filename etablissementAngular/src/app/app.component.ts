@@ -16,4 +16,10 @@ export class AppComponent {
     return sessionStorage.getItem('login');
   }
 
+  public logout() {
+    sessionStorage.removeItem('tokenId');
+    sessionStorage.removeItem('login');
+    this.user;
+    this.router.navigate(['/login']);
+  }
 }
