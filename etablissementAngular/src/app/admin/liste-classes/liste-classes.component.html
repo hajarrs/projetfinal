@@ -1,0 +1,28 @@
+<p>liste-classes works!</p>
+<div>
+    <a  [routerLink]="['/listeprofesseurs']" routerLinkActive="active" class="btn btn-outline-light">Liste des professeurs  </a>
+    <a  [routerLink]="['/listeclasses']" routerLinkActive="active" class="btn btn-outline-light">Liste des classes  </a>
+    <a  [routerLink]="['/listematieres']" routerLinkActive="active" class="btn btn-outline-light">Liste des matières  </a>
+    <a  [routerLink]="['/listesalles']" routerLinkActive="active" class="btn btn-outline-light">Liste des salles  </a>
+
+</div>
+
+<h1>liste des Classes</h1>
+<button class="btn btn-link" (click)="displayNew()">ajouter Salle de Classe</button>
+
+<table class="table">
+
+<tr *ngIf="showNew" salles-row (insert)="insert()" (cancel)="cancel()"></tr>
+  <tr>
+    <th>id</th>
+    <th>nom</th>    
+    <th>professeurPrincipal</th>
+    <th></th>
+  </tr>
+  <tr
+  groupe-classe-row
+    [user]="c"
+    *ngFor="let c of classes"
+    (delete)="delete($event)"
+  ></tr>
+</table>

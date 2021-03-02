@@ -9,10 +9,33 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
 import { routes } from './routes';
 
+
+import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
+import { ListeClassesComponent } from './admin/liste-classes/liste-classes.component';
+import { ListeMatieresComponent } from './admin/liste-matieres/liste-matieres.component';
+import { ListeProfesseursComponent } from './admin/liste-professeurs/liste-professeurs.component';
+import { ListeSallesComponent } from './admin/liste-salles/liste-salles.component';
+
+
+
+import { SalleClasseRowComponent } from './admin-row/salle-classe-row/salle-classe-row.component';
+import { MatiereRowComponent } from './admin-row/matiere-row/matiere-row.component';
+import { ProfesseurRowComponent } from './admin-row/professeur-row/professeur-row.component';
+import { GroupeClasseRowComponent } from './admin-row/groupe-classe-row/groupe-classe-row.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+HomeAdminComponent,
+    ListeClassesComponent,
+    ListeSallesComponent,
+    ListeProfesseursComponent,
+    ListeMatieresComponent,
+    SalleClasseRowComponent,
+    MatiereRowComponent,
+    ProfesseurRowComponent,
+    GroupeClasseRowComponent,
   ],
   imports: [
     BrowserModule,
