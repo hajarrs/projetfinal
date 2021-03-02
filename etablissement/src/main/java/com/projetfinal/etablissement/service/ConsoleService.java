@@ -58,33 +58,37 @@ public class ConsoleService implements CommandLineRunner {
 		
 		
 		
-		Login login = new Login("hajars","hajar1",TypeUtilisateur.UTILISATEUR);
+		Login login = new Login("hajars", "hajar1", TypeUtilisateur.UTILISATEUR);
 		Adresse adresse = new Adresse("Chemin des monts", 1, "13127", "Vitrolles");
 		LocalDate dateNaissance1 = LocalDate.of(1995, Month.JUNE, 15);
 		Professeur professeur = new Professeur(login, "ram", "hajar", adresse, dateNaissance1, etablissement1);
-		professeur = professeurService.save(professeur);
+		
+		
 		SalleClasse salle = new SalleClasse("salle1", 30);
 		salle = salleClasseService.save(salle);
 		LocalDateTime dateHeureDebut = LocalDateTime.of(2022, Month.JANUARY, 3,8, 0);
 		LocalDateTime dateHeureFin = LocalDateTime.of(2022, Month.JANUARY, 3,10, 0);
 		Matiere matiere = new Matiere("Maths", "blue");
 		matiereService.save(matiere);
+		List<Matiere> matieres = new ArrayList<Matiere>();
+		matieres.add(matiere);
+		professeur.setMatieres(matieres);
 		Matiere matiere2 = new Matiere("Physique", "red");
 		matiereService.save(matiere2);
 		List<Matiere> matieresExclues = new ArrayList<Matiere>();
 		matieresExclues.add(matiere2);
 		salle.setMatieresExclues(matieresExclues);
+		
+		
 		Cours cours = new Cours(dateHeureDebut, dateHeureFin, professeur, matiere, salle, 3);
-		cours = coursService.save(cours);
 		cours.setMatiere(matiere);
 		cours.setProfesseur(professeur);
 		cours.setSalle(salle);
+		professeur = professeurService.creationProfesseur(professeur);
+		cours = coursService.save(cours);
 		
 		salle = salleClasseService.save(salle);
-		matiereService.save(matiere);
-		List<Matiere> matieres = new ArrayList<Matiere>();
-		matieres.add(matiere);
-		professeur.setMatieres(matieres);
+		
 		professeurService.save(professeur);
 		GroupeClasse groupe = new GroupeClasse("A", professeur);
 		groupe = groupeService.save(groupe);
@@ -93,15 +97,16 @@ public class ConsoleService implements CommandLineRunner {
 		LocalDate dateNaissance = LocalDate.of(1968, Month.JANUARY, 1);
 		Login login1 = new Login("admin", "pass", TypeUtilisateur.ADMIN);
 		Utilisateur utilisateur1 = new Utilisateur(login1, "admin", "admin", adresse4, dateNaissance, etablissement1);
-		utilisateurService.save(utilisateur1);
+		utilisateurService.creationUtilisateur(utilisateur1);
 		Login login2 = new Login("user", "pass", TypeUtilisateur.UTILISATEUR);
 		Utilisateur utilisateur2 = new Utilisateur(login2, "user", "user", adresse4, dateNaissance, etablissement2);
-		utilisateurService.save(utilisateur2);
+		utilisateurService.creationUtilisateur(utilisateur2);
+		
 
 		Login login3 = new Login("TestPass", TypeUtilisateur.UTILISATEUR);
 		Utilisateur testUserGeneratePassword = new Utilisateur(login3, "userTestPass", "userTestPass", adresse4, dateNaissance, etablissement2);
 		System.out.println("\n\n\n Password temp = " + login3.getPassword());
-		utilisateurService.save(testUserGeneratePassword);
+		utilisateurService.creationUtilisateur(testUserGeneratePassword);
 		
 	}
 

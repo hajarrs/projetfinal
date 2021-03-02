@@ -20,12 +20,14 @@ public class ProfesseurService {
 	
 	// definir tous les traitements disponible sur l'entite professeur
 
-	public void creationProfesseur(Professeur p) {
+	public Professeur creationProfesseur(Professeur p) {
 		if (p.getPrenom() != null && !p.getPrenom().isEmpty() && p.getNom() != null && !p.getNom().isEmpty()
 				&& p.getEtablissement() != null && p.getMatieres() != null && !p.getMatieres().isEmpty()) {
-			professeurRepo.save(p);
+			p.getLogin().setPassword(passwordEncoder.encode(p.getLogin().getPassword()));
+			return professeurRepo.save(p);
 		} else {
 			System.out.println("le professeur n'a pas toute les infos obligatoires");
+			return p;
 		}
 	}
 
@@ -46,7 +48,6 @@ public class ProfesseurService {
 	}
 
 	public Professeur save(Professeur p) {
-		p.getLogin().setPassword(passwordEncoder.encode(p.getLogin().getPassword()));
 		return professeurRepo.save(p);
 	}
 

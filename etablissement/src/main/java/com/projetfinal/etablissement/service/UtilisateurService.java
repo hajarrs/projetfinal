@@ -20,13 +20,16 @@ public class UtilisateurService {
 
 	// definir tous les traitements disponible sur l'entite utilisateur
 
-	public void creationUtilisateur(Utilisateur p) {
+	public Utilisateur creationUtilisateur(Utilisateur p) {
 		if (p.getPrenom() != null && !p.getPrenom().isEmpty() && p.getNom() != null && !p.getNom().isEmpty()
 				&& p.getEtablissement() != null) {
-			utilisateurRepo.save(p);
+			p.getLogin().setPassword(passwordEncoder.encode(p.getLogin().getPassword()));
+			return utilisateurRepo.save(p);
 		} else {
 			System.out.println("le utilisateur n'a pas toute les infos obligatoires");
+			return p;
 		}
+		
 	}
 
 //		public void creationUtilisateur(String prenom, String nom) {
@@ -46,7 +49,6 @@ public class UtilisateurService {
 	}
 
 	public Utilisateur save(Utilisateur u) {
-		u.getLogin().setPassword(passwordEncoder.encode(u.getLogin().getPassword()));
 		return utilisateurRepo.save(u);
 	}
 
