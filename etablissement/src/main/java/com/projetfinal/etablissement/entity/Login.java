@@ -16,17 +16,22 @@ import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Embeddable
 public class Login {
 
 	@NotEmpty
 	@Column(unique=true)
+	@JsonView(Vue.Common.class)
 	private String login;
 	@NotEmpty
 	private String password;
+	@JsonView(Vue.Common.class)
 	private boolean premiereConnexion = true;
 	@NotNull
 	@Enumerated(EnumType.STRING)
+	@JsonView(Vue.Common.class)
 	private TypeUtilisateur typeUtilisateur;
 	
 	

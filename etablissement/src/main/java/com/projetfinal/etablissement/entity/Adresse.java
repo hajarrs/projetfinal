@@ -6,16 +6,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Embeddable
 public class Adresse {
 
 	@NotEmpty
+	@JsonView(Vue.Common.class)
 	private String nomRue;
 	@NotEmpty
+	@JsonView(Vue.Common.class)
 	private Integer numRue;
 	@NotEmpty
+	@JsonView(Vue.Common.class)
 	private String codePostal;
 	@NotEmpty
+	@JsonView(Vue.Common.class)
 	private String ville;
 	
 	

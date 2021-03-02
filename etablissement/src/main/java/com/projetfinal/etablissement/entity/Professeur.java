@@ -19,7 +19,7 @@ public class Professeur extends Utilisateur implements Serializable{
 	
 	
 	@ManyToMany//(mappedBy = "professeurs")
-	@JsonView(Vue.CommonProfesseurWithMatiere.class)
+	@JsonView(Vue.Common.class)
 	private List<Matiere> matieres;
 //	@OneToOne
 //	private Cours cours;
