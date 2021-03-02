@@ -17,7 +17,7 @@
                     </div>
                     <div class="form-group ">
                         <label class="labelle" for="psw ">Mot de passe:</label>
-                        <input class="form-control " name="psw " [formControl]="pswCtrl " />
+                        <input type="password" class="form-control " name="psw " [formControl]="pswCtrl " />
                         <div *ngIf="pswCtrl.dirty && pswCtrl.hasError( 'required') " class="alert alert-danger ">
                             Password obligatoire
                         </div>
