@@ -1,6 +1,6 @@
 package com.projetfinal.etablissement.entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,29 +8,38 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Cours {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(Vue.Common.class)
 	private Integer id;
-	private LocalDateTime dateHeureDebut;
-	private LocalDateTime dateHeureFin;
+	@JsonView(Vue.Common.class)
+	private LocalTime heureDebut;
+	@JsonView(Vue.Common.class)
+	private LocalTime heureFin;
+	@JsonView(Vue.Common.class)
 	private int day; // 0 à 6, pour être utilisé avec les méthodes de java.util.Date.getDay()
 	@ManyToOne
+	@JsonView(Vue.Common.class)
 	private Professeur professeur;
 	@ManyToOne
+	@JsonView(Vue.Common.class)
 	private Matiere matiere;
 	@ManyToOne
+	@JsonView(Vue.Common.class)
 	private SalleClasse salle;
 	
 	public Cours() {
 	}
 
-	public Cours(LocalDateTime dateHeureDebut, LocalDateTime dateHeureFin, Professeur professeur, Matiere matiere,
+	public Cours(LocalTime heureDebut, LocalTime heureFin, Professeur professeur, Matiere matiere,
 			SalleClasse salle, int day) {
 		super();
-		this.dateHeureDebut = dateHeureDebut;
-		this.dateHeureFin = dateHeureFin;
+		this.heureDebut = heureDebut;
+		this.heureFin = heureFin;
 		this.professeur = professeur;
 		this.matiere = matiere;
 		this.salle = salle;
@@ -41,20 +50,20 @@ public class Cours {
 		return id;
 	}
 
-	public LocalDateTime getDateHeureDebut() {
-		return dateHeureDebut;
+	public LocalTime getHeureDebut() {
+		return heureDebut;
 	}
 
-	public void setDateHeureDebut(LocalDateTime dateHeureDebut) {
-		this.dateHeureDebut = dateHeureDebut;
+	public void setHeureDebut(LocalTime heureDebut) {
+		this.heureDebut = heureDebut;
 	}
 
-	public LocalDateTime getDateHeureFin() {
-		return dateHeureFin;
+	public LocalTime getHeureFin() {
+		return heureFin;
 	}
 
-	public void setDateHeureFin(LocalDateTime dateHeureFin) {
-		this.dateHeureFin = dateHeureFin;
+	public void setHeureFin(LocalTime heureFin) {
+		this.heureFin = heureFin;
 	}
 
 	public Professeur getProfesseur() {

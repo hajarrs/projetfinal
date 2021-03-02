@@ -7,11 +7,11 @@ import { Cours } from '../model/cours';
   providedIn: 'root'
 })
 export class CoursService {
-  private url: string = 'http://localhost:8080/etablissement';
+  private url: string = 'http://localhost:8080/etablissement/api/cours';
 
   private httpHeaders: HttpHeaders;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
 
     this.httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',

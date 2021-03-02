@@ -1,9 +1,9 @@
 package com.projetfinal.etablissement.service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time. LocalTime;
+import java.time.LocalTime;
 import java.time.Month;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.projetfinal.etablissement.entity.Adresse;
 import com.projetfinal.etablissement.entity.Cours;
 import com.projetfinal.etablissement.entity.Etablissement;
@@ -73,8 +72,8 @@ public class ConsoleService implements CommandLineRunner {
 		
 		SalleClasse salle = new SalleClasse("salle1", 30);
 		salle = salleClasseService.save(salle);
-		LocalDateTime dateHeureDebut = LocalDateTime.of(2022, Month.JANUARY, 3,8, 0);
-		LocalDateTime dateHeureFin = LocalDateTime.of(2022, Month.JANUARY, 3,10, 0);
+		LocalTime dateHeureDebut = LocalTime.of(8, 0);
+		LocalTime dateHeureFin = LocalTime.of(10, 0);
 		Matiere matiere = new Matiere("Maths", "blue");
 		matiereService.save(matiere);
 		List<Matiere> matieres = new ArrayList<Matiere>();
@@ -173,12 +172,12 @@ public class ConsoleService implements CommandLineRunner {
 		salleClasseService.save(sallePolyvalente);
 		
 
-		LocalDateTime dateHeureDebut1 = LocalDateTime.of(2022, Month.JANUARY, 3,8, 0);
-		LocalDateTime dateHeureFin1 = LocalDateTime.of(2022, Month.JANUARY, 3,10, 0);
-		LocalDateTime dateHeureDebut2 = LocalDateTime.of(2022, Month.JANUARY, 3,9, 0);
-		LocalDateTime dateHeureFin2 = LocalDateTime.of(2022, Month.JANUARY, 3,11, 0);
-		LocalDateTime dateHeureDebut3 = LocalDateTime.of(2022, Month.JANUARY, 3,10, 0);
-		LocalDateTime dateHeureFin3 = LocalDateTime.of(2022, Month.JANUARY, 3,12, 0);
+		 LocalTime dateHeureDebut1 =  LocalTime.of(8, 0);
+		 LocalTime dateHeureFin1 =  LocalTime.of(10, 0);
+		 LocalTime dateHeureDebut2 =  LocalTime.of(9, 0);
+		 LocalTime dateHeureFin2 =  LocalTime.of(11, 0);
+		 LocalTime dateHeureDebut3 =  LocalTime.of(10, 0);
+		 LocalTime dateHeureFin3 =  LocalTime.of(12, 0);
 
 		
 		Cours cours1 = new Cours(dateHeureDebut1, dateHeureFin1, professeurBio, matiereMath, salleStandard, 3);

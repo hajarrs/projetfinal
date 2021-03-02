@@ -32,7 +32,7 @@ import com.projetfinal.etablissement.service.ProfesseurService;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/professeur")
+@RequestMapping("/api/professeur")
 public class ProfesseurController {
 
 	@Autowired

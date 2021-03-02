@@ -28,7 +28,7 @@ import com.projetfinal.etablissement.service.MatiereService;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/matiere")
+@RequestMapping("/api/matiere")
 public class MatiereController {
 
 	@Autowired

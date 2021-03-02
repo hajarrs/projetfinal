@@ -13,15 +13,21 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class SalleClasse {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(Vue.Common.class)
 	private Integer id;
+	@JsonView(Vue.Common.class)
 	private String nom;
 	@ManyToMany//(mappedBy = "salles")
+	@JsonView(Vue.Common.class)
     private List<Matiere> matieresExclues;
+	@JsonView(Vue.Common.class)
 	private Integer capacite;
 //	@OneToOne
 //	private Cours cours;

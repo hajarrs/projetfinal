@@ -28,7 +28,7 @@ import com.projetfinal.etablissement.service.EtablissementService;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/etablissement")
+@RequestMapping("/api/etablissement")
 public class EtablissementController {
 
 	@Autowired
