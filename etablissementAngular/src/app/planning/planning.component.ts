@@ -72,7 +72,7 @@ export class PlanningComponent implements OnInit {
                 {
                   this.matrix[h][j]=this.cours[k];
                 }
-                i=this.heureF-this.heureD;
+                i=i+this.heureF-this.heureD;
             }
         }}
       }
