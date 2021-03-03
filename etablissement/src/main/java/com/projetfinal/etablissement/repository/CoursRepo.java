@@ -11,10 +11,10 @@ import com.projetfinal.etablissement.entity.Cours;
 public interface CoursRepo extends JpaRepository<Cours, Integer> {
 
 	@Query("select c from Cours c where c.professeur.id=:id")
-	public List<Cours> findAllForProfesseur(@Param("pid") Integer id);
+	public List<Cours> findAllForProfesseur(@Param("id") Integer id);
 	
 	@Query("select c from Cours c where c.salle.id=:id")
-	public List<Cours> findAllForSalle(@Param("pid") Integer id);
+	public List<Cours> findAllForSalle(@Param("id") Integer id);
 	
 	
 }
