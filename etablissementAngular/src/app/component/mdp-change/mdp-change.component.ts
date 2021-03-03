@@ -39,7 +39,7 @@ export class MdpChangeComponent implements OnInit {
     }
     return null;
   }
-  
+
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       if (params.id) {
@@ -55,9 +55,9 @@ export class MdpChangeComponent implements OnInit {
     this.utilisateur.login.password=this.pswCtrl.value;
 
     this.utilisateurService.update(this.utilisateur).subscribe((result)=>{
-      //localStorage.removeItem('tokenId');
-      //localStorage.setItem('tokenId', btoa(`${localStorage.getItem('login')}:${this.utilisateur.login.password}`));
-      if (localStorage.getItem('typeUtilisateur') == "ADMIN") {
+      //sessionStorage.removeItem('tokenId');
+      sessionStorage.setItem('tokenId', btoa(`${sessionStorage.getItem('login')}:${this.utilisateur.login.password}`));
+      if (sessionStorage.getItem('typeUtilisateur') == "ADMIN") {
         console.log("admin");
           this.router.navigate(['/homeadmin']);
         } else {

@@ -34,12 +34,12 @@ export class LoginComponent implements OnInit {
   public logging() {
     this.loginService.auth(new Login(this.loginCtrl.value,this.pswCtrl.value)).subscribe(
       (result) => {
-        localStorage.setItem(
+        sessionStorage.setItem(
           'tokenId',
           btoa(`${this.loginCtrl.value}:${this.pswCtrl.value}`)
         );
-        localStorage.setItem('login', result.login.login);
-        localStorage.setItem('typeUtilisateur', result.login.typeUtilisateur);
+        sessionStorage.setItem('login', result.login.login);
+        sessionStorage.setItem('typeUtilisateur', result.login.typeUtilisateur);
         if (result.login.premiereConnexion) {
           this.router.navigate(['/mdpchange/' + result.id]);
         } else {

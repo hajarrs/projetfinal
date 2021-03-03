@@ -13,14 +13,12 @@ export class AppComponent {
   }
 
   get user() : string | null {
-    return localStorage.getItem('login');
+    return sessionStorage.getItem('login');
   }
 
   public logout() {
-    localStorage.clear();
-    console.log(localStorage);
-    //localStorage.removeItem('tokenId');
-    //localStorage.removeItem('login');
+    sessionStorage.clear();
+    console.log(sessionStorage);
     this.user;
     this.router.navigate(['/login']);
   }

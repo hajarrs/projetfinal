@@ -10,13 +10,13 @@ private _heureFin: string;
 private _professeur!: Professeur;
 private _matiere!: Matiere
 private _salle!: SalleClasse;
+private _day!: number;
 
+	constructor(id?: number, heureDebut: string='', heureFin: string='', professeur?: Professeur, matiere?: Matiere, salle?: SalleClasse, day?: number) {
 
-	constructor(id?: number, heureDebut: string='', heureFin: string='', professeur?: Professeur, matiere?: Matiere, salle?: SalleClasse) {
-		
 		this._heureDebut = heureDebut;
 		this._heureFin = heureFin;
-		
+
 			}
 
 
@@ -27,7 +27,13 @@ private _salle!: SalleClasse;
 	public get id(): number {
 		return this._id;
 	}
-
+    /**
+     * Getter day
+     * @return {number}
+     */
+    public get day(): number {
+      return this._day;
+    }
     /**
      * Getter heureDebut
      * @return {string}
@@ -75,7 +81,13 @@ private _salle!: SalleClasse;
 	public set id(value: number) {
 		this._id = value;
 	}
-
+    /**
+     * Setter day
+     * @param {number} value
+     */
+    public set day(value: number) {
+      this._day = value;
+    }
     /**
      * Setter heureDebut
      * @param {string} value

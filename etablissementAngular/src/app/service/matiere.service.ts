@@ -8,17 +8,18 @@ import { Observable } from 'rxjs';
 })
 export class MatiereService {
 
-  private url: string = 'http://localhost:8080/entreprise/api/matiere';
+  private url: string = 'http://localhost:8080/etablissement/api/matiere';
 
   private httpHeaders: HttpHeaders;
 
 
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.httpHeaders = new HttpHeaders({
       'content-type': 'application/json',
-      Authorization: 'Basic ' + btoa('insertLogin:insertPassword'),
+      Authorization: 'Basic ' + sessionStorage.getItem('tokenId'),
     });
+  
 
   }
   public allMatiere(): Observable<Matiere[]> {
@@ -39,7 +40,7 @@ export class MatiereService {
 
   public insert(matiere: Matiere): Observable<Matiere> {
     const o = {
-      //id: matiere.id,   
+      id: matiere.id,   
       nom: matiere.nom,
       couleur: matiere.couleur,
       

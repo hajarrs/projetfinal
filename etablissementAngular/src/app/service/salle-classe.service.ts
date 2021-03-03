@@ -8,14 +8,14 @@ import { SalleClasse } from '../model/salle-classe';
 })
 export class SalleClasseService {
 
-  private url: string = 'http://localhost:8080/salleClasse';
+  private url: string = 'http://localhost:8080/etablissement/api/salleClasse';
 
   private httpHeaders: HttpHeaders;
 
-   constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.httpHeaders = new HttpHeaders({
       'content-type': 'application/json',
-      Authorization: 'Basic ' + btoa('insertLogin:insertPassword'),
+      Authorization: 'Basic ' + sessionStorage.getItem('tokenId'),
     });
   }
 
@@ -37,7 +37,7 @@ export class SalleClasseService {
   
     public insert(salleClasse: SalleClasse): Observable<SalleClasse> {
       const o = {
-        //id: salleClasse.id,   
+        id: salleClasse.id,   
         nom: salleClasse.nom,
         matieresExclues: salleClasse.matieresExclues,
         capacite: salleClasse.capacite

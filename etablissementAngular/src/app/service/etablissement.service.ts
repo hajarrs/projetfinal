@@ -7,13 +7,13 @@ import { Etablissement } from '../model/etablissement';
   providedIn: 'root'
 })
 export class EtablissementService {
-  private url: string = 'http://localhost:8080/etablissement';
+  private url: string = 'http://localhost:8080/etablissement/api/etablissement';
   private httpHeaders: HttpHeaders;
 
   constructor(private http: HttpClient) { 
     this.httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Basic ' + localStorage.getItem('tokenId'),
+      Authorization: 'Basic ' + sessionStorage.getItem('tokenId'),
     });
   }
 

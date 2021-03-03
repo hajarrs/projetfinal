@@ -3,12 +3,11 @@ import { Matiere } from "./matiere";
 export class SalleClasse {
     private _id!: number;
     private _nom: string;
-    private _matieresExclues!: Matiere;
-    private _matieres: Matiere[] = [];
+    private _matieresExclues: Matiere[] = [];
     private _capacite: number;
 
 
-	constructor(id?: number, nom: string='', matieresExclues?: Matiere, matieres?: Matiere[] , capacite: number=0) {
+	constructor(id?: number, nom: string='',  matieresExclues?: Matiere[] , capacite: number=0) {
 		
 		this._nom = nom;
 		this._capacite = capacite;
@@ -31,20 +30,14 @@ export class SalleClasse {
 		return this._nom;
 	}
 
-    /**
-     * Getter matieresExclues
-     * @return {Matiere}
-     */
-	public get matieresExclues(): Matiere {
-		return this._matieresExclues;
-	}
+  
 
     /**
      * Getter matieres
      * @return {Matiere[] }
      */
-	public get matieres(): Matiere[]  {
-		return this._matieres;
+	public get matieresExclues(): Matiere[]  {
+		return this._matieresExclues;
 	}
 
     /**
@@ -71,20 +64,14 @@ export class SalleClasse {
 		this._nom = value;
 	}
 
-    /**
-     * Setter matieresExclues
-     * @param {Matiere} value
-     */
-	public set matieresExclues(value: Matiere) {
-		this._matieresExclues = value;
-	}
+ 
 
     /**
      * Setter matieres
      * @param {Matiere[] } value
      */
-	public set matieres(value: Matiere[] ) {
-		this._matieres = value;
+	public set matieresExclues(value: Matiere[] ) {
+		this._matieresExclues = value;
 	}
 
     /**

@@ -15,7 +15,7 @@ export class CoursService {
 
     this.httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Basic ' + localStorage.getItem('tokenId'),
+      Authorization: 'Basic ' + sessionStorage.getItem('tokenId'),
     });
   }
 

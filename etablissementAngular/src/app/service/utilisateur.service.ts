@@ -17,7 +17,8 @@ export class UtilisateurService {
   private get httpHeaders():HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Basic ' + localStorage.getItem('tokenId')
+      Authorization: 'Basic ' + sessionStorage.getItem('tokenId')
+
     });
   }
 
@@ -39,7 +40,7 @@ export class UtilisateurService {
 
   public insert(utilisateur: Utilisateur): Observable<Utilisateur> {
     const o = {
-      //id: utilisateur.id,  
+      id: utilisateur.id,  
       login: utilisateur.login, 
       nom: utilisateur.nom,
       prenom: utilisateur.prenom,
