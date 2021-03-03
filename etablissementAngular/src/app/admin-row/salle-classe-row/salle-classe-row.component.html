@@ -4,7 +4,6 @@
     <td>{{ user.id }}</td>
     <td>{{ user.nom }}</td>
     <td>{{ user.matieresExclues }}</td>
-    <td>{{ user.matieres }}</td>
     <td>{{user.capacite}}</td>
     <td>
       <button (click)="changeMode()" class="btn btn-outline-primary">
@@ -20,7 +19,6 @@
     <td>{{ user.id }}</td>
     <td><input [(ngModel)]="user.nom"></td>
     <td><input [(ngModel)]="user.matieresExclues" /></td>
-    <td><input [(ngModel)]="user.matieres" /></td>
     <td><input [(ngModel)]="user.capacite"></td>
     <td>
       <button (click)="save()" class="btn btn-outline-success">

@@ -37,7 +37,7 @@ export class SalleClasseService {
   
     public insert(salleClasse: SalleClasse): Observable<SalleClasse> {
       const o = {
-        //id: salleClasse.id,   
+        id: salleClasse.id,   
         nom: salleClasse.nom,
         matieresExclues: salleClasse.matieresExclues,
         capacite: salleClasse.capacite
