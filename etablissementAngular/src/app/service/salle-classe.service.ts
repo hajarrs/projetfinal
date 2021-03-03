@@ -12,10 +12,10 @@ export class SalleClasseService {
 
   private httpHeaders: HttpHeaders;
 
-   constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.httpHeaders = new HttpHeaders({
       'content-type': 'application/json',
-      Authorization: 'Basic ' + btoa('insertLogin:insertPassword'),
+      Authorization: 'Basic ' + sessionStorage.getItem('tokenId'),
     });
   }
 
