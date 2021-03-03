@@ -50,13 +50,19 @@ export class PlanningComponent implements OnInit {
       this.cours = data;
       for(let k = 0 ; k<this.cours.length; k++){
         for( let i =0; i<11; i++){
-        for( let j =0; j<5; j++){
-            console.log(this.cours[k].heureDebut.localeCompare("08:00:00"));
-            if(this.cours[k].heureDebut.localeCompare("08:00:00") && this.cours[k].day===0){
-              this.matrix[0][0]=this.cours[k];
+          for( let j =0; j<5; j++){
+            //console.log(this.cours[k].heureDebut.localeCompare("08:00:00"));
+            if(this.cours[k].day===j){
+              console.log(i+" "+j);
+              this.matrix[i][j]=this.cours[k];
             }
         }}
       }
+      for( let i =0; i<11; i++){
+        for( let j =0; j<5; j++){
+           console.log(this.matrix[i][j]);
+
+      }}
       console.log(this.cours);
     });
   }
