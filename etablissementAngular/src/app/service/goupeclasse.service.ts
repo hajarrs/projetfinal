@@ -7,7 +7,7 @@ import { GroupeClasse } from '../model/groupe-classe';
   providedIn: 'root'
 })
 export class GoupeclasseService {
-  private url: string = 'http://localhost:8080/groupeclasse';
+  private url: string = 'http://localhost:8080/etablissement/api/groupeClasse';
   private httpHeaders: HttpHeaders;
   
   constructor(private http: HttpClient) { 
