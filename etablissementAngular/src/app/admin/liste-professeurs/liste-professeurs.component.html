@@ -9,20 +9,21 @@
 
 
 <h1>liste des Professeurs</h1>
-
+<button class="btn btn-link" (click)="displayNew()">ajouter Professeur</button>
 <table class="table">
 
 <tr *ngIf="showNew" salles-row (insert)="insert()" (cancel)="cancel()"></tr>
   <tr>
     <th>id</th>
-    <th>Login</th>
+    <th>Login.login</th>
+    <th>Login.password</th>
     <th>nom</th>    
     <th>prenom</th>
     <th>Adresse => numero de rue</th>
     <th>Adresse => nom de rue</th>
     <th>Adresse => ville</th>
     <th>dateNaissance</th>
-    <th>etablissement</th>
+    <th>etablissement.nom</th>
     <th></th>
   </tr>
   <tr

@@ -1,15 +1,16 @@
-<p>professeur-row works!</p>
+
 
 <ng-container *ngIf="!edit; else formEdit">
     <td>{{ user.id }}</td>
-    <td>{{ user.login }}</td>
+    <td>{{ user.login.login }}</td>
+    <td>{{ user.login.password }}</td>
     <td>{{ user.nom }}</td>
     <td>{{ user.prenom }}</td>
     <td>{{ user.adresse.numRue }}</td>
     <td>{{ user.adresse.nomRue }}</td>
     <td>{{ user.adresse.ville }}</td>
     <td>{{user.dateNaissance}}</td>
-    <td>{{user.etablissement}}</td>
+    <td>{{user.etablissement.nom}}</td>
     <td>
       <button (click)="changeMode()" class="btn btn-outline-primary">
         editer
@@ -22,14 +23,15 @@
   
   <ng-template #formEdit>
     <td>{{ user.id }}</td>
-    <td><input [(ngModel)]="user.login"></td>
+    <td><input [(ngModel)]="user.login.login"></td>
+    <td><input [(ngModel)]="user.login.password"></td>
     <td><input [(ngModel)]="user.nom"></td>
     <td><input [(ngModel)]="user.prenom"></td>
     <td><input [(ngModel)]="user.adresse.numRue"></td>
     <td><input [(ngModel)]="user.adresse.nomRue"></td>
     <td><input [(ngModel)]="user.adresse.ville"></td>
     <td><input [(ngModel)]="user.dateNaissance"></td>
-    <td><input [(ngModel)]="user.etablissement"></td>
+    <td><input [(ngModel)]="user.etablissement.nom"></td>
     <td>
       <button (click)="save()" class="btn btn-outline-success">
         enregistrer
