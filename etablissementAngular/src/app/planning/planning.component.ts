@@ -13,14 +13,19 @@ export class PlanningComponent implements OnInit {
 
   cours: Cours[] =[];
   coursVide : Cours = new Cours();
-  ligne: Cours[] = new Array<Cours>(5);
   matrix: Cours[][] =[];
-  heure : string ='';
+  heureD: number =0;
+  heureF: number =0;
  //pb avec ce constructeur, pas d'affichage du component
  constructor(private coursService: CoursService) {
    for( let i =0; i<11; i++){
       this.matrix.push(new Array<Cours>(5));
    }
+   for( let i =0; i<11; i++){
+    for( let j =0; j<5; j++){
+       this.matrix[i][j]= this.coursVide;
+    }
+  }
  }
 
   nom: string = '';
@@ -54,13 +59,18 @@ export class PlanningComponent implements OnInit {
       for(let k = 0 ; k<this.cours.length; k++){
         for( let i =0; i<11; i++){
           for( let j =0; j<5; j++){
+
             //console.log(this.cours[k].heureDebut.localeCompare("08:00:00"));
-            this.heure = this.cours[k].heureDebut.substring(0,2);
-            console.log(Number(this.heure));
-            if( Number(this.heure)-8 ===i && this.cours[k].day===j){
-              this.matrix[i][j]=this.cours[k];
+            this.heureD= Number(this.cours[k].heureDebut.substring(0,2));
+            this.heureF= Number(this.cours[k].heureFin.substring(0,2));
+
+            if( this.heureD-8 ===i && this.cours[k].day===j){
+              for(let h = i; h<(this.heureF-this.heureD); h++)
+                {
+                  this.matrix[h][j]=this.cours[k];
+                }
+                i=this.heureF-this.heureD;
             }
-            else this.matrix[i][j]= this.coursVide;
         }}
       }
       console.log(this.cours);
