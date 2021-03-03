@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Cours } from '../model/cours';
+import { Matiere } from '../model/matiere';
 import { CoursService } from '../service/cours.service';
 
 @Component({
@@ -11,9 +12,10 @@ import { CoursService } from '../service/cours.service';
 export class PlanningComponent implements OnInit {
 
   cours: Cours[] =[];
+  coursVide : Cours = new Cours();
   ligne: Cours[] = new Array<Cours>(5);
   matrix: Cours[][] =[];
-
+  heure : string ='';
  //pb avec ce constructeur, pas d'affichage du component
  constructor(private coursService: CoursService) {
    for( let i =0; i<11; i++){
@@ -46,23 +48,21 @@ export class PlanningComponent implements OnInit {
   }*/
 
   public init() {
+    this.coursVide.matiere = new Matiere();
     this.coursService.allCours().subscribe((data) => {
       this.cours = data;
       for(let k = 0 ; k<this.cours.length; k++){
         for( let i =0; i<11; i++){
           for( let j =0; j<5; j++){
             //console.log(this.cours[k].heureDebut.localeCompare("08:00:00"));
-            if(this.cours[k].day===j){
-              console.log(i+" "+j);
+            this.heure = this.cours[k].heureDebut.substring(0,2);
+            console.log(Number(this.heure));
+            if( Number(this.heure)-8 ===i && this.cours[k].day===j){
               this.matrix[i][j]=this.cours[k];
             }
+            else this.matrix[i][j]= this.coursVide;
         }}
       }
-      for( let i =0; i<11; i++){
-        for( let j =0; j<5; j++){
-           console.log(this.matrix[i][j]);
-
-      }}
       console.log(this.cours);
     });
   }
