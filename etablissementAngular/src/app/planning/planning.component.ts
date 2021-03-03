@@ -1,9 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Cours } from '../model/cours';
 import { Matiere } from '../model/matiere';
 import { Professeur } from '../model/professeur';
 import { CoursService } from '../service/cours.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+
 
 @Component({
   selector: 'app-planning',
@@ -80,5 +83,23 @@ export class PlanningComponent implements OnInit {
     });
   }
 
+
+  public openPDF():void {
+    let DATA = document.getElementById('pdfTable');
+    console.log(DATA);
+    if (DATA) {
+      html2canvas(DATA, {scrollY: -window.scrollY}).then(canvas => {
+        const FILEURI = canvas.toDataURL('image/png')
+        let PDF = new jsPDF('l', 'mm', 'a4');
+
+        const imgProps= PDF.getImageProperties(FILEURI);
+        const pdfWidth = PDF.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        PDF.addImage(FILEURI, 'PNG', 0, 0, pdfWidth, pdfHeight);
+
+        PDF.save('Planning.pdf'); // ajouter éventuellement date dans le nom, prof, salle, etc
+    });
+    }
+  }
 
 }

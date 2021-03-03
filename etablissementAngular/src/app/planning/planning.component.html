@@ -1,3 +1,5 @@
+<div>
+
 <p>Planning de la semaine!</p>
 
 <!--affichage liste matieres
@@ -15,8 +17,8 @@
       <div class="timetable-img text-center">
           <img src="img/content/timetable.png" alt="">
       </div>
-      <div class="table-responsive ">
-          <table class="table table-bordered text-center ">
+      <div class="table-responsive " >
+          <table class="table table-bordered text-center " id="pdfTable" >
               <thead>
                   <tr class="bg-violet">
                       <!-- texte adapté -->
@@ -230,3 +232,12 @@
           </table>
       </div>
   </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4 text-right">
+    <button class="btn btn-success btn-block" (click)="openPDF()">Télécharger en PDF</button>
+  </div>
+  <div class="col-md-4"></div>
+</div>
