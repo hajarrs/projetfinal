@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class MatiereService {
 
-  private url: string = 'http://localhost:8080/entreprise/api/matiere';
+  private url: string = 'http://localhost:8080/etablissement/api/matiere';
 
   private httpHeaders: HttpHeaders;
 

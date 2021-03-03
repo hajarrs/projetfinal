@@ -9,14 +9,14 @@ import { Professeur } from '../model/professeur';
 })
 export class ProfesseurService {
 
-  private url: string = 'http://localhost:8080/professeur';
+  private url: string = 'http://localhost:8080/etablissement/api/professeur';
 
   private httpHeaders: HttpHeaders;
 
    constructor(private http: HttpClient) { 
     this.httpHeaders = new HttpHeaders({
       'content-type': 'application/json',
-      Authorization: 'Basic ' + btoa('insertLogin:insertPassword'),
+      Authorization: 'Basic ' + btoa('${login.login}:${login.password}'),
     });
   }
 

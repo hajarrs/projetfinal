@@ -8,7 +8,7 @@ import { SalleClasse } from '../model/salle-classe';
 })
 export class SalleClasseService {
 
-  private url: string = 'http://localhost:8080/salleClasse';
+  private url: string = 'http://localhost:8080/etablissement/api/salleClasse';
 
   private httpHeaders: HttpHeaders;
 
