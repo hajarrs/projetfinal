@@ -100,4 +100,16 @@ public class CoursController {
 		throw new NotFoundException();
 	}
 
+	@GetMapping("/professeur/{id}")
+	public List<Cours> findByProfesseurId(@PathVariable("id") Integer id) {
+		return coursService.findByProf(id);
+	}
+
+	@GetMapping("/salle/{id}")
+	public List<Cours> findBySalleId(@PathVariable("id") Integer id) {
+		return coursService.findBySalle(id);
+	}
+
+	
+	
 }

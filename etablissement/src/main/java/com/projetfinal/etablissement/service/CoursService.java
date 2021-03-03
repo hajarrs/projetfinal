@@ -42,6 +42,14 @@ public class CoursService {
 		return coursRepo.findAll();
 	}
 
+	public List<Cours> findByProf(Integer id) {
+		return coursRepo.findAllForProfesseur(id);
+	}
+
+	public List<Cours> findBySalle(Integer id) {
+		return coursRepo.findAllForSalle(id);
+	}
+	
 	public void delete(Cours c) {
 		coursRepo.delete(c);
 	}
