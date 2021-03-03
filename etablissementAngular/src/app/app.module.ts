@@ -23,6 +23,7 @@ import { MatiereRowComponent } from './admin-row/matiere-row/matiere-row.compone
 import { ProfesseurRowComponent } from './admin-row/professeur-row/professeur-row.component';
 import { GroupeClasseRowComponent } from './admin-row/groupe-classe-row/groupe-classe-row.component';
 import { PlanningComponent } from './planning/planning.component';
+import { MdpChangeComponent } from './component/mdp-change/mdp-change.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ HomeAdminComponent,
     ProfesseurRowComponent,
     GroupeClasseRowComponent,
     PlanningComponent,
+    MdpChangeComponent,
   ],
   imports: [
     BrowserModule,

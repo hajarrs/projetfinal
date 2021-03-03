@@ -1,0 +1,44 @@
+<div class="row" id="log">
+
+
+    <div class="col-md-6 mx-auto">
+        <div class="card rounded-0" id="card-log">
+            <div class="card-header">
+                <h1 id="title-conn">1ère connexion: Entrez nouveau mot de passe</h1>
+            </div>
+            <div class="card-body">
+                <form (ngSubmit)="send() " [formGroup]="form ">
+                    <div class="form-group ">
+                        <label class="labelle" for="psw ">Nouveau mot de passe:</label>
+                        <input type="password" class="form-control " name="psw " [formControl]="pswCtrl " />
+                        <div *ngIf="pswCtrl.dirty && pswCtrl.hasError('pattern') || pswCtrl.dirty && pswCtrl.hasError('minlength')" class="alert alert-warning">
+                        <div *ngIf="pswCtrl.dirty && pswCtrl.hasError('pattern')" 
+                            >Le paterne n'est pas bon. Il doit contenir au moins: 
+                            <br>- une majuscule
+                            <br>- une minuscule
+                            <br>- une chiffre
+                        </div>
+                        <div *ngIf="pswCtrl.dirty && pswCtrl.hasError('minlength')"
+                            >- 3 caractères minimum
+                        </div>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pswConfirme">Confirmation nouveau mot de passe:</label>
+                        <input type="password" class="form-control" name="pswConfirme" [formControl]="pswConfirmeCtrl" />
+                      </div>
+                      <div *ngIf="pswConfirmeCtrl.dirty && form.hasError('monErreur')" class="alert alert-warning">
+                        Pas identique
+                      </div>
+
+                    <div class="form-group ">
+                        <button type="submit " class="btn btn-primary " [disabled]="form.invalid ">
+        Entrer
+    </button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

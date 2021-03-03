@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.config.authentication.PasswordEncoderParser;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.projetfinal.etablissement.entity.Login;
 import com.projetfinal.etablissement.entity.Utilisateur;
 import com.projetfinal.etablissement.entity.Vue;
 import com.projetfinal.etablissement.exception.InvalidException;
@@ -37,6 +40,9 @@ public class UtilisateurController {
 
 	@Autowired
 	private UtilisateurService utilisateurService;
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	@JsonView(Vue.Common.class)
 	@GetMapping({ "", "/" })
@@ -56,6 +62,7 @@ public class UtilisateurController {
 	}
 
 	@PutMapping("/{id}")
+	@JsonView(Vue.Common.class)
 	public Utilisateur update(@Valid @RequestBody Utilisateur p, BindingResult br, @PathVariable("id") Integer id) {
 		if (br.hasErrors()) {
 			throw new InvalidException();
@@ -66,9 +73,12 @@ public class UtilisateurController {
 		}
 		utilisateurEnBase.setAdresse(p.getAdresse());
 //		utilisateurEnBase.setCours(p.getCours());
+		System.out.println("update"+p.getLogin().getPassword());
+		utilisateurEnBase.getLogin().changePassword(passwordEncoder.encode(p.getLogin().getPassword()));
+		System.out.println(utilisateurEnBase.getLogin().getPassword());
 		utilisateurEnBase.setDateNaissance(p.getDateNaissance());
 		utilisateurEnBase.setEtablissement(p.getEtablissement());
-		utilisateurEnBase.setLogin(p.getLogin());
+//		utilisateurEnBase.setLogin(p.getLogin());
 		utilisateurEnBase.setNom(p.getNom());
 		utilisateurEnBase.setPrenom(p.getPrenom());
 		utilisateurService.save(utilisateurEnBase);

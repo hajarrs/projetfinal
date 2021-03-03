@@ -11,12 +11,13 @@ export class UtilisateurService {
   private url: string = 'http://localhost:8080/etablissement/api/utilisateur';
 
 
-  private httpHeaders: HttpHeaders;
-
    constructor(private http: HttpClient) { 
-    this.httpHeaders = new HttpHeaders({
-      'content-type': 'application/json',
-      Authorization: 'Basic ' + btoa('insertLogin:insertPassword'),
+  }
+
+  private get httpHeaders():HttpHeaders {
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Basic ' + localStorage.getItem('tokenId')
     });
   }
 
@@ -52,10 +53,10 @@ export class UtilisateurService {
   }
 
   public findById(id: number): Observable<Utilisateur> {
-    return this.http.get<Utilisateur>(this.url+"/id", { headers: this.httpHeaders });
+    return this.http.get<Utilisateur>(`${this.url}/${id}`,{ headers: this.httpHeaders });
   }
 
-  public findByLogin(myLogin: String): Observable<Utilisateur> {
-    return this.http.get<Utilisateur>(this.url+"/login/myLogin", { headers: this.httpHeaders });
+  public findByLogin(login: String): Observable<Utilisateur> {
+    return this.http.get<Utilisateur>(`${this.url}/login/${login}`,{ headers: this.httpHeaders });
   }
 }

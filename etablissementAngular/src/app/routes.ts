@@ -7,6 +7,7 @@ import { ListeMatieresComponent } from './admin/liste-matieres/liste-matieres.co
 import { ListeProfesseursComponent } from './admin/liste-professeurs/liste-professeurs.component';
 import { ListeSallesComponent } from './admin/liste-salles/liste-salles.component';
 import { PlanningComponent } from "./planning/planning.component";
+import { MdpChangeComponent } from "./component/mdp-change/mdp-change.component";
 
 
 export const routes: Routes = [
@@ -17,5 +18,6 @@ export const routes: Routes = [
   { path: 'listeprofesseurs', component: ListeProfesseursComponent},
   { path: 'listesalles', component: ListeSallesComponent},
   { path: 'planning', component: PlanningComponent },
+  { path: 'mdpchange/:id', component: MdpChangeComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];

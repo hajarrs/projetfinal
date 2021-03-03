@@ -80,6 +80,13 @@ public class Login {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public void changePassword(String password) {
+		this.password = password;
+		if (premiereConnexion) {
+			premiereConnexion=false;
+		}
+	}
 
 
 	public boolean isPremiereConnexion() {

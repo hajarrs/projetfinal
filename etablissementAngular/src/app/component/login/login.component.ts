@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Login } from 'src/app/model/login';
+import { Professeur } from 'src/app/model/professeur';
 import { LoginService } from 'src/app/service/login.service';
 import { ProfesseurService } from 'src/app/service/professeur.service';
 
@@ -33,21 +34,21 @@ export class LoginComponent implements OnInit {
   public logging() {
     this.loginService.auth(new Login(this.loginCtrl.value,this.pswCtrl.value)).subscribe(
       (result) => {
-        sessionStorage.setItem(
+        localStorage.setItem(
           'tokenId',
           btoa(`${this.loginCtrl.value}:${this.pswCtrl.value}`)
         );
-        sessionStorage.setItem('login', result.login.login);
-        sessionStorage.setItem('typeUtilisateur', result.login.typeUtilisateur);
-        //if (result.login.premiereConnexion) {
-        //  this.router.navigate(['/mdpchange']);
-        //} else {
+        localStorage.setItem('login', result.login.login);
+        localStorage.setItem('typeUtilisateur', result.login.typeUtilisateur);
+        if (result.login.premiereConnexion) {
+          this.router.navigate(['/mdpchange/' + result.id]);
+        } else {
           if (result.login.typeUtilisateur == "ADMIN") {
             this.router.navigate(['/homeadmin']);
           } else {
-            this.router.navigate(['/homeutilisateur']);
+            this.router.navigate(['/homeadmin']);
           }
-        //}
+        }
       
         
       },
