@@ -59,5 +59,13 @@ public class UtilisateurService {
 		}
 		return new Utilisateur();
 	}
+	
+	public Utilisateur findByLogin(String login) {
+		Optional<Utilisateur> opt = utilisateurRepo.findByLogin(login);
+		if (opt.isPresent()) {
+			return opt.get();
+		}
+		return new Utilisateur();
+	}
 
 }
