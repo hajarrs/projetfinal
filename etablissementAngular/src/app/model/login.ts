@@ -1,11 +1,48 @@
 export class Login {
     private _login: string;
     private _password: string;
+    private _premiereConnexion: boolean;
+    private _typeUtilisateur: string;
     
 
-	constructor(login: string='', password: string='') {
+	constructor(login: string='', password: string='', premiereConnexion:boolean=false, typeUtilisateur:string='') {
 		this._login = login;
 		this._password = password;
+        this._premiereConnexion=premiereConnexion;
+        this._typeUtilisateur=typeUtilisateur;
+	}
+
+
+    /**
+     * Getter premiereConnexion
+     * @return {boolean}
+     */
+	public get premiereConnexion(): boolean {
+		return this._premiereConnexion;
+	}
+
+    /**
+     * Getter typeUtilisateur
+     * @return {string}
+     */
+	public get typeUtilisateur(): string {
+		return this._typeUtilisateur;
+	}
+
+    /**
+     * Setter premiereConnexion
+     * @param {boolean} value
+     */
+	public set premiereConnexion(value: boolean) {
+		this._premiereConnexion = value;
+	}
+
+    /**
+     * Setter typeUtilisateur
+     * @param {string} value
+     */
+	public set typeUtilisateur(value: string) {
+		this._typeUtilisateur = value;
 	}
 
     /**

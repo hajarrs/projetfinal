@@ -37,10 +37,19 @@ export class LoginComponent implements OnInit {
           'tokenId',
           btoa(`${this.loginCtrl.value}:${this.pswCtrl.value}`)
         );
-        sessionStorage.setItem('login', this.loginCtrl.value);
-        sessionStorage.setItem('user', result.nom);
-        console.log('token:' + sessionStorage.getItem(''));
-        this.router.navigate(['/homeadmin']);
+        sessionStorage.setItem('login', result.login.login);
+        sessionStorage.setItem('typeUtilisateur', result.login.typeUtilisateur);
+        //if (result.login.premiereConnexion) {
+        //  this.router.navigate(['/mdpchange']);
+        //} else {
+          if (result.login.typeUtilisateur == "ADMIN") {
+            this.router.navigate(['/homeadmin']);
+          } else {
+            this.router.navigate(['/homeutilisateur']);
+          }
+        //}
+      
+        
       },
       (error) => {
         this.erreur = true;
