@@ -35,18 +35,24 @@
                       <!--format de l'heure adapté-->
                         <td class="align-middle bg-violet">
                           <tr style="font-weight: bold;">08:00 </tr>
-                          <tr style="font-size: small;">08:30</tr>
+                          <tr style="font-size: small;">09:00</tr>
                         </td>
                         <td>{{matrix[0][0].matiere.nom}}</td>
                         <td>{{matrix[0][1].matiere.nom}}</td>
-                        <td>{{matrix[0][2].matiere.nom}}</td>
-                        <td>{{matrix[0][3].matiere.nom}}</td>
+                        <td>
+                          <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13" style="background-color: {{matrix[0][2].matiere.couleur}};">{{matrix[0][2].matiere.nom}}</span>
+                          <div class="font-size13 text-gray">{{matrix[0][2].professeur.nom}} {{matrix[0][2].professeur.prenom}}</div>
+                        </td>
+                        <td>
+                          <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13" style="background-color: {{matrix[0][3].matiere.couleur}};">{{matrix[0][3].matiere.nom}}</span>
+                          <div class="font-size13 text-gray">{{matrix[0][3].professeur.nom}} {{matrix[0][3].professeur.prenom}}</div>
+                          </td>
                         <td>{{matrix[0][4].matiere.nom}}</td>
                   </tr>
                   <tr>
                     <td class="align-middle bg-violet">
                         <tr style="font-weight: bold;">09:00 </tr>
-                        <tr style="font-size: small;">09:30</tr>
+                        <tr style="font-size: small;">10:00</tr>
                         </td>
                         <td>{{matrix[1][0].matiere.nom}}</td>
                         <td>{{matrix[1][1].matiere.nom}}</td>
@@ -58,7 +64,7 @@
                   <tr>
                     <td class="align-middle bg-violet">
                         <tr style="font-weight: bold;">10:00 </tr>
-                        <tr style="font-size: small;">10:30</tr>
+                        <tr style="font-size: small;">11:00</tr>
                     </td>
                     <td>{{matrix[2][0].matiere.nom}}</td>
                         <td>{{matrix[2][1].matiere.nom}}</td>
@@ -70,7 +76,7 @@
                   <tr>
                     <td class="align-middle bg-violet">
                         <tr style="font-weight: bold;">11:00 </tr>
-                        <tr style="font-size: small;">11:30</tr>
+                        <tr style="font-size: small;">12:00</tr>
                     </td>
                     <td>{{matrix[3][0].matiere.nom}}</td>
                         <td>{{matrix[3][1].matiere.nom}}</td>
@@ -83,32 +89,32 @@
                     <td class="align-middle bg-violet">
 
                         <tr style="font-weight: bold;">12:00 </tr>
-                        <tr style="font-size: small;">12:30</tr>
-                        </td>
-                        <td>{{matrix[4][0].matiere.nom}}</td>
-                        <td>{{matrix[4][1].matiere.nom}}</td>
-                        <td>{{matrix[4][2].matiere.nom}}</td>
-                        <td>{{matrix[4][3].matiere.nom}}</td>
-                        <td>{{matrix[4][4].matiere.nom}}</td>
+                        <tr style="font-size: small;">13:00</tr>
+                    </td>
+                        <td class="pause"></td>
+                        <td class="pause"></td>
+                        <td class="pause"></td>
+                        <td class="pause"></td>
+                        <td class="pause"></td>
                   </tr>
 
                   <tr>
                     <!--format de l'heure adapté-->
                     <td class="align-middle bg-violet">
                         <tr style="font-weight: bold;">13:00 </tr>
-                        <tr style="font-size: small;">13:30</tr>
+                        <tr style="font-size: small;">14:00</tr>
                     </td>
-                    <td>{{matrix[5][0].matiere.nom}}</td>
-                    <td>{{matrix[5][1].matiere.nom}}</td>
-                    <td>{{matrix[5][2].matiere.nom}}</td>
-                        <td>{{matrix[5][3].matiere.nom}}</td>
-                        <td>{{matrix[5][4].matiere.nom}}</td>
+                    <td class="pause"></td>
+                    <td class="pause"></td>
+                    <td class="pause"></td>
+                    <td class="pause"></td>
+                    <td class="pause"></td>
                 </tr>
 
                 <tr>
                   <td class="align-middle bg-violet">
                         <tr style="font-weight: bold;">14:00 </tr>
-                        <tr style="font-size: small;">14:30</tr>
+                        <tr style="font-size: small;">15:00</tr>
                     </td>
                     <td>{{matrix[6][0].matiere.nom}}</td>
                         <td>{{matrix[6][1].matiere.nom}}</td>
@@ -120,7 +126,7 @@
                 <tr>
                   <td class="align-middle bg-violet">
                         <tr style="font-weight: bold;">15:00 </tr>
-                        <tr style="font-size: small;">15:30</tr>
+                        <tr style="font-size: small;">16:00</tr>
                     </td>
                     <td>{{matrix[7][0].matiere.nom}}</td>
                         <td>{{matrix[7][1].matiere.nom}}</td>
@@ -132,7 +138,7 @@
                 <tr>
                   <td class="align-middle bg-violet">
                         <tr style="font-weight: bold;">16:00 </tr>
-                        <tr style="font-size: small;">16:30</tr>
+                        <tr style="font-size: small;">17:00</tr>
                     </td>
                     <td>{{matrix[8][0].matiere.nom}}</td>
                         <td>{{matrix[8][1].matiere.nom}}</td>
@@ -144,7 +150,7 @@
                 <tr>
                   <td class="align-middle bg-violet">
                         <tr style="font-weight: bold;">17:00 </tr>
-                        <tr style="font-size: small;">17:30</tr>
+                        <tr style="font-size: small;">18:00</tr>
                     </td>
                     <td>{{matrix[9][0].matiere.nom}}</td>
                         <td>{{matrix[9][1].matiere.nom}}</td>

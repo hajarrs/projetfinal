@@ -65,7 +65,7 @@ export class PlanningComponent implements OnInit {
             this.heureF= Number(this.cours[k].heureFin.substring(0,2));
 
             if( this.heureD-8 ===i && this.cours[k].day===j){
-              for(let h = i; h<(this.heureF-this.heureD); h++)
+              for(let h = i; h<i+(this.heureF-this.heureD); h++)
                 {
                   this.matrix[h][j]=this.cours[k];
                 }
