@@ -38,7 +38,7 @@ export class UtilisateurService {
 
   public insert(utilisateur: Utilisateur): Observable<Utilisateur> {
     const o = {
-      //id: utilisateur.id,  
+      id: utilisateur.id,  
       login: utilisateur.login, 
       nom: utilisateur.nom,
       prenom: utilisateur.prenom,

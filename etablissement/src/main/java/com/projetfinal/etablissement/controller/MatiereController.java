@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.projetfinal.etablissement.entity.Matiere;
+import com.projetfinal.etablissement.entity.Vue;
 import com.projetfinal.etablissement.exception.InvalidException;
 import com.projetfinal.etablissement.exception.NotFoundException;
 import com.projetfinal.etablissement.service.MatiereService;
@@ -35,6 +37,7 @@ public class MatiereController {
 	private MatiereService matiereService;
 
 	@GetMapping({ "", "/" })
+	@JsonView(Vue.CommonProfesseurWithGroupes.class)
 	public List<Matiere> list() {
 		return matiereService.allMatiere();
 	}
