@@ -39,6 +39,7 @@ public class ProfesseurController {
 	private ProfesseurService professeurService;
 
 	@GetMapping({ "", "/" })
+	@JsonView(Vue.Common.class)
 	public List<Professeur> list() {
 		return professeurService.allProfesseur();
 	}
