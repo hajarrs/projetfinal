@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Cours } from '../model/cours';
 import { Matiere } from '../model/matiere';
+import { Professeur } from '../model/professeur';
 import { CoursService } from '../service/cours.service';
 
 @Component({
@@ -54,6 +55,8 @@ export class PlanningComponent implements OnInit {
 
   public init() {
     this.coursVide.matiere = new Matiere();
+    this.coursVide.matiere.couleur="white";
+    this.coursVide.professeur = new Professeur();
     this.coursService.allCours().subscribe((data) => {
       this.cours = data;
       for(let k = 0 ; k<this.cours.length; k++){
