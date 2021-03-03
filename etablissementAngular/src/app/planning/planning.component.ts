@@ -10,10 +10,16 @@ import { CoursService } from '../service/cours.service';
 })
 export class PlanningComponent implements OnInit {
 
-  cours: Cours[] = [];
+  cours: Cours[] =[];
+  ligne: Cours[] = new Array<Cours>(5);
+  matrix: Cours[][] =[];
 
  //pb avec ce constructeur, pas d'affichage du component
- constructor(private coursService: CoursService) {}
+ constructor(private coursService: CoursService) {
+   for( let i =0; i<11; i++){
+      this.matrix.push(new Array<Cours>(5));
+   }
+ }
 
   nom: string = '';
 /*
@@ -42,6 +48,15 @@ export class PlanningComponent implements OnInit {
   public init() {
     this.coursService.allCours().subscribe((data) => {
       this.cours = data;
+      for(let k = 0 ; k<this.cours.length; k++){
+        for( let i =0; i<11; i++){
+        for( let j =0; j<5; j++){
+            console.log(this.cours[k].heureDebut.localeCompare("08:00:00"));
+            if(this.cours[k].heureDebut.localeCompare("08:00:00") && this.cours[k].day===0){
+              this.matrix[0][0]=this.cours[k];
+            }
+        }}
+      }
       console.log(this.cours);
     });
   }
