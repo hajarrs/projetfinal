@@ -40,7 +40,7 @@ export class MatiereService {
 
   public insert(matiere: Matiere): Observable<Matiere> {
     const o = {
-      //id: matiere.id,   
+      id: matiere.id,   
       nom: matiere.nom,
       couleur: matiere.couleur,
       

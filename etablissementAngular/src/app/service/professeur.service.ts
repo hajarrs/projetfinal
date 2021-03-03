@@ -38,7 +38,7 @@ export class ProfesseurService {
 
     public insert(professeur: Professeur): Observable<Professeur> {
       const o = {
-        //id: professeur.id,
+        id: professeur.id,
         login: professeur.login,
         nom: professeur.nom,
         prenom: professeur.prenom,
