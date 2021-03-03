@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.projetfinal.etablissement.entity.Cours;
+import com.projetfinal.etablissement.entity.Vue;
 import com.projetfinal.etablissement.exception.InvalidException;
 import com.projetfinal.etablissement.exception.NotFoundException;
 import com.projetfinal.etablissement.exception.OverlapException;
@@ -29,13 +31,14 @@ import com.projetfinal.etablissement.service.CoursService;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/cours")
+@RequestMapping("/api/cours")
 public class CoursController {
 
 	@Autowired
 	private CoursService coursService;
 
 	@GetMapping({ "", "/" })
+	@JsonView(Vue.Common.class)
 	public List<Cours> list() {
 		return coursService.allCours();
 	}
@@ -51,6 +54,7 @@ public class CoursController {
 	}
 
 	@PutMapping("/{id}")
+	@JsonView(Vue.Common.class)
 	public Cours update(@Valid @RequestBody Cours c, BindingResult br, @PathVariable("id") Integer id) {
 		if (br.hasErrors()) {
 			throw new InvalidException();
@@ -59,8 +63,8 @@ public class CoursController {
 		if (coursEnBase.getId() == null) {
 			throw new NotFoundException();
 		}
-		coursEnBase.setDateHeureDebut(c.getDateHeureDebut());
-		coursEnBase.setDateHeureFin(c.getDateHeureFin());
+		coursEnBase.setHeureDebut(c.getHeureDebut());
+		coursEnBase.setHeureFin(c.getHeureFin());
 		coursEnBase.setDay(c.getDay());
 		coursEnBase.setMatiere(c.getMatiere());
 		coursEnBase.setProfesseur(c.getProfesseur());

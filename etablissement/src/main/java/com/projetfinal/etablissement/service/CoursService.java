@@ -1,6 +1,6 @@
 package com.projetfinal.etablissement.service;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +25,7 @@ public class CoursService {
  	 * @return le cours en cas de succès, null sinon
 	 */
 	public Cours creationCours(Cours c) {
-		if (c.getSalle() == null || c.getDateHeureDebut() == null || c.getDateHeureFin() == null 
+		if (c.getSalle() == null || c.getHeureDebut() == null || c.getHeureFin() == null 
 				|| c.getMatiere() == null || c.getProfesseur() == null) {
 			System.out.println("le cours n'a pas toute les infos obligatoires");
 			return null;
@@ -78,10 +78,11 @@ public class CoursService {
 	 */
 	private boolean ajoutOK(Cours c) {
 		if (c == null
-				|| c.getDateHeureDebut() == null
-				|| c.getDateHeureFin() == null
+				|| c.getHeureDebut() == null
+				|| c.getHeureFin() == null
 				|| c.getMatiere() == null
 				|| c.getProfesseur() == null
+				|| c.getProfesseur().getMatieres() == null
 				|| c.getSalle() == null) {
 			return false;
 		} else {
@@ -89,8 +90,13 @@ public class CoursService {
 			Matiere matiere = c.getMatiere();
 			
 			// vérifie si la salle permet d'enseigner cette matière
-			if (salleClasse.getMatieresExclues().contains(matiere)) {
+			if (salleClasse.getMatieresExclues() != null && salleClasse.getMatieresExclues().contains(matiere)) {
 				return false;
+			}
+
+			// vérifie si le prof enseigne cette matière
+			if (!c.getProfesseur().getMatieres().contains(c.getMatiere())) {
+				return false;				
 			}
 			
 			// vérifier qu'il n'y a pas de chevauchements de cours dans la même salle ou de prof déjà occupé
@@ -130,14 +136,14 @@ public class CoursService {
 		if (c1 != null
 				&& c2 != null
 				&& c1.getDay() == c2.getDay()
-				&& c1.getDateHeureDebut() != null
-				&& c2.getDateHeureDebut() != null
-				&& c1.getDateHeureFin() != null
-				&& c2.getDateHeureFin() != null) {
-			int c1Debut = getHoraireEnMinutes(c1.getDateHeureDebut());
-			int c1Fin = getHoraireEnMinutes(c1.getDateHeureFin());
-			int c2Debut = getHoraireEnMinutes(c2.getDateHeureDebut());
-			int c2Fin = getHoraireEnMinutes(c2.getDateHeureFin());
+				&& c1.getHeureDebut() != null
+				&& c2.getHeureDebut() != null
+				&& c1.getHeureFin() != null
+				&& c2.getHeureFin() != null) {
+			int c1Debut = getHoraireEnMinutes(c1.getHeureDebut());
+			int c1Fin = getHoraireEnMinutes(c1.getHeureFin());
+			int c2Debut = getHoraireEnMinutes(c2.getHeureDebut());
+			int c2Fin = getHoraireEnMinutes(c2.getHeureFin());
 			
 			if ((c1Debut >= c2Debut && c1Debut < c2Fin)
 					|| (c2Debut >= c1Debut && c2Debut < c1Fin)) {
@@ -152,7 +158,7 @@ public class CoursService {
 	 * @param horaire
 	 * @return l'horaire en nombre de minute, en ne prenant en compte que les heures et les minutes de horaire
 	 */
-	private int getHoraireEnMinutes(LocalDateTime horaire) {
+	private int getHoraireEnMinutes(LocalTime horaire) {
 		int result = 0;
 		if (horaire != null) {
 			result += (horaire.getHour() * 60);

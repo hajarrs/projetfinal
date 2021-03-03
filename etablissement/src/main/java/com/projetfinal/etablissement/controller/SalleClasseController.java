@@ -28,7 +28,7 @@ import com.projetfinal.etablissement.service.SalleClasseService;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/salleClasse")
+@RequestMapping("/api/salleClasse")
 public class SalleClasseController {
 
 	@Autowired
