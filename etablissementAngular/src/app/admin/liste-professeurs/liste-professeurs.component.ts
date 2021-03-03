@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Professeur } from 'src/app/model/professeur';
 import { ProfesseurService } from 'src/app/service/professeur.service';
 
@@ -43,5 +44,6 @@ export class ListeProfesseursComponent implements OnInit {
   public cancel() {
     this.displayNew();
   }
+
 
 }
