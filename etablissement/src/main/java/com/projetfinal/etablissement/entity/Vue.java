@@ -9,5 +9,8 @@ public class Vue {
 	
 	public static class CommonProfesseurWithGroupes extends Common{
 	};
+	
+	public static class CommonGroupeWithProfesseurPrincipal extends Common{
+	};
 
 }

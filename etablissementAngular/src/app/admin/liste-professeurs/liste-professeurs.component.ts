@@ -11,7 +11,6 @@ import { ProfesseurService } from 'src/app/service/professeur.service';
 export class ListeProfesseursComponent implements OnInit {
 
   professeurs: Professeur[] = [];
-  showNew: boolean = false;
 
   constructor(private utilisateurService: ProfesseurService) { }
 
@@ -33,16 +32,7 @@ export class ListeProfesseursComponent implements OnInit {
   }
 
   public displayNew() {
-    this.showNew = !this.showNew;
-  }
 
-  public insert() {
-    this.displayNew();
-    this.initList();
-  }
-
-  public cancel() {
-    this.displayNew();
   }
 
 

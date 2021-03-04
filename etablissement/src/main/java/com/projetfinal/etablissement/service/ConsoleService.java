@@ -81,8 +81,11 @@ public class ConsoleService implements CommandLineRunner {
 		professeur.setMatieres(matieres);
 		Matiere matiere2 = new Matiere("Physique", "red");
 		matiereService.save(matiere2);
+		Matiere matiere3 = new Matiere("Chimie", "green");
+		matiereService.save(matiere3);
 		List<Matiere> matieresExclues = new ArrayList<Matiere>();
 		matieresExclues.add(matiere2);
+		matieresExclues.add(matiere3);
 		salle.setMatieresExclues(matieresExclues);
 		
 		

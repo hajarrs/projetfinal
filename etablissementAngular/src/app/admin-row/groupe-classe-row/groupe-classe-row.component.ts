@@ -14,10 +14,6 @@ export class GroupeClasseRowComponent implements OnInit {
   edit: boolean = false;
   @Output('delete')
   deleteEvent: EventEmitter<number> = new EventEmitter();
-  @Output('insert')
-  insertEvent: EventEmitter<void> = new EventEmitter();
-  @Output('cancel')
-  cancelEvent: EventEmitter<void> = new EventEmitter();
 
   constructor(private groupClasseService: GoupeclasseService) {}
 
@@ -35,25 +31,5 @@ export class GroupeClasseRowComponent implements OnInit {
     this.edit = !this.edit;
   }
 
-  public cancel() {
-    this.changeMode();
-    if (!this.user.id) {
-      console.log('here');
-      this.cancelEvent.emit();
-    }
-  }
-
-  public save() {
-    if (this.user.id) {
-      this.groupClasseService.update(this.user).subscribe((result) => {
-        this.changeMode();
-      });
-    } else {
-      this.groupClasseService.insert(this.user).subscribe((result) => {
-        this.user.id = result.id;
-        this.changeMode();
-        this.insertEvent.emit();
-      });
-    }
-  }
+  
 }

@@ -7,15 +7,20 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "Goupe")
 public class GroupeClasse {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(Vue.Common.class)
 	private Integer id;
+	@JsonView(Vue.Common.class)
 	private String nom;
 	@ManyToOne
+	@JsonView(Vue.CommonGroupeWithProfesseurPrincipal.class)
 	private Professeur professeurPrincipal;
 	
 	public GroupeClasse() {

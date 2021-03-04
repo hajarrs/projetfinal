@@ -10,7 +10,6 @@ import { SalleClasseService } from 'src/app/service/salle-classe.service';
 export class ListeSallesComponent implements OnInit {
 
   salles: SalleClasse[] = [];
-  showNew: boolean = false;
 
   constructor(private utilisateurService: SalleClasseService) { }
 
@@ -32,16 +31,6 @@ export class ListeSallesComponent implements OnInit {
   }
 
   public displayNew() {
-    this.showNew = !this.showNew;
-  }
-
-  public insert() {
-    this.displayNew();
-    this.initList();
-  }
-
-  public cancel() {
-    this.displayNew();
   }
 
 }

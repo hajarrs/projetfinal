@@ -10,7 +10,6 @@ import { GoupeclasseService } from 'src/app/service/goupeclasse.service';
 })
 export class ListeClassesComponent implements OnInit {
   classes: GroupeClasse[] = [];
-  showNew: boolean = false;
 
   constructor(private utilisateurService: GoupeclasseService) { }
 
@@ -32,16 +31,6 @@ export class ListeClassesComponent implements OnInit {
   }
 
   public displayNew() {
-    this.showNew = !this.showNew;
-  }
-
-  public insert() {
-    this.displayNew();
-    this.initList();
-  }
-
-  public cancel() {
-    this.displayNew();
   }
 
 }

@@ -2,13 +2,32 @@ export class Adresse {
     private _id!: number;
     private _numRue: number;
     private _nomRue: string;
+    private _codePostal: string;
     private _ville: string;
 
 
-	constructor(id?: number, numRue: number = 0, nomRue: string='', ville: string='') {
+	constructor(id?: number, numRue: number = 0, nomRue: string='', codePostal:string='', ville: string='') {
 		this._numRue = numRue;
 		this._nomRue = nomRue;
+        this._codePostal = codePostal;
 		this._ville = ville;
+	}
+
+
+    /**
+     * Getter codePostal
+     * @return {string}
+     */
+	public get codePostal(): string {
+		return this._codePostal;
+	}
+
+    /**
+     * Setter codePostal
+     * @param {string} value
+     */
+	public set codePostal(value: string) {
+		this._codePostal = value;
 	}
 
     /**
