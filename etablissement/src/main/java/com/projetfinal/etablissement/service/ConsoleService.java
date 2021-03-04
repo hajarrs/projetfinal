@@ -88,6 +88,13 @@ public class ConsoleService implements CommandLineRunner {
 		matieresExclues.add(matiere3);
 		salle.setMatieresExclues(matieresExclues);
 		
+		Login loginx = new Login("test", "pass", TypeUtilisateur.UTILISATEUR);
+		Professeur professeur2 = new Professeur(loginx, "ram2", "hajar", adresse, dateNaissance1, etablissement1);
+		professeur2.setMatieres(matieres);
+		professeur2 = professeurService.creationProfesseur(professeur2);
+		
+		GroupeClasse groupe2 = new GroupeClasse("B", professeur2);
+		groupe2 = groupeService.save(groupe2);
 		
 		Cours cours = new Cours(dateHeureDebut, dateHeureFin, professeur, matiere, salle, 3);
 		cours.setMatiere(matiere);
@@ -98,7 +105,7 @@ public class ConsoleService implements CommandLineRunner {
 		
 		salle = salleClasseService.save(salle);
 		
-		professeurService.save(professeur);
+		//professeurService.save(professeur);
 		GroupeClasse groupe = new GroupeClasse("A", professeur);
 		groupe = groupeService.save(groupe);
 		
@@ -116,6 +123,7 @@ public class ConsoleService implements CommandLineRunner {
 		Utilisateur testUserGeneratePassword = new Utilisateur(login3, "userTestPass", "userTestPass", adresse4, dateNaissance, etablissement2);
 		System.out.println("\n\n\n Password temp = " + login3.getPassword());
 		utilisateurService.creationUtilisateur(testUserGeneratePassword);
+		
 	}
 	
 	

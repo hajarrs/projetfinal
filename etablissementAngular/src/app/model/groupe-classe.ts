@@ -7,10 +7,8 @@ export class GroupeClasse {
     private _professeurPrincipal!: Professeur;
 
 
-	constructor(id?: number, nom: string='', professeurPrincipal?: Professeur) {
-
+	constructor(id?: number, nom: string='', professeurPrincipal? : Professeur) {
 		this._nom = nom;
-
 	}
 
     /**

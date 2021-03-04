@@ -10,7 +10,7 @@ import { SalleClasseService } from 'src/app/service/salle-classe.service';
 export class SalleClasseRowComponent implements OnInit {
 
   @Input()
-  user: SalleClasse = new SalleClasse();
+  salle: SalleClasse = new SalleClasse();
   edit: boolean = false;
   @Output('delete')
   deleteEvent: EventEmitter<number> = new EventEmitter();
@@ -18,13 +18,13 @@ export class SalleClasseRowComponent implements OnInit {
   constructor(private salleClasseService: SalleClasseService) {}
 
   ngOnInit(): void {
-    if (!this.user.id) {
+    if (!this.salle.id) {
       this.changeMode();
     }
   }
 
   public delete() {
-    this.deleteEvent.emit(this.user.id);
+    this.deleteEvent.emit(this.salle.id);
   }
 
   public changeMode() {

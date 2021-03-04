@@ -37,15 +37,17 @@ export class SalleClasseService {
   
     public insert(salleClasse: SalleClasse): Observable<SalleClasse> {
       const o = {
-        id: salleClasse.id,   
+        //id: salleClasse.id,   
         nom: salleClasse.nom,
         matieresExclues: salleClasse.matieresExclues,
         capacite: salleClasse.capacite
       };
-      return this.http.post<SalleClasse>(this.url+'/add', o, { headers: this.httpHeaders });
+      return this.http.post<SalleClasse>(this.url, o, { headers: this.httpHeaders });
     }
 
-
+    public findById(id: number): Observable<SalleClasse> {
+      return this.http.get<SalleClasse>(`${this.url}/${id}`,{ headers: this.httpHeaders });
+    }
 
 
 }

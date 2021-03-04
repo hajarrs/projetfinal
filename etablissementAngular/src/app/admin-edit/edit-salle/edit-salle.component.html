@@ -1,0 +1,30 @@
+<form (ngSubmit)="send()" [formGroup]="form">
+    <div class="form-group">
+      <input type="text" class="form-control" name="nom" [formControl]="nomCtrl"/>
+      <div *ngIf="nomCtrl.dirty && nomCtrl.hasError('required')"  class="alert alert-danger">Le nom est obligatoire</div>
+    </div>
+    <div class="form-group">
+    <section class="example-section">
+        <span class="example-list-section">
+          <ul formGroupName="checkboxList">
+            <li *ngFor="let matiere of matieres" >
+              <input type="checkbox" (change)="changeState($event,matiere.id,matiere.nom)" [formControlName]="matiere.nom" [checked]="idMatiereExclues.includes(matiere.id) ? matiere.id : null" [value]="matiere.id"/>{{matiere.nom}}
+            </li>
+          </ul>
+        </span>
+      </section>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="capacite" [formControl]="capaciteCtrl"/>
+        <div *ngIf="capaciteCtrl.dirty && capaciteCtrl.hasError('required')"  class="alert alert-danger">Le nom est obligatoire</div>
+      </div>
+
+  
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+          Enregistrer
+        </button>
+      </div>
+      <button [routerLink]="['/listesalles']"
+      routerLinkActive="active" class="btn btn-outline-warning">Abandonner</button>
+</form>

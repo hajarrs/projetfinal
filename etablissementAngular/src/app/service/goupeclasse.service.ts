@@ -36,11 +36,15 @@ export class GoupeclasseService {
   public insert(groupeclasse: GroupeClasse): Observable<GroupeClasse> {
     const o = {
       nom: groupeclasse.nom,
-      //professeurPrincipal: groupeclasse.,
-      //
+      professeurPrincipal: groupeclasse.professeurPrincipal
+      
      
     };
     return this.http.post<GroupeClasse>(this.url, o, { headers: this.httpHeaders });
+  }
+
+  public findById(id: number): Observable<GroupeClasse> {
+    return this.http.get<GroupeClasse>(`${this.url}/${id}`,{ headers: this.httpHeaders });
   }
   
 }

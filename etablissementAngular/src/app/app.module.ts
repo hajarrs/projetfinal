@@ -30,6 +30,9 @@ import { CoursRowComponent } from './admin-row/cours-row/cours-row/cours-row.com
 import { ListeCoursComponent } from './admin/liste-cours/liste-cours.component';
 import { ListUtilisateursComponent } from './admin/list-utilisateurs/list-utilisateurs.component';
 import { UtilisateurRowComponent } from './admin-row/utilisateur-row/utilisateur-row.component';
+import { EditSalleComponent } from './admin-edit/edit-salle/edit-salle.component';
+import { EditMatiereComponent } from './admin-edit/edit-matiere/edit-matiere.component';
+import { EditClasseComponent } from './admin-edit/edit-classe/edit-classe.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +55,9 @@ HomeAdminComponent,
     ListeCoursComponent,
     ListUtilisateursComponent,
     UtilisateurRowComponent,
+    EditSalleComponent,
+    EditMatiereComponent,
+    EditClasseComponent,
   ],
   imports: [
     BrowserModule,

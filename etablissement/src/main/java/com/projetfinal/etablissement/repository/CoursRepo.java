@@ -16,5 +16,8 @@ public interface CoursRepo extends JpaRepository<Cours, Integer> {
 	@Query("select c from Cours c where c.salle.id=:id")
 	public List<Cours> findAllForSalle(@Param("id") Integer id);
 	
+	@Query("select c from Cours c where c.matiere.id=:id")
+	public List<Cours> findAllForMatiere(@Param("id") Integer id);
+	
 	
 }

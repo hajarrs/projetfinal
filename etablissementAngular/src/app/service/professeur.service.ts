@@ -50,4 +50,8 @@ export class ProfesseurService {
       };
       return this.http.post<Professeur>(this.url+'/add', o, { headers: this.httpHeaders });
     }
+
+    public findById(id: number): Observable<Professeur> {
+      return this.http.get<Professeur>(`${this.url}/${id}`,{ headers: this.httpHeaders });
+    }
 }

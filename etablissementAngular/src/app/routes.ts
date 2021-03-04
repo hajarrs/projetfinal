@@ -12,6 +12,9 @@ import { ListeSallesComponent } from './admin/liste-salles/liste-salles.componen
 import { PlanningComponent } from "./planning/planning.component";
 import { MdpChangeComponent } from "./component/mdp-change/mdp-change.component";
 import { ListUtilisateursComponent } from "./admin/list-utilisateurs/list-utilisateurs.component";
+import { EditSalleComponent } from "./admin-edit/edit-salle/edit-salle.component";
+import { EditMatiereComponent } from './admin-edit/edit-matiere/edit-matiere.component';
+import { EditClasseComponent } from './admin-edit/edit-classe/edit-classe.component';
 
 
 export const routes: Routes = [
@@ -27,5 +30,11 @@ export const routes: Routes = [
   { path: 'planning-admin', component: PlanningAdminComponent},
   { path: 'planning-prof', component: PlanningProfComponent},
   { path: 'mdpchange/:id', component: MdpChangeComponent },
+  { path: 'salle/edit/:id', component: EditSalleComponent },
+  { path: 'salle/edit', component: EditSalleComponent },
+  { path: 'matiere/edit/:id', component: EditMatiereComponent },
+  { path: 'matiere/edit', component: EditMatiereComponent },
+  { path: 'classe/edit/:id', component: EditClasseComponent },
+  { path: 'classe/edit', component: EditClasseComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
