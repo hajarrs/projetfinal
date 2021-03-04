@@ -21,9 +21,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.projetfinal.etablissement.entity.Cours;
 import com.projetfinal.etablissement.entity.SalleClasse;
+import com.projetfinal.etablissement.entity.Vue;
 import com.projetfinal.etablissement.exception.InvalidException;
 import com.projetfinal.etablissement.exception.NotFoundException;
+import com.projetfinal.etablissement.service.CoursService;
 import com.projetfinal.etablissement.service.SalleClasseService;
 
 @RestController
@@ -33,6 +37,9 @@ public class SalleClasseController {
 
 	@Autowired
 	private SalleClasseService salleClasseService;
+	
+	@Autowired
+	private CoursService coursService;
 
 	@GetMapping({ "", "/" })
 	public List<SalleClasse> list() {
@@ -45,6 +52,11 @@ public class SalleClasseController {
 		if (salleClasseEnBase.getId() == null) {
 			throw new NotFoundException();
 		}
+		List<Cours> listCoursToDelete = coursService.findBySalle(id);
+		for (Cours cours : listCoursToDelete) {
+			coursService.delete(cours.getId());
+		}
+		
 		salleClasseService.delete(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
@@ -79,6 +91,7 @@ public class SalleClasseController {
 	}
 
 	@GetMapping("/{id}")
+	@JsonView(Vue.Common.class)
 	public SalleClasse findById(@PathVariable("id") Integer id) {
 		SalleClasse c = salleClasseService.find(id);
 		if (c.getId() != null) {

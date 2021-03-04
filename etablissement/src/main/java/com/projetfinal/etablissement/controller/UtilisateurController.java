@@ -73,9 +73,7 @@ public class UtilisateurController {
 		}
 		utilisateurEnBase.setAdresse(p.getAdresse());
 //		utilisateurEnBase.setCours(p.getCours());
-		System.out.println("update"+p.getLogin().getPassword());
 		utilisateurEnBase.getLogin().changePassword(passwordEncoder.encode(p.getLogin().getPassword()));
-		System.out.println(utilisateurEnBase.getLogin().getPassword());
 		utilisateurEnBase.setDateNaissance(p.getDateNaissance());
 		utilisateurEnBase.setEtablissement(p.getEtablissement());
 //		utilisateurEnBase.setLogin(p.getLogin());

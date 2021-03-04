@@ -26,6 +26,7 @@ import { PlanningComponent } from './planning/planning.component';
 import { MdpChangeComponent } from './component/mdp-change/mdp-change.component';
 import { ListUtilisateursComponent } from './admin/list-utilisateurs/list-utilisateurs.component';
 import { UtilisateurRowComponent } from './admin-row/utilisateur-row/utilisateur-row.component';
+import { EditSalleComponent } from './admin-edit/edit-salle/edit-salle.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ HomeAdminComponent,
     MdpChangeComponent,
     ListUtilisateursComponent,
     UtilisateurRowComponent,
+    EditSalleComponent,
   ],
   imports: [
     BrowserModule,
