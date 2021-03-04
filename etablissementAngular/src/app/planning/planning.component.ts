@@ -6,6 +6,7 @@ import { Professeur } from '../model/professeur';
 import { CoursService } from '../service/cours.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { SalleClasse } from '../model/salle-classe';
 
 
 @Component({
@@ -60,6 +61,7 @@ export class PlanningComponent implements OnInit {
     this.coursVide.matiere = new Matiere();
     this.coursVide.matiere.couleur="white";
     this.coursVide.professeur = new Professeur();
+    this.coursVide.salle = new SalleClasse();
     this.coursService.allCours().subscribe((data) => {
       this.cours = data;
       for(let k = 0 ; k<this.cours.length; k++){
@@ -79,7 +81,6 @@ export class PlanningComponent implements OnInit {
             }
         }}
       }
-      console.log(this.cours);
     });
   }
 
