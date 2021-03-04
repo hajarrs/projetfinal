@@ -18,7 +18,7 @@ export class EditMatiereComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,private matiereService: MatiereService, private fb: FormBuilder,private router: Router) { 
     this.nomCtrl = this.fb.control('',Validators.required);
-    this.couleurCtrl = this.fb.control('');
+    this.couleurCtrl = this.fb.control('',Validators.required);
     
     this.form = this.fb.group({
       nom: this.nomCtrl,

@@ -10,7 +10,8 @@
 </div>
 
 <h1>Liste des Classes</h1>
-<button class="btn btn-outline-primary" (click)="displayNew()">Ajouter une classe</button>
+<button [routerLink]="['/classe/edit']"
+      routerLinkActive="active" class="btn btn-outline-warning">Ajouter une classe</button>
 
 <table class="table">
   <tr>
@@ -21,7 +22,7 @@
   </tr>
   <tr
   groupe-classe-row
-    [user]="c"
+    [salle]="c"
     *ngFor="let c of classes"
     (delete)="delete($event)"
   ></tr>

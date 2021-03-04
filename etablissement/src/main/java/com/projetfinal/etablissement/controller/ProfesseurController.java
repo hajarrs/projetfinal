@@ -91,6 +91,7 @@ public class ProfesseurController {
 	}
 
 	@GetMapping("/{id}")
+	@JsonView(Vue.Common.class)
 	public Professeur findById(@PathVariable("id") Integer id) {
 		Professeur p = professeurService.find(id);
 		if (p.getId() != null) {

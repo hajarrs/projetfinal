@@ -75,13 +75,14 @@ public class GroupeClasseController {
 			throw new InvalidException();
 		}
 		groupeClasseService.creationGroupeClasse(gc);
-		URI uri = uCB.path("/groupeClasse/{id}").buildAndExpand(gc.getId()).toUri();
+		URI uri = uCB.path("/api/groupeClasse/{id}").buildAndExpand(gc.getId()).toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
 		return new ResponseEntity<GroupeClasse>(gc, headers, HttpStatus.CREATED);
 	}
 
 	@GetMapping("/{id}")
+	@JsonView(Vue.CommonGroupeWithProfesseurPrincipal.class)
 	public GroupeClasse findById(@PathVariable("id") Integer id) {
 		GroupeClasse gc = groupeClasseService.find(id);
 		if (gc.getId() != null) {

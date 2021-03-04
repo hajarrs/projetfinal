@@ -82,8 +82,7 @@ public class MatiereController {
 
 	@PostMapping({ "", "/" })
 	@JsonView(Vue.Common.class)
-	public ResponseEntity<Matiere> addPersonne(@Valid @RequestBody Matiere m, BindingResult br,
-			UriComponentsBuilder uCB) {
+	public ResponseEntity<Matiere> addPersonne(@Valid @RequestBody Matiere m, BindingResult br, UriComponentsBuilder uCB) {
 		if (br.hasErrors()) {
 			throw new InvalidException();
 		}
