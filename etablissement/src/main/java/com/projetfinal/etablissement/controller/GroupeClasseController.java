@@ -37,8 +37,9 @@ public class GroupeClasseController {
 	private GroupeClasseService groupeClasseService;
 
 	@GetMapping({ "", "/" })
-	@JsonView(Vue.CommonProfesseurWithGroupes.class)
+	@JsonView(Vue.CommonGroupeWithProfesseurPrincipal.class)
 	public List<GroupeClasse> list() {
+		System.out.println("\n\n\n List");
 		return groupeClasseService.allGroupeClasse();
 	}
 

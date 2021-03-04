@@ -1,6 +1,6 @@
 
 
-<ng-container *ngIf="!edit; else formEdit">
+<ng-container>
     <td>{{ user.id }}</td>
     <td>{{ user.nom }}</td>
     <td>{{ user.couleur }}</td>
@@ -14,18 +14,3 @@
       <button class="btn btn-outline-danger" (click)="delete()">supprimer</button>
     </td>
   </ng-container>
-  
-  <ng-template #formEdit>
-    <td>{{ user.id }}</td>
-    <td><input [(ngModel)]="user.nom"></td>
-    <td><input [(ngModel)]="user.couleur" /></td>
-
-    <td>
-      <button (click)="save()" class="btn btn-outline-success">
-        enregistrer
-      </button>
-    </td>
-    <td>
-      <button (click)="cancel()" class="btn btn-outline-warning">annuler</button>
-    </td>
-  </ng-template>

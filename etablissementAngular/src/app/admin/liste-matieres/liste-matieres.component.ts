@@ -10,7 +10,6 @@ import { MatiereService } from 'src/app/service/matiere.service';
 export class ListeMatieresComponent implements OnInit {
 
   matieres: Matiere[] = [];
-  showNew: boolean = false;
 
   constructor(private utilisateurService: MatiereService) { }
 
@@ -32,16 +31,6 @@ export class ListeMatieresComponent implements OnInit {
   }
 
   public displayNew() {
-    this.showNew = !this.showNew;
-  }
-
-  public insert() {
-    this.displayNew();
-    this.initList();
-  }
-
-  public cancel() {
-    this.displayNew();
   }
 
 }
