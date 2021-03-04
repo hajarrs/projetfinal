@@ -40,13 +40,15 @@ export class MatiereService {
 
   public insert(matiere: Matiere): Observable<Matiere> {
     const o = {
-      id: matiere.id,   
       nom: matiere.nom,
       couleur: matiere.couleur,
       
     };
-    return this.http.post<Matiere>(this.url+'/add', o, { headers: this.httpHeaders });
+    return this.http.post<Matiere>(this.url, o, { headers: this.httpHeaders });
   }
 
+  public findById(id: number): Observable<Matiere> {
+    return this.http.get<Matiere>(`${this.url}/${id}`,{ headers: this.httpHeaders });
+  }
 
 }

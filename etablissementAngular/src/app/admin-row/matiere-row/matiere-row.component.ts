@@ -10,7 +10,7 @@ import { MatiereService } from 'src/app/service/matiere.service';
 export class MatiereRowComponent implements OnInit {
 
   @Input()
-  user: Matiere = new Matiere();
+  matiere: Matiere = new Matiere();
   edit: boolean = false;
   @Output('delete')
   deleteEvent: EventEmitter<number> = new EventEmitter();
@@ -18,13 +18,13 @@ export class MatiereRowComponent implements OnInit {
   constructor(private matiereClasseService: MatiereService) {}
 
   ngOnInit(): void {
-    if (!this.user.id) {
+    if (!this.matiere.id) {
       this.changeMode();
     }
   }
 
   public delete() {
-    this.deleteEvent.emit(this.user.id);
+    this.deleteEvent.emit(this.matiere.id);
   }
 
   public changeMode() {

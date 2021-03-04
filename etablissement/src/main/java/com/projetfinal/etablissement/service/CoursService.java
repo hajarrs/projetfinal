@@ -49,6 +49,9 @@ public class CoursService {
 	public List<Cours> findBySalle(Integer id) {
 		return coursRepo.findAllForSalle(id);
 	}
+	public List<Cours> findByMatiere(Integer id) {
+		return coursRepo.findAllForMatiere(id);
+	}
 	
 	public void delete(Cours c) {
 		coursRepo.delete(c);

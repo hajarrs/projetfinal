@@ -84,7 +84,7 @@ public class SalleClasseController {
 			throw new InvalidException();
 		}
 		salleClasseService.creationSalleClasse(c);
-		URI uri = uCB.path("/salleClasse/{id}").buildAndExpand(c.getId()).toUri();
+		URI uri = uCB.path("/api/salleClasse/{id}").buildAndExpand(c.getId()).toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
 		return new ResponseEntity<SalleClasse>(c, headers, HttpStatus.CREATED);

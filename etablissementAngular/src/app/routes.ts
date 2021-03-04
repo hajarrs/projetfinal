@@ -11,6 +11,7 @@ import { PlanningComponent } from "./planning/planning.component";
 import { MdpChangeComponent } from "./component/mdp-change/mdp-change.component";
 import { ListUtilisateursComponent } from "./admin/list-utilisateurs/list-utilisateurs.component";
 import { EditSalleComponent } from "./admin-edit/edit-salle/edit-salle.component";
+import { EditMatiereComponent } from './admin-edit/edit-matiere/edit-matiere.component';
 
 
 export const routes: Routes = [
@@ -25,5 +26,8 @@ export const routes: Routes = [
   { path: 'planning', component: PlanningComponent },
   { path: 'mdpchange/:id', component: MdpChangeComponent },
   { path: 'salle/edit/:id', component: EditSalleComponent },
+  { path: 'salle/edit', component: EditSalleComponent },
+  { path: 'matiere/edit/:id', component: EditMatiereComponent },
+  { path: 'matiere/edit', component: EditMatiereComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];

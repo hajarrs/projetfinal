@@ -22,10 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.projetfinal.etablissement.entity.Cours;
 import com.projetfinal.etablissement.entity.Matiere;
 import com.projetfinal.etablissement.entity.Vue;
 import com.projetfinal.etablissement.exception.InvalidException;
 import com.projetfinal.etablissement.exception.NotFoundException;
+import com.projetfinal.etablissement.service.CoursService;
 import com.projetfinal.etablissement.service.MatiereService;
 
 @RestController
@@ -35,6 +37,9 @@ public class MatiereController {
 
 	@Autowired
 	private MatiereService matiereService;
+	
+	@Autowired
+	private CoursService coursService;
 
 	@GetMapping({ "", "/" })
 	@JsonView(Vue.CommonProfesseurWithGroupes.class)
@@ -43,10 +48,15 @@ public class MatiereController {
 	}
 
 	@DeleteMapping("/{id}")
+	@JsonView(Vue.Common.class)
 	public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
 		Matiere matiereEnBase = matiereService.find(id);
 		if (matiereEnBase.getId() == null) {
 			throw new NotFoundException();
+		}
+		List<Cours> listCoursToDelete = coursService.findByMatiere(id);
+		for (Cours cours : listCoursToDelete) {
+			coursService.delete(cours.getId());
 		}
 		matiereService.delete(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -71,13 +81,14 @@ public class MatiereController {
 	}
 
 	@PostMapping({ "", "/" })
+	@JsonView(Vue.Common.class)
 	public ResponseEntity<Matiere> addPersonne(@Valid @RequestBody Matiere m, BindingResult br,
 			UriComponentsBuilder uCB) {
 		if (br.hasErrors()) {
 			throw new InvalidException();
 		}
 		matiereService.creationMatiere(m);
-		URI uri = uCB.path("/matiere/{id}").buildAndExpand(m.getId()).toUri();
+		URI uri = uCB.path("/api/matiere/{id}").buildAndExpand(m.getId()).toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
 		return new ResponseEntity<Matiere>(m, headers, HttpStatus.CREATED);

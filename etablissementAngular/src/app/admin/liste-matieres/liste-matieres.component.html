@@ -10,7 +10,8 @@
 </div>
 
 <h1>Liste des Matieres</h1>
-<button class="btn btn-outline-primary" (click)="displayNew()">Ajouter une matiere</button>
+<button [routerLink]="['/matiere/edit']"
+      routerLinkActive="active" class="btn btn-outline-primary">Ajouter une matiere</button>
 
 <table class="table">
 
@@ -23,7 +24,7 @@
   </tr>
   <tr
     matiere-row
-    [user]="m"
+    [matiere]="m"
     *ngFor="let m of matieres"
     (delete)="delete($event)"
   ></tr>
