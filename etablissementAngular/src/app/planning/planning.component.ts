@@ -36,7 +36,6 @@ export class PlanningComponent implements OnInit, OnChanges {
   nom: string = '';
 
   ngOnInit(): void {
-    console.log("init:"+this.message);
    this.init();
   }
 
