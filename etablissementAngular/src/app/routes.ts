@@ -1,3 +1,4 @@
+import { ListeCoursComponent } from './admin/liste-cours/liste-cours.component';
 import { Routes } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { LoginComponent } from "./component/login/login.component";
@@ -19,6 +20,7 @@ export const routes: Routes = [
   { path: 'listeprofesseurs', component: ListeProfesseursComponent},
   { path: 'listeutilisateurs', component: ListUtilisateursComponent},
   { path: 'listesalles', component: ListeSallesComponent},
+  { path: 'listecours', component: ListeCoursComponent},
   { path: 'planning', component: PlanningComponent },
   { path: 'mdpchange/:id', component: MdpChangeComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' }

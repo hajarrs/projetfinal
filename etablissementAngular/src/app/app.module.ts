@@ -24,6 +24,8 @@ import { ProfesseurRowComponent } from './admin-row/professeur-row/professeur-ro
 import { GroupeClasseRowComponent } from './admin-row/groupe-classe-row/groupe-classe-row.component';
 import { PlanningComponent } from './planning/planning.component';
 import { MdpChangeComponent } from './component/mdp-change/mdp-change.component';
+import { CoursRowComponent } from './admin-row/cours-row/cours-row/cours-row.component';
+import { ListeCoursComponent } from './admin/liste-cours/liste-cours.component';
 import { ListUtilisateursComponent } from './admin/list-utilisateurs/list-utilisateurs.component';
 import { UtilisateurRowComponent } from './admin-row/utilisateur-row/utilisateur-row.component';
 
@@ -42,6 +44,8 @@ HomeAdminComponent,
     GroupeClasseRowComponent,
     PlanningComponent,
     MdpChangeComponent,
+    CoursRowComponent,
+    ListeCoursComponent,
     ListUtilisateursComponent,
     UtilisateurRowComponent,
   ],

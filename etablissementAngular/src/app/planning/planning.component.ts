@@ -81,7 +81,6 @@ export class PlanningComponent implements OnInit {
             }
         }}
       }
-      console.log(this.cours);
     });
   }
 
