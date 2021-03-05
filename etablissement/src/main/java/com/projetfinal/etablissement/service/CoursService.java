@@ -70,6 +70,7 @@ public class CoursService {
 		if (ajoutOK(c)) {
 			return coursRepo.save(c);			
 		} else {
+			System.out.println("Cours non sauvé : " + c.getProfesseur().getNom() + " jour " + c.getDay() + " debut " + c.getHeureDebut());
 			return null;
 		}
 	}
@@ -95,6 +96,7 @@ public class CoursService {
 				|| c.getProfesseur() == null
 				|| c.getProfesseur().getMatieres() == null
 				|| c.getSalle() == null) {
+			System.out.println("CoursService ajoutKO: manque infos");
 			return false;
 		} else {
 			SalleClasse salleClasse = c.getSalle();
@@ -102,11 +104,13 @@ public class CoursService {
 			
 			// vérifie si la salle permet d'enseigner cette matière
 			if (salleClasse.getMatieresExclues() != null && salleClasse.getMatieresExclues().contains(matiere)) {
+				System.out.println("CoursService ajoutKO: matière interdite dans la salle");
 				return false;
 			}
 
 			// vérifie si le prof enseigne cette matière
 			if (!c.getProfesseur().getMatieres().contains(c.getMatiere())) {
+				System.out.println("CoursService ajoutKO: matière non enseignée par le prof");
 				return false;				
 			}
 			
@@ -119,6 +123,7 @@ public class CoursService {
 							&& c2.getSalle() != null
 							&& c.getSalle().equals(c2.getSalle())) {
 
+						System.out.println("CoursService ajoutKO: salle déjà occupée");
 						// salle déjà occupée 
 						return false;
 					}
@@ -128,6 +133,7 @@ public class CoursService {
 							&& c2.getProfesseur() != null
 							&& c.getProfesseur().equals(c2.getProfesseur())) {
 						
+						System.out.println("CoursService ajoutKO: prof déjà occupé");
 						// prof déjà occupé
 						return false;
 					}
