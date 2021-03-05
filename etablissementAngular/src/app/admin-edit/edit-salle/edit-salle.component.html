@@ -1,9 +1,11 @@
 <form (ngSubmit)="send()" [formGroup]="form">
     <div class="form-group">
+      <label for="nom">Nom</label>
       <input type="text" class="form-control" name="nom" [formControl]="nomCtrl"/>
       <div *ngIf="nomCtrl.dirty && nomCtrl.hasError('required')"  class="alert alert-danger">Le nom est obligatoire</div>
     </div>
     <div class="form-group">
+      <label for="matiere">Matieres Exclues</label>
     <section class="example-section">
         <span class="example-list-section">
           <ul formGroupName="checkboxList">
@@ -15,6 +17,7 @@
       </section>
     </div>
     <div class="form-group">
+      <label for="capacite">Capacite</label>
         <input type="text" class="form-control" name="capacite" [formControl]="capaciteCtrl"/>
         <div *ngIf="capaciteCtrl.dirty && capaciteCtrl.hasError('required')"  class="alert alert-danger">Le nom est obligatoire</div>
       </div>
