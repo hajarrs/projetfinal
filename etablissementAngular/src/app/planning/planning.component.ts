@@ -26,11 +26,7 @@ export class PlanningComponent implements OnInit, OnChanges {
    for( let i =0; i<11; i++){
       this.matrix.push(new Array<Cours>(5));
    }
-   for( let i =0; i<11; i++){
-    for( let j =0; j<5; j++){
-       this.matrix[i][j]= this.coursVide;
-    }
-  }
+   this.cleanTable();
  }
 
   nom: string = '';
@@ -41,6 +37,7 @@ export class PlanningComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['cours']) {
+      this.cleanTable();
       this.fillTable();
     }
   }
@@ -74,6 +71,13 @@ export class PlanningComponent implements OnInit, OnChanges {
     }
   }
 
+  private cleanTable() {
+    for( let i =0; i<11; i++){
+      for( let j =0; j<5; j++){
+         this.matrix[i][j]= this.coursVide;
+      }
+    }
+  }
 
   public openPDF():void {
     let DATA = document.getElementById('pdfTable');

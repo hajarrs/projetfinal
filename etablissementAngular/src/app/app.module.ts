@@ -1,3 +1,5 @@
+import { SallePipe } from './filter/salle.pipe';
+import { ProfPipe } from './filter/prof.pipe';
 import { PlanningProfComponent } from './prof/planning-prof/planning-prof.component';
 import { PlanningAdminComponent } from './admin/planning-admin/planning-admin.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -58,6 +60,8 @@ HomeAdminComponent,
     EditSalleComponent,
     EditMatiereComponent,
     EditClasseComponent,
+    ProfPipe,
+    SallePipe
   ],
   imports: [
     BrowserModule,
@@ -67,7 +71,7 @@ HomeAdminComponent,
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [ProfPipe, SallePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
