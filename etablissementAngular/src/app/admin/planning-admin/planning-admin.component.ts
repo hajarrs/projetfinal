@@ -20,7 +20,6 @@ export class PlanningAdminComponent implements OnInit {
   ngOnInit() {
     this.coursService.allCours().subscribe((data) => {
       this.listeCours = data;
-//      this.listeCours = this.listeCoursAll;
     });
     this.profService.allProfesseur().subscribe((data) => {
       this.listeProfs = data;

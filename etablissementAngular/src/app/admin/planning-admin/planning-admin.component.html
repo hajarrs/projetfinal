@@ -1,15 +1,31 @@
 
-
-    <h4>Filtrer par professeur</h4>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-3 text-center">
+    <h5>Filtrer par professeur</h5>
     <select [(ngModel)]="profID">
       <option [value]=0>Tous</option>
       <option *ngFor="let prof of listeProfs" [value]="prof.id">{{prof.prenom}} {{prof.nom}}</option>
     </select>
 
-    <h4>Filtrer par salle</h4>
+  </div>
+  <div class="col-md-3 text-center">
+    <h5>Filtrer par salle</h5>
     <select [(ngModel)]="salleID">
       <option [value]=0>Toutes</option>
       <option *ngFor="let salle of listeSalles" [value]="salle.id">{{salle.nom}}</option>
     </select>
+</div>
+  <div class="col-md-3"></div>
+</div>
 
-  <app-planning [cours]="listeCours | profPipe: profID | sallePipe: salleID"></app-planning>
+
+
+  <table style="width: 100%;">
+    <tr><td>
+      <app-planning [cours]="listeCours | profPipe: profID | sallePipe: salleID"></app-planning>
+    </td></tr>
+  </table>
+
+
+
