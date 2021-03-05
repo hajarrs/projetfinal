@@ -1,4 +1,4 @@
-<ng-container *ngIf="!edit; else formEdit">
+<ng-container>
   <td>{{ user.id }}</td>
   <td>{{ user.heureDebut }}</td>
   <td>{{ user.heureFin }}</td>
@@ -6,10 +6,18 @@
   <td>{{ user.matiere.nom }}</td>
   <td>{{ user.professeur.nom}} {{ user.professeur.prenom}}</td>
   <td>
+    <button [routerLink]="['/cours', 'edit', cours.id]"
+    routerLinkActive="active" class="btn btn-outline-warning">Modifier</button>
+  </td>
+  <td>
+    <button class="btn btn-outline-danger" (click)="delete()">supprimer</button>
+  </td>
+</ng-container>
+  <!--td>
     <button (click)="changeMode()" class="btn btn-outline-primary">
       editer
     </button>
-  </td>
+  </!--td>
   <td>
     <button class="btn btn-outline-danger" (click)="delete()">supprimer</button>
   </td>
@@ -32,3 +40,4 @@
     <button (click)="cancel()" class="btn btn-outline-warning">annuler</button>
   </td>
 </ng-template>
+-->

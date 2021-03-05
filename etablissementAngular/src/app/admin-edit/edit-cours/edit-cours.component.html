@@ -1,0 +1,47 @@
+<form (ngSubmit)="send()" [formGroup]="form">
+  <div class="form-group">
+    <input type="text" class="form-control" name="nom" [formControl]="nomCtrl"/>
+    <div *ngIf="nomCtrl.dirty && nomCtrl.hasError('required')"  class="alert alert-danger">Le nom est obligatoire</div>
+  </div>
+  <div class="form-group">
+      <select class="form-control" name="professeur" [formControl]="professeurCtrl" (change)="professeurSelect($event)">
+        <option [attr.selected]="idProfresseur==0 ? true : null" [value]=-1> Choisir ...</option>
+        <option *ngFor="let professeur of professeurs" [value]="professeur.id"
+         [attr.selected]="professeur.id==idProfresseur ? true : null">{{professeur.nom}}
+        </option>
+      </select>
+      <div
+      *ngIf="professeurCtrl.dirty && professeurCtrl.hasError('required')"
+      class="alert alert-danger">Le professeur est obligatoire
+      </div>
+      <select class="form-control" name="matiere" [formControl]="matiereCtrl" (change)="matiereSelect($event)">
+        <option [attr.selected]="idMatiere==0 ? true : null" [value]=-1> Choisir ...</option>
+        <option *ngFor="let matiere of matieres" [value]="matiere.id"
+         [attr.selected]="matiere.id==idMatiere ? true : null">{{matiere.nom}}
+        </option>
+      </select>
+      <div
+      *ngIf="matiereCtrl.dirty && matiereCtrl.hasError('required')"
+      class="alert alert-danger">La matière est obligatoire
+      </div>
+      <select class="form-control" name="classe" [formControl]="classeCtrl" (change)="classeSelect($event)">
+        <option [attr.selected]="idclasse==0 ? true : null" [value]=-1> Choisir ...</option>
+        <option *ngFor="let classe of classes" [value]="classe.id"
+         [attr.selected]="classe.id==idclasse ? true : null">{{classe.nom}}
+        </option>
+      </select>
+      <div
+      *ngIf="classeCtrl.dirty && classeCtrl.hasError('required')"
+      class="alert alert-danger">La classe est obligatoire
+      </div>
+    </div>
+
+
+  <div class="form-group">
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+        Enregistrer
+      </button>
+    </div>
+    <button [routerLink]="['/listeclasses']"
+    routerLinkActive="active" class="btn btn-outline-warning">Abandonner</button>
+</form>
