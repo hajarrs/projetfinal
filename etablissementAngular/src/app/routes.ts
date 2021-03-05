@@ -1,3 +1,4 @@
+import { EditCoursComponent } from './admin-edit/edit-cours/edit-cours.component';
 import { PlanningProfComponent } from './prof/planning-prof/planning-prof.component';
 import { PlanningAdminComponent } from './admin/planning-admin/planning-admin.component';
 import { ListeCoursComponent } from './admin/liste-cours/liste-cours.component';
@@ -37,7 +38,12 @@ export const routes: Routes = [
   { path: 'matiere/edit', component: EditMatiereComponent },
   { path: 'classe/edit/:id', component: EditClasseComponent },
   { path: 'classe/edit', component: EditClasseComponent },
+
   { path: 'utilisateur/edit/:id', component: EditUtilisateurComponent },
   { path: 'utilisateur/edit', component: EditUtilisateurComponent },
+
+  { path: 'cours/edit/:id', component: EditCoursComponent},
+  { path: 'cours/edit', component: EditCoursComponent },
+
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];

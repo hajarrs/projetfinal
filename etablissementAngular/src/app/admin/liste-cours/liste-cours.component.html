@@ -1,18 +1,20 @@
 
 <div>
-  <a  [routerLink]="['/listeprofesseurs']" routerLinkActive="active" class="btn btn-outline-light">Liste des professeurs  </a>
-  <a  [routerLink]="['/listeclasses']" routerLinkActive="active" class="btn btn-outline-light">Liste des classes  </a>
-  <a  [routerLink]="['/listematieres']" routerLinkActive="active" class="btn btn-outline-light">Liste des matières  </a>
-  <a  [routerLink]="['/listesalles']" routerLinkActive="active" class="btn btn-outline-light">Liste des salles  </a>
+  <a  [routerLink]="['/homeadmin']" routerLinkActive="active" class="btn btn-light">Home</a>
+  <a  [routerLink]="['/listeprofesseurs']" routerLinkActive="active" class="btn btn-light">Liste des professeurs</a>
+  <a  [routerLink]="['/listeutilisateurs']" routerLinkActive="active" class="btn btn-light">Liste des utilisateurs</a>
+  <a  [routerLink]="['/listeclasses']" routerLinkActive="active" class="btn btn-light">Liste des classes  </a>
+  <a  [routerLink]="['/listematieres']" routerLinkActive="active" class="btn btn-light">Liste des matières  </a>
+  <a  [routerLink]="['/listesalles']" routerLinkActive="active" class="btn btn-light">Liste des salles  </a>
   <a  [routerLink]="['/listescours']" routerLinkActive="active" class="btn btn-outline-light">Liste des cours  </a>
 </div>
 
 <h1>liste des Cours</h1>
-<button class="btn btn-link" (click)="displayNew()">ajouter Cours</button>
+<button [routerLink]="['/cours/edit']"
+routerLinkActive="active" class="btn btn-outline-primary">Ajouter un cours</button>
 
 <table class="table">
 
-<tr *ngIf="showNew" matiere-row (insert)="insert()" (cancel)="cancel()"></tr>
 <tr>
   <th>id</th>
   <th>heure de debut</th>
@@ -25,7 +27,7 @@
 </tr>
 <tr
   cours-row
-  [user]="m"
+  [cours]="m"
   *ngFor="let m of cours"
   (delete)="delete($event)"
 ></tr>

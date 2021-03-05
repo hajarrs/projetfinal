@@ -57,6 +57,7 @@ public class CoursController {
 	@JsonView(Vue.Common.class)
 	public Cours update(@Valid @RequestBody Cours c, BindingResult br, @PathVariable("id") Integer id) {
 		if (br.hasErrors()) {
+			System.out.println("Test");
 			throw new InvalidException();
 		}
 		Cours coursEnBase = coursService.find(id);
@@ -73,10 +74,12 @@ public class CoursController {
 		if (result == null) {
 			throw new OverlapException();
 		}
+		System.out.println("\n\n\n\n\n The day"+c.getDay());
 		return result;
 	}
 
 	@PostMapping({ "", "/" })
+	@JsonView(Vue.Common.class)
 	public ResponseEntity<Cours> addCours(@Valid @RequestBody Cours c, BindingResult br, UriComponentsBuilder uCB) {
 		if (br.hasErrors()) {
 			throw new InvalidException();
@@ -85,7 +88,7 @@ public class CoursController {
 		if (result == null) {
 			throw new InvalidException();
 		}
-		URI uri = uCB.path("/cours/{id}").buildAndExpand(result.getId()).toUri();
+		URI uri = uCB.path("/api/cours/{id}").buildAndExpand(result.getId()).toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
 		return new ResponseEntity<Cours>(result, headers, HttpStatus.CREATED);

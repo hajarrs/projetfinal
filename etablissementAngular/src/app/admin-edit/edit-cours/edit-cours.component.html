@@ -1,0 +1,67 @@
+<form (ngSubmit)="send()" [formGroup]="form">
+  <div class="form-group">
+    <label for="heureDebut">Heure debut</label>
+    <input type="text" class="form-control" name="heureDebut" [formControl]="heureDebutCtrl"/>
+    <div *ngIf="heureDebutCtrl.dirty && heureDebutCtrl.hasError('required')"  class="alert alert-danger">L'heure de début est obligatoire</div>
+  </div>
+  <div class="form-group">
+    <label for="heureFin">Heure fin</label>
+    <input type="text" class="form-control" name="heureFin" [formControl]="heureFinCtrl"/>
+    <div *ngIf="heureFinCtrl.dirty && heureFinCtrl.hasError('required')"  class="alert alert-danger">L'heure de fin est obligatoire</div>
+  </div>
+  <div class="form-group">
+    <label for="jour">Jour</label>
+    <select class="form-control" name="jour" [formControl]="dayCtrl">
+      <option  [value]=1>Lundi</option>
+      <option  [value]=2>Mardi</option>
+      <option  [value]=3>Mercredi</option>
+      <option  [value]=4>Jeudi</option>
+      <option  [value]=5>Vendredi</option>
+    </select>
+    <div *ngIf="dayCtrl.dirty && dayCtrl.hasError('required')"  class="alert alert-danger">Le jour est obligatoire</div>
+  </div>
+  <div class="form-group">
+    <label for="professeur">Professeur</label>
+      <select class="form-control" name="professeur" [formControl]="professeurCtrl" (change)="professeurSelect($event)">
+        <option [attr.selected]="idProfresseur==0 ? true : null" [value]=-1> Choisir ...</option>
+        <option *ngFor="let professeur of professeurs; let index=index" [value]="index"
+         [attr.selected]="professeur.id==idProfresseur ? true : null">{{professeur.nom}}
+        </option>
+      </select>
+      <div
+      *ngIf="professeurCtrl.dirty && professeurCtrl.hasError('required')"
+      class="alert alert-danger">Le professeur est obligatoire
+      </div>
+      <label for="professeur">Matiere</label>
+      <select class="form-control" name="matiere" [formControl]="matiereCtrl" (change)="matiereSelect($event)">
+        <option [attr.selected]="idMatiere==0 ? true : null" [value]=-1> Choisir ...</option>
+        <option *ngFor="let matiere of matieres; let index=index" [value]="index"
+         [attr.selected]="matiere.id==idMatiere ? true : null">{{matiere.nom}}
+        </option>
+      </select>
+      <div
+      *ngIf="matiereCtrl.dirty && matiereCtrl.hasError('required')"
+      class="alert alert-danger">La matière est obligatoire
+      </div>
+      <label for="professeur">Classe</label>
+      <select class="form-control" name="classe" [formControl]="classeCtrl" (change)="classeSelect($event)">
+        <option [attr.selected]="idclasse==0 ? true : null" [value]=-1> Choisir ...</option>
+        <option *ngFor="let classe of classes; let index=index" [value]="index"
+         [attr.selected]="classe.id==idclasse ? true : null">{{classe.nom}}
+        </option>
+      </select>
+      <div
+      *ngIf="classeCtrl.dirty && classeCtrl.hasError('required')"
+      class="alert alert-danger">La classe est obligatoire
+      </div>
+    </div>
+
+
+  <div class="form-group">
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+        Enregistrer
+      </button>
+    </div>
+    <button [routerLink]="['/listeclasses']"
+    routerLinkActive="active" class="btn btn-outline-warning">Abandonner</button>
+</form>
