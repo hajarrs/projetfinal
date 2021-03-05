@@ -24,6 +24,14 @@ export class CoursService {
     return this.http.get<Cours[]>(this.url, { headers: this.httpHeaders });
   }
 
+  public allCoursForProfesseur(id: number): Observable<Cours[]> {
+    return this.http.get<Cours[]>(this.url+'/professeur/' + id, { headers: this.httpHeaders });
+  }
+
+  public allCoursForSalle(id: number): Observable<Cours[]> {
+    return this.http.get<Cours[]>(this.url+'/salle/' + id, { headers: this.httpHeaders });
+  }
+
   public delete(id: number): Observable<void> {
     return this.http.delete<void>(this.url + '/' + id, {
       headers: this.httpHeaders,

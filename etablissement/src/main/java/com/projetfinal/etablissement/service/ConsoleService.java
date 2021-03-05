@@ -46,12 +46,12 @@ public class ConsoleService implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		testsLogin();
+		populate();
 		//testsCours();
 	}
 
 	
-	private void testsLogin() {
+	private void populate() {
 		Adresse adresse1 = new Adresse("Rue Rouge", 1, "06000", "Nice");
 		Adresse adresse2 = new Adresse("Rue vert", 1, "06000", "Nice");
 		Adresse adresse3 = new Adresse("Rue bleu", 1, "06000", "Nice");
@@ -69,9 +69,26 @@ public class ConsoleService implements CommandLineRunner {
 		LocalDate dateNaissance1 = LocalDate.of(1995, Month.JUNE, 15);
 		Professeur professeur = new Professeur(login, "ram", "hajar", adresse, dateNaissance1, etablissement1);
 		
+		Login loginBob1 = new Login("bob1", "bob1", TypeUtilisateur.UTILISATEUR);
+		Adresse adresseBob1 = new Adresse("Allée des tulipes", 23, "83310", "Cogolin");
+		LocalDate dateNaissanceBob1 = LocalDate.of(1992, Month.JULY, 1);
+		Professeur professeurBob1 = new Professeur(loginBob1, "Laplace", "Hector", adresseBob1, dateNaissanceBob1, etablissement1);
+		professeurBob1 = professeurService.creationProfesseur(professeurBob1);
+
+		Login loginBob2 = new Login("bob2", "bob2", TypeUtilisateur.UTILISATEUR);
+		Adresse adresseBob2 = new Adresse("Impasse de l'hubac", 23, "31512", "Targnac");
+		LocalDate dateNaissanceBob2 = LocalDate.of(1972, Month.MAY, 7);
+		Professeur professeurBob2 = new Professeur(loginBob2, "Tartempion", "John", adresseBob2, dateNaissanceBob2, etablissement1);
+		professeurBob2 = professeurService.creationProfesseur(professeurBob2);
+
 		
 		SalleClasse salle = new SalleClasse("salle1", 30);
 		salle = salleClasseService.save(salle);
+		SalleClasse salle2 = new SalleClasse("salle2", 30);
+		salle = salleClasseService.save(salle2);
+		SalleClasse salle3 = new SalleClasse("salle3", 30);
+		salle = salleClasseService.save(salle3);
+
 		LocalTime dateHeureDebut = LocalTime.of(8, 0);
 		LocalTime dateHeureFin = LocalTime.of(10, 0);
 		Matiere matiere = new Matiere("Maths", "blue");
@@ -83,10 +100,52 @@ public class ConsoleService implements CommandLineRunner {
 		matiereService.save(matiere2);
 		Matiere matiere3 = new Matiere("Chimie", "green");
 		matiereService.save(matiere3);
+		Matiere matiere4 = new Matiere("Bio", "yellow");
+		matiereService.save(matiere4);
+		Matiere matiere5 = new Matiere("Sport", "cyan");
+		matiereService.save(matiere5);
+		Matiere matiere6 = new Matiere("Français", "Grey");
+		matiereService.save(matiere6);
 		List<Matiere> matieresExclues = new ArrayList<Matiere>();
 		matieresExclues.add(matiere2);
 		matieresExclues.add(matiere3);
 		salle.setMatieresExclues(matieresExclues);
+
+		List<Matiere> matieresBob1 = new ArrayList<Matiere>();
+		matieresBob1.add(matiere);
+		matieresBob1.add(matiere3);
+		matieresBob1.add(matiere4);
+		matieresBob1.add(matiere5);
+		matieresBob1.add(matiere6);
+		professeurBob1.setMatieres(matieresBob1);
+		professeurBob1 = professeurService.creationProfesseur(professeurBob1);
+		
+		List<Matiere> matieresBob2 = new ArrayList<Matiere>();
+		matieresBob2.add(matiere2);
+		matieresBob2.add(matiere3);
+		matieresBob2.add(matiere4);
+		matieresBob2.add(matiere5);
+		matieresBob2.add(matiere6);
+		professeurBob2.setMatieres(matieresBob2);
+		professeurBob2 = professeurService.creationProfesseur(professeurBob2);
+		
+
+		Cours cours20 = new Cours(LocalTime.of(8, 0), LocalTime.of(9, 0), professeurBob1, matiere4, salle, 2);
+		cours20 = coursService.save(cours20);
+		Cours cours21 = new Cours(LocalTime.of(10, 0), LocalTime.of(11, 0), professeurBob1, matiere5, salle, 3);
+		cours21 = coursService.save(cours21);
+		Cours cours22 = new Cours(LocalTime.of(14, 0), LocalTime.of(16, 0), professeurBob1, matiere6, salle, 4);
+		cours22 = coursService.save(cours22);
+
+		Cours cours30 = new Cours(LocalTime.of(8, 0), LocalTime.of(10, 0), professeurBob2, matiere4, salle, 0);
+		cours30 = coursService.save(cours30);
+		Cours cours31 = new Cours(LocalTime.of(15, 0), LocalTime.of(16, 0), professeurBob2, matiere5, salle, 1);
+		cours21 = coursService.save(cours31);
+		Cours cours32 = new Cours(LocalTime.of(10, 0), LocalTime.of(11, 0), professeurBob2, matiere6, salle, 2);
+		cours22 = coursService.save(cours32);
+
+		
+		
 		
 		Login loginx = new Login("test", "pass", TypeUtilisateur.UTILISATEUR);
 		Professeur professeur2 = new Professeur(loginx, "ram2", "hajar", adresse, dateNaissance1, etablissement1);

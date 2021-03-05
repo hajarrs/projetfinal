@@ -92,6 +92,7 @@ public class CoursController {
 	}
 
 	@GetMapping("/{id}")
+	@JsonView(Vue.Common.class)
 	public Cours findById(@PathVariable("id") Integer id) {
 		Cours c = coursService.find(id);
 		if (c.getId() != null) {
@@ -101,11 +102,13 @@ public class CoursController {
 	}
 
 	@GetMapping("/professeur/{id}")
+	@JsonView(Vue.Common.class)
 	public List<Cours> findByProfesseurId(@PathVariable("id") Integer id) {
 		return coursService.findByProf(id);
 	}
 
 	@GetMapping("/salle/{id}")
+	@JsonView(Vue.Common.class)
 	public List<Cours> findBySalleId(@PathVariable("id") Integer id) {
 		return coursService.findBySalle(id);
 	}

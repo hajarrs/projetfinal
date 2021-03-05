@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
           btoa(`${this.loginCtrl.value}:${this.pswCtrl.value}`)
         );
         sessionStorage.setItem('login', result.login.login);
+        sessionStorage.setItem('identifiant', ""+result.id);
         sessionStorage.setItem('typeUtilisateur', result.login.typeUtilisateur);
         if (result.login.premiereConnexion) {
           this.router.navigate(['/mdpchange/' + result.id]);
@@ -49,8 +50,8 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/homeadmin']);
           }
         }
-      
-        
+
+
       },
       (error) => {
         this.erreur = true;

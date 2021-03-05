@@ -1,3 +1,5 @@
+import { PlanningProfComponent } from './prof/planning-prof/planning-prof.component';
+import { PlanningAdminComponent } from './admin/planning-admin/planning-admin.component';
 import { ListeCoursComponent } from './admin/liste-cours/liste-cours.component';
 import { Routes } from "@angular/router";
 import { AppComponent } from "./app.component";
@@ -25,6 +27,8 @@ export const routes: Routes = [
   { path: 'listesalles', component: ListeSallesComponent},
   { path: 'listecours', component: ListeCoursComponent},
   { path: 'planning', component: PlanningComponent },
+  { path: 'planning-admin', component: PlanningAdminComponent},
+  { path: 'planning-prof', component: PlanningProfComponent},
   { path: 'mdpchange/:id', component: MdpChangeComponent },
   { path: 'salle/edit/:id', component: EditSalleComponent },
   { path: 'salle/edit', component: EditSalleComponent },
