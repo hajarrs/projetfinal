@@ -48,7 +48,6 @@ export class EditClasseComponent implements OnInit {
         });
       }
 
-      console.log("test");
       this.professeurService.allProfesseur().subscribe((data) => {
         this.professeurs=data;
       })
@@ -62,7 +61,6 @@ export class EditClasseComponent implements OnInit {
   public send() {
     this._classe.nom=this.nomCtrl.value;
     this._classe.professeurPrincipal=this.professeurTpm;
-    console.log(this._index);
     if (this._index!=-1) {
       this.classeService.update(this._classe).subscribe((result)=>{})
     }else{
@@ -73,7 +71,6 @@ export class EditClasseComponent implements OnInit {
   }
 
   public professeurSelect(evt:any){
-    console.log(evt.target.value);
     this.professeurService.findById(evt.target.value).subscribe((data) => {
       this.professeurTpm = data;
     });

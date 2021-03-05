@@ -15,6 +15,7 @@ import { ListUtilisateursComponent } from "./admin/list-utilisateurs/list-utilis
 import { EditSalleComponent } from "./admin-edit/edit-salle/edit-salle.component";
 import { EditMatiereComponent } from './admin-edit/edit-matiere/edit-matiere.component';
 import { EditClasseComponent } from './admin-edit/edit-classe/edit-classe.component';
+import { EditUtilisateurComponent } from './admin-edit/edit-utilisateur/edit-utilisateur.component';
 
 
 export const routes: Routes = [
@@ -36,5 +37,7 @@ export const routes: Routes = [
   { path: 'matiere/edit', component: EditMatiereComponent },
   { path: 'classe/edit/:id', component: EditClasseComponent },
   { path: 'classe/edit', component: EditClasseComponent },
+  { path: 'utilisateur/edit/:id', component: EditUtilisateurComponent },
+  { path: 'utilisateur/edit', component: EditUtilisateurComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];

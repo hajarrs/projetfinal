@@ -11,7 +11,8 @@
 
 
 <h1>Liste des Utilisateurs</h1>
-<button class="btn btn-outline-primary" (click)="displayNew()">Ajouter un utilisateur</button>
+<button [routerLink]="['/utilisateur/edit']"
+      routerLinkActive="active" class="btn btn-outline-warning">Ajouter un utilisateur</button>
 <table class="table">
 
   <tr>

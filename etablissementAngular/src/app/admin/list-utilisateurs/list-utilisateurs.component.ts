@@ -20,7 +20,6 @@ export class ListUtilisateursComponent implements OnInit {
   public initList() {
     this.utilisateurService.allUtilisateur().subscribe((data) => {
       this.utilisateurs = data;
-      console.log(data);
     });
   }
 

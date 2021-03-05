@@ -20,7 +20,6 @@ export class ListeClassesComponent implements OnInit {
   public initList() {
     this.utilisateurService.allGroupeclasse().subscribe((data) => {
       this.classes = data;
-      console.log(data);
     });
   }
 

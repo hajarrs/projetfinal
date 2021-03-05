@@ -5,7 +5,7 @@ export class Login {
     private _typeUtilisateur: string;
     
 
-	constructor(login: string='', password: string='', premiereConnexion:boolean=false, typeUtilisateur:string='') {
+	constructor(login: string='', password: string='', premiereConnexion:boolean=true, typeUtilisateur:string='') {
 		this._login = login;
 		this._password = password;
         this._premiereConnexion=premiereConnexion;

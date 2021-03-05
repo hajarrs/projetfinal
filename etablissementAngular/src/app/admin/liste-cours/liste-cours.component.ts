@@ -21,7 +21,6 @@ export class ListeCoursComponent implements OnInit {
   public initList() {
     this.coursService.allCours().subscribe((data) => {
       this.cours = data;
-      console.log(data);
     });
   }
 

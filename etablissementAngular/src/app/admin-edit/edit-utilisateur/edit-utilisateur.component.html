@@ -1,0 +1,55 @@
+<form (ngSubmit)="send()" [formGroup]="form">
+    <div class="form-group">
+      <input type="text" class="form-control" name="login" [formControl]="loginCtrl"/>
+      <div *ngIf="loginCtrl.dirty && loginCtrl.hasError('required')"  class="alert alert-danger">Le login est obligatoire</div>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="nom" [formControl]="nomCtrl"/>
+        <div *ngIf="nomCtrl.dirty && nomCtrl.hasError('required')"  class="alert alert-danger">Le login est obligatoire</div>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="prenom" [formControl]="prenomCtrl"/>
+        <div *ngIf="prenomCtrl.dirty && prenomCtrl.hasError('required')"  class="alert alert-danger">Le login est obligatoire</div>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="nomRue" [formControl]="nomRueCtrl"/>
+        <div *ngIf="nomRueCtrl.dirty && nomRueCtrl.hasError('required')"  class="alert alert-danger">Le login est obligatoire</div>
+      </div>
+      <div class="form-group">
+        <input type="number" class="form-control" name="numRue" [formControl]="numRueCtrl"/>
+        <div *ngIf="numRueCtrl.dirty && numRueCtrl.hasError('required')"  class="alert alert-danger">Le login est obligatoire</div>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="cp" [formControl]="codePostalCtrl"/>
+        <div *ngIf="codePostalCtrl.dirty && codePostalCtrl.hasError('required')"  class="alert alert-danger">Le login est obligatoire</div>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="ville" [formControl]="villeCtrl"/>
+        <div *ngIf="villeCtrl.dirty && villeCtrl.hasError('required')"  class="alert alert-danger">Le login est obligatoire</div>
+      </div>
+      <div class="form-group">
+        <input type="date" class="form-control" name="dateNaiss" [formControl]="dateNaissanceCtrl"/>
+        <div *ngIf="dateNaissanceCtrl.dirty && dateNaissanceCtrl.hasError('required')"  class="alert alert-danger">Le login est obligatoire</div>
+      </div>
+    <div class="form-group">
+        <select class="form-control" name="etablissement" [formControl]="etablissementCtrl" (change)="etablissementSelect($event)">
+          <option [attr.selected]="idEtablissement==0 ? true : null" [value]=-1> Choisir ...</option>
+          <option *ngFor="let etablissement of etablissements" [value]="etablissement.id"
+           [attr.selected]="etablissement.id==idEtablissement ? true : null">{{etablissement.nom}}
+          </option>
+        </select>
+        <div
+        *ngIf="etablissementCtrl.dirty && etablissementCtrl.hasError('required')"
+        class="alert alert-danger">Le professeur est obligatoire
+        </div>
+      </div>
+
+  
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+          Enregistrer
+        </button>
+      </div>
+      <button [routerLink]="['/listeutilisateurs']"
+      routerLinkActive="active" class="btn btn-outline-warning">Abandonner</button>
+</form>

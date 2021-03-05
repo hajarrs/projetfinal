@@ -20,7 +20,6 @@ export class ListeMatieresComponent implements OnInit {
   public initList() {
     this.utilisateurService.allMatiere().subscribe((data) => {
       this.matieres = data;
-      console.log(data);
     });
   }
 

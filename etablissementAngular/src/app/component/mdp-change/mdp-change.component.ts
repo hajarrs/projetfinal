@@ -51,17 +51,14 @@ export class MdpChangeComponent implements OnInit {
   }
 
   public send() {
-    console.log("send");
     this.utilisateur.login.password=this.pswCtrl.value;
 
-    this.utilisateurService.update(this.utilisateur).subscribe((result)=>{
+    this.utilisateurService.updatePass(this.utilisateur).subscribe((result)=>{
       //sessionStorage.removeItem('tokenId');
       sessionStorage.setItem('tokenId', btoa(`${sessionStorage.getItem('login')}:${this.utilisateur.login.password}`));
       if (sessionStorage.getItem('typeUtilisateur') == "ADMIN") {
-        console.log("admin");
           this.router.navigate(['/homeadmin']);
         } else {
-          console.log("utlisateur");
           this.router.navigate(['/homeadmin']);
         }
     })

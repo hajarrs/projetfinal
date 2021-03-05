@@ -21,7 +21,6 @@ export class ListeProfesseursComponent implements OnInit {
   public initList() {
     this.utilisateurService.allProfesseur().subscribe((data) => {
       this.professeurs = data;
-      console.log(data);
     });
   }
 

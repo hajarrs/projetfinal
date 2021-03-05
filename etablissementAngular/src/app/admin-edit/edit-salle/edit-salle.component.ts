@@ -55,7 +55,6 @@ export class EditSalleComponent implements OnInit {
           for (let matiere of data.matieresExclues) {
             this.idMatiereExclues.push(matiere.id);
           }
-          console.log("id matieres exclues" + this.idMatiereExclues);
         });
       }
     });
@@ -88,7 +87,6 @@ export class EditSalleComponent implements OnInit {
   public send() {
     this.salle.nom=this.nomCtrl.value;
     this.salle.capacite=this.capaciteCtrl.value;
-    console.log(this.form.get('checkboxList')?.value);
     const listmatiere: any[] = [];
 
     for (let control in this.form.get('checkboxList')?.value) {
@@ -98,16 +96,12 @@ export class EditSalleComponent implements OnInit {
    
     }
     this.salle.matieresExclues=listmatiere;
-    console.log("this._index"+this._index);
     if (this._index!=-1) {
-      console.log('update');
       this.salleService.update(this.salle).subscribe((result)=>{})
     }else{
-      console.log('add');
       this.salleService.insert(this.salle).subscribe((result)=>{})
     }
     this.router.navigate(['/listesalles']);
-    console.log("test mtieresexclues"+this.salle.matieresExclues.values);
     
   }
     

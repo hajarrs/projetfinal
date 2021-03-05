@@ -23,7 +23,11 @@ public class UtilisateurService {
 	public Utilisateur creationUtilisateur(Utilisateur p) {
 		if (p.getPrenom() != null && !p.getPrenom().isEmpty() && p.getNom() != null && !p.getNom().isEmpty()
 				&& p.getEtablissement() != null) {
-			p.getLogin().setPassword(passwordEncoder.encode(p.getLogin().getPassword()));
+			if (p.getLogin().getPassword()!= null) {
+				p.getLogin().setPassword(passwordEncoder.encode(p.getLogin().getPassword()));
+			} else {
+				p.getLogin().setPassword(passwordEncoder.encode(p.getLogin().generatePassword()));
+			}
 			return utilisateurRepo.save(p);
 		} else {
 			System.out.println("le utilisateur n'a pas toute les infos obligatoires");

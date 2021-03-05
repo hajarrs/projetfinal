@@ -20,7 +20,6 @@ export class ListeSallesComponent implements OnInit {
   public initList() {
     this.utilisateurService.allSalleClasse().subscribe((data) => {
       this.salles = data;
-      console.log(data);
     });
   }
 

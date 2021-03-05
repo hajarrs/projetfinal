@@ -90,26 +90,42 @@ public class UtilisateurController {
 		if (utilisateurEnBase.getId() == null) {
 			throw new NotFoundException();
 		}
-		utilisateurEnBase.setAdresse(p.getAdresse());
-//		utilisateurEnBase.setCours(p.getCours());
-		utilisateurEnBase.getLogin().changePassword(passwordEncoder.encode(p.getLogin().getPassword()));
-		utilisateurEnBase.setDateNaissance(p.getDateNaissance());
-		utilisateurEnBase.setEtablissement(p.getEtablissement());
-//		utilisateurEnBase.setLogin(p.getLogin());
+		p.getLogin().setPassword(utilisateurEnBase.getLogin().getPassword());
+		utilisateurEnBase.setLogin(p.getLogin());
 		utilisateurEnBase.setNom(p.getNom());
 		utilisateurEnBase.setPrenom(p.getPrenom());
+		utilisateurEnBase.setAdresse(p.getAdresse());
+//		utilisateurEnBase.setCours(p.getCours());
+		utilisateurEnBase.setDateNaissance(p.getDateNaissance());
+		utilisateurEnBase.setEtablissement(p.getEtablissement());
+		utilisateurService.save(utilisateurEnBase);
+		return utilisateurEnBase;
+	}
+	
+	@PutMapping("/pass/{id}")
+	@JsonView(Vue.Common.class)
+	public Utilisateur updatePass(@Valid @RequestBody Utilisateur p, BindingResult br, @PathVariable("id") Integer id) {
+		if (br.hasErrors()) {
+			throw new InvalidException();
+		}
+		Utilisateur utilisateurEnBase = utilisateurService.find(id);
+		if (utilisateurEnBase.getId() == null) {
+			throw new NotFoundException();
+		}
+		utilisateurEnBase.getLogin().changePassword(passwordEncoder.encode(p.getLogin().getPassword()));
 		utilisateurService.save(utilisateurEnBase);
 		return utilisateurEnBase;
 	}
 
 	@PostMapping({ "", "/" })
+	@JsonView(Vue.Common.class)
 	public ResponseEntity<Utilisateur> addUtilisateur(@Valid @RequestBody Utilisateur p, BindingResult br,
 			UriComponentsBuilder uCB) {
 		if (br.hasErrors()) {
 			throw new InvalidException();
 		}
 		utilisateurService.creationUtilisateur(p);
-		URI uri = uCB.path("/utilisateur/{id}").buildAndExpand(p.getId()).toUri();
+		URI uri = uCB.path("api/utilisateur/{id}").buildAndExpand(p.getId()).toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
 		return new ResponseEntity<Utilisateur>(p, headers, HttpStatus.CREATED);

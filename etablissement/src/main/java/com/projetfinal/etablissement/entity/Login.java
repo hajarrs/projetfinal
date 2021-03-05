@@ -25,7 +25,6 @@ public class Login {
 	@Column(unique=true)
 	@JsonView(Vue.Common.class)
 	private String login;
-	@NotEmpty
 	private String password;
 	@JsonView(Vue.Common.class)
 	private boolean premiereConnexion = true;
@@ -39,7 +38,7 @@ public class Login {
 	}
 
 
-	public Login(@NotEmpty String login, @NotEmpty String password, @NotNull TypeUtilisateur typeUtilisateur) {
+	public Login(@NotEmpty String login, String password, @NotNull TypeUtilisateur typeUtilisateur) {
 		this.login = login;
 		this.password = password;
 		this.typeUtilisateur = typeUtilisateur;
@@ -59,6 +58,7 @@ public class Login {
 		  char c = (char)(rand.nextInt(26) + 97);
 		  password += c;
 		}
+		System.out.println("pass temp: "+ password);
 		return password;
 	}
 		

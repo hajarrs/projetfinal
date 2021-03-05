@@ -38,17 +38,22 @@ export class UtilisateurService {
     });
   }
 
+  public updatePass(utilisateur: Utilisateur): Observable<Utilisateur> {
+    return this.http.put<Utilisateur>(`${this.url}/pass/${utilisateur.id}`, utilisateur, {
+      headers: this.httpHeaders,
+    });
+  }
+
   public insert(utilisateur: Utilisateur): Observable<Utilisateur> {
     const o = {
-      id: utilisateur.id,  
-      login: utilisateur.login, 
+      login: {login:utilisateur.login.login,
+         premiereConnexion: utilisateur.login.premiereConnexion, typeUtilisateur:utilisateur.login.typeUtilisateur}, 
       nom: utilisateur.nom,
       prenom: utilisateur.prenom,
-      adresse: utilisateur.adresse,
+      adresse: {nomRue:utilisateur.adresse.nomRue, numRue: utilisateur.adresse.numRue,
+      codePostal: utilisateur.adresse.codePostal, ville:utilisateur.adresse.ville},
       dateNaissance: utilisateur.dateNaissance,
       etablissement: utilisateur.etablissement,
-
-      
     };
     return this.http.post<Utilisateur>(this.url, o, { headers: this.httpHeaders });
   }

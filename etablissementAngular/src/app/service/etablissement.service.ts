@@ -43,4 +43,7 @@ export class EtablissementService {
     return this.http.post<Etablissement>(this.url, o, { headers: this.httpHeaders });
   }
   
+  public findById(id: number): Observable<Etablissement> {
+    return this.http.get<Etablissement>(`${this.url}/${id}`,{ headers: this.httpHeaders });
+  }
 }

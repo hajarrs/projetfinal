@@ -35,6 +35,7 @@ import { UtilisateurRowComponent } from './admin-row/utilisateur-row/utilisateur
 import { EditSalleComponent } from './admin-edit/edit-salle/edit-salle.component';
 import { EditMatiereComponent } from './admin-edit/edit-matiere/edit-matiere.component';
 import { EditClasseComponent } from './admin-edit/edit-classe/edit-classe.component';
+import { EditUtilisateurComponent } from './admin-edit/edit-utilisateur/edit-utilisateur.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ HomeAdminComponent,
     EditMatiereComponent,
     EditClasseComponent,
     ProfPipe,
-    SallePipe
+    SallePipe,
+    EditUtilisateurComponent
   ],
   imports: [
     BrowserModule,

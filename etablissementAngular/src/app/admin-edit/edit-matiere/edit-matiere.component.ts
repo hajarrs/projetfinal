@@ -46,12 +46,9 @@ export class EditMatiereComponent implements OnInit {
   public send() {
     this._matiere.nom=this.nomCtrl.value;
     this._matiere.couleur=this.couleurCtrl.value;
-    console.log(this._index);
     if (this._index!=-1) {
-      console.log("update");
       this.matiereService.update(this._matiere).subscribe((result)=>{})
     }else{
-      console.log("add");
       this.matiereService.insert(this._matiere).subscribe((result)=>{})
     }
     this.router.navigate(['/listematieres']);

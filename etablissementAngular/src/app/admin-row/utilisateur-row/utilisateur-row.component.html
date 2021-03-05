@@ -9,9 +9,8 @@
     <td>{{user.dateNaissance}}</td>
     <td>{{user.etablissement.nom}}</td>
     <td>
-      <button *ngIf="user.login.typeUtilisateur!='ADMIN'" (click)="changeMode()" class="btn btn-outline-primary">
-        editer
-      </button>
+      <button *ngIf="user.login.typeUtilisateur!='ADMIN'" [routerLink]="['/utilisateur', 'edit', user.id]"
+      routerLinkActive="active" class="btn btn-outline-warning">Modifier</button>
     </td>
     <td>
       <button *ngIf="user.login.typeUtilisateur!='ADMIN'" class="btn btn-outline-danger" (click)="delete()">supprimer</button>
