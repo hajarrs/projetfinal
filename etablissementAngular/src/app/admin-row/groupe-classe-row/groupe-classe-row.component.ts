@@ -10,7 +10,7 @@ import { GoupeclasseService } from 'src/app/service/goupeclasse.service';
 export class GroupeClasseRowComponent implements OnInit {
 
   @Input()
-  salle: GroupeClasse = new GroupeClasse();
+  classe: GroupeClasse = new GroupeClasse();
   edit: boolean = false;
   @Output('delete')
   deleteEvent: EventEmitter<number> = new EventEmitter();
@@ -18,13 +18,13 @@ export class GroupeClasseRowComponent implements OnInit {
   constructor(private groupClasseService: GoupeclasseService) {}
 
   ngOnInit(): void {
-    if (!this.salle.id) {
+    if (!this.classe.id) {
       this.changeMode();
     }
   }
 
   public delete() {
-    this.deleteEvent.emit(this.salle.id);
+    this.deleteEvent.emit(this.classe.id);
   }
 
   public changeMode() {

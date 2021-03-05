@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.projetfinal.etablissement.entity.Cours;
 import com.projetfinal.etablissement.entity.GroupeClasse;
 import com.projetfinal.etablissement.repository.GroupeClasseRepo;
 
@@ -52,4 +53,7 @@ public class GroupeClasseService {
 		return new GroupeClasse();
 	}
 
+	public List<GroupeClasse> findByProf(Integer id) {
+		return classeRepo.findAllForProf(id);
+	}
 }

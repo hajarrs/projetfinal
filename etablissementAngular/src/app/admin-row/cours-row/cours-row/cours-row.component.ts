@@ -9,51 +9,26 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class CoursRowComponent implements OnInit {
 
+
   @Input()
-  user: Cours = new Cours();
+  cours: Cours = new Cours();
   edit: boolean = false;
   @Output('delete')
   deleteEvent: EventEmitter<number> = new EventEmitter();
-  @Output('insert')
-  insertEvent: EventEmitter<void> = new EventEmitter();
-  @Output('cancel')
-  cancelEvent: EventEmitter<void> = new EventEmitter();
 
   constructor(private coursService: CoursService) { }
 
-  ngOnInit(): void {
-    if (!this.user.id) {
+ ngOnInit(): void {
+    if (!this.cours.id) {
       this.changeMode();
     }
   }
 
   public delete() {
-    this.deleteEvent.emit(this.user.id);
+    this.deleteEvent.emit(this.cours.id);
   }
 
   public changeMode() {
     this.edit = !this.edit;
-  }
-
-  public cancel() {
-    this.changeMode();
-    if (!this.user.id) {
-      console.log('here');
-      this.cancelEvent.emit();
-    }
-  }
-
-  public save() {
-    if (this.user.id) {
-      this.coursService.update(this.user).subscribe((result) => {
-        this.changeMode();
-      });
-    } else {
-      this.coursService.insert(this.user).subscribe((result) => {
-        this.user.id = result.id;
-        this.changeMode();
-        this.insertEvent.emit();
-      });
-    }
   }
 }

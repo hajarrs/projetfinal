@@ -54,4 +54,8 @@ export class CoursService {
     };
     return this.http.post<Cours>(this.url, o, { headers: this.httpHeaders });
   }
+
+  public findById(id: number): Observable<Cours> {
+    return this.http.get<Cours>(`${this.url}/${id}`,{ headers: this.httpHeaders });
+  }
 }

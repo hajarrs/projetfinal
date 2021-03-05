@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class ListeCoursComponent implements OnInit {
 
   cours: Cours[] = [];
-  showNew: boolean = false;
+  //showNew: boolean = false;
 
   constructor(private coursService: CoursService) { }
 
@@ -32,6 +32,9 @@ export class ListeCoursComponent implements OnInit {
   }
 
   public displayNew() {
+  }
+/*
+  public displayNew() {
     this.showNew = !this.showNew;
   }
 
@@ -42,5 +45,5 @@ export class ListeCoursComponent implements OnInit {
 
   public cancel() {
     this.displayNew();
-  }
+  }*/
 }

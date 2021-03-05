@@ -1,9 +1,11 @@
 <form (ngSubmit)="send()" [formGroup]="form">
     <div class="form-group">
+      <label for="nom">Nom</label>
       <input type="text" class="form-control" name="nom" [formControl]="nomCtrl"/>
       <div *ngIf="nomCtrl.dirty && nomCtrl.hasError('required')"  class="alert alert-danger">Le nom est obligatoire</div>
     </div>
     <div class="form-group">
+      <label for="couleur">Couleur</label>
         <input type="text" class="form-control" name="couleur" [formControl]="couleurCtrl"/>
         <div *ngIf="couleurCtrl.dirty && couleurCtrl.hasError('required')"  class="alert alert-danger">La couleur est obligatoire</div>
       </div>

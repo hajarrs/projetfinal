@@ -25,11 +25,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.projetfinal.etablissement.entity.Cours;
+import com.projetfinal.etablissement.entity.GroupeClasse;
 import com.projetfinal.etablissement.entity.Login;
 import com.projetfinal.etablissement.entity.Utilisateur;
 import com.projetfinal.etablissement.entity.Vue;
 import com.projetfinal.etablissement.exception.InvalidException;
 import com.projetfinal.etablissement.exception.NotFoundException;
+import com.projetfinal.etablissement.service.CoursService;
+import com.projetfinal.etablissement.service.GroupeClasseService;
 import com.projetfinal.etablissement.service.UtilisateurService;
 
 
@@ -43,6 +47,12 @@ public class UtilisateurController {
 	
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private CoursService coursService;
+	
+	@Autowired
+	private GroupeClasseService groupeService;
 
 	@JsonView(Vue.Common.class)
 	@GetMapping({ "", "/" })
@@ -57,6 +67,15 @@ public class UtilisateurController {
 		if (utilisateurEnBase.getId() == null) {
 			throw new NotFoundException();
 		}
+		List<Cours> listCoursToDelete = coursService.findByProf(id);
+		for (Cours cours : listCoursToDelete) {
+			coursService.delete(cours.getId());
+		}
+		List<GroupeClasse> listGroupesToDelete = groupeService.findByProf(id);
+		for (GroupeClasse groupeClasse : listGroupesToDelete) {
+			groupeClasse.setProfesseurPrincipal(null);
+		}
+		
 		utilisateurService.delete(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

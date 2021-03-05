@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.projetfinal.etablissement.entity.Cours;
 import com.projetfinal.etablissement.entity.GroupeClasse;
 import com.projetfinal.etablissement.entity.Vue;
 import com.projetfinal.etablissement.exception.InvalidException;
@@ -89,6 +90,12 @@ public class GroupeClasseController {
 			return gc;
 		}
 		throw new NotFoundException();
+	}
+	
+	@GetMapping("/groupe/{id}")
+	@JsonView(Vue.CommonGroupeWithProfesseurPrincipal.class)
+	public List<GroupeClasse> findByProfId(@PathVariable("id") Integer id) {
+		return groupeClasseService.findByProf(id);
 	}
 
 }
