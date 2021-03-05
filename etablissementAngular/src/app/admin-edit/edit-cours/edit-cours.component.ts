@@ -18,7 +18,9 @@ import { Matiere } from 'src/app/model/matiere';
 export class EditCoursComponent implements OnInit {
 
   private _cours: Cours = new Cours();
-  nomCtrl: FormControl;
+  heureDebutCtrl: FormControl;
+  heureFinCtrl: FormControl;
+  dayCtrl: FormControl;
   professeurCtrl: FormControl;
   matiereCtrl: FormControl;
   classeCtrl: FormControl;
@@ -37,13 +39,17 @@ export class EditCoursComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,private coursService: CoursService, private fb: FormBuilder,private router: Router,
     private professeurService: ProfesseurService, private matiereService: MatiereService, private classeService: SalleClasseService) {
 
-    this.nomCtrl = this.fb.control('',Validators.required);
+    this.heureDebutCtrl = this.fb.control('',Validators.required);
+    this.heureFinCtrl = this.fb.control('',Validators.required);
+    this.dayCtrl = this.fb.control('',Validators.required);
     this.professeurCtrl = this.fb.control('',Validators.min(0));
     this.matiereCtrl = this.fb.control('',Validators.min(0));
     this.classeCtrl = this.fb.control('',Validators.min(0));
 
     this.form = this.fb.group({
-      nom: this.nomCtrl,
+      heureDebut: this.heureDebutCtrl,
+      heureFin: this.heureFinCtrl,
+      day: this.dayCtrl,
       professeur: this.professeurCtrl,
       matiere: this.professeurCtrl,
       classe: this.professeurCtrl,
@@ -60,12 +66,9 @@ export class EditCoursComponent implements OnInit {
         this._index = params.id;
         this.coursService.findById(params.id).subscribe((data) => {
           this._cours = data;
-          this.nomCtrl.setValue(this._cours.heureDebut);
-          this.nomCtrl.setValue(this._cours.heureFin);
-          this.nomCtrl.setValue(this._cours.day);
-          this.nomCtrl.setValue(this._cours.matiere);
-          this.nomCtrl.setValue(this._cours.professeur);
-          this.nomCtrl.setValue(this._cours.salle);
+          this.heureDebutCtrl.setValue(this._cours.heureDebut);
+          this.heureFinCtrl.setValue(this._cours.heureFin);
+          this.dayCtrl.setValue(this._cours.day);
           this.idProfresseur=data.professeur.id;
           this.idMatiere=data.matiere.id;
           this.idclasse=data.salle.id;
@@ -89,9 +92,12 @@ export class EditCoursComponent implements OnInit {
     });
   }
   public send() {
-    //this._cours.heureFin=this.nomCtrl.value;
-    //this._cours.couleur=this.couleurCtrl.value;
-    //console.log(this._index);
+    this._cours.heureDebut=this.heureDebutCtrl.value;
+    this._cours.heureFin=this.heureFinCtrl.value;
+    this._cours.day=this.dayCtrl.value;
+    console.log(this._cours);
+    console.log(this._cours.day);
+
     this._cours.professeur=this.professeurTpm;
     this._cours.matiere=this.matiereTmp;
     this._cours.salle=this.classeTmp;
@@ -108,22 +114,16 @@ export class EditCoursComponent implements OnInit {
 
 
   public professeurSelect(evt:any){
-    console.log(evt.target.value);
-    this.professeurService.findById(evt.target.value).subscribe((data) => {
-      this.professeurTpm = data;
-    });
+    this.professeurTpm=this.professeurs[evt.target.value];
+    console.log(this.professeurTpm);
   }
   public matiereSelect(evt:any){
-    console.log(evt.target.value);
-    this.matiereService.findById(evt.target.value).subscribe((data) => {
-      this.matiereTmp = data;
-    });
+    this.matiereTmp=this.matieres[evt.target.value];
+    console.log(this.matiereTmp);
   }
   public classeSelect(evt:any){
-    console.log(evt.target.value);
-    this.classeService.findById(evt.target.value).subscribe((data) => {
-      this.classeTmp = data;
-    });
+    this.classeTmp=this.classes[evt.target.value];
+    console.log(this.classeTmp);
   }
 
     /**

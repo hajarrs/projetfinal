@@ -39,13 +39,25 @@ export class CoursService {
   }
 
   public update(cours: Cours): Observable<Cours> {
-    return this.http.put<Cours>(`${this.url}/${cours.id}`, cours, {
+    const cours1 = {
+      id : cours.id,
+      day : cours.day,
+      heureDebut: cours.heureDebut,
+      heureFin: cours.heureFin,
+      professeur: {id: cours.professeur.id},
+      matiere:{id: cours.matiere.id},
+      salle:{id: cours.salle.id}
+    }
+    console.log(cours1);
+    console.log(cours);
+    return this.http.put<Cours>(`${this.url}/${cours1.id}`, cours1, {
       headers: this.httpHeaders,
     });
   }
 
   public insert(cours: Cours): Observable<Cours> {
     const o = {
+      day : cours.day,
       heureDebut: cours.heureDebut,
       heureFin: cours.heureFin,
       professeur: cours.professeur,
