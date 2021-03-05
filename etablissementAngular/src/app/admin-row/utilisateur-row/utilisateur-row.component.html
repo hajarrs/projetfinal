@@ -9,11 +9,11 @@
     <td>{{user.dateNaissance}}</td>
     <td>{{user.etablissement.nom}}</td>
     <td>
-      <button (click)="changeMode()" class="btn btn-outline-primary">
+      <button *ngIf="user.login.typeUtilisateur!='ADMIN'" (click)="changeMode()" class="btn btn-outline-primary">
         editer
       </button>
     </td>
     <td>
-      <button class="btn btn-outline-danger" (click)="delete()">supprimer</button>
+      <button *ngIf="user.login.typeUtilisateur!='ADMIN'" class="btn btn-outline-danger" (click)="delete()">supprimer</button>
     </td>
   </ng-container>

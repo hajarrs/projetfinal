@@ -1,12 +1,13 @@
 
 
 <ng-container>
-    <td>{{ salle.id }}</td>
-    <td>{{ salle.nom }}</td>
-    <td>{{ salle.professeurPrincipal.nom }}</td>
+    <td>{{ classe.id }}</td>
+    <td>{{ classe.nom }}</td>
+    <td *ngIf="classe.professeurPrincipal; else BlockElse">{{ classe.professeurPrincipal.nom }}</td>
+    <ng-template #BlockElse><td>Pas de professeur principal</td></ng-template>
   
     <td>
-      <button [routerLink]="['/classe', 'edit', salle.id]"
+      <button [routerLink]="['/classe', 'edit', classe.id]"
       routerLinkActive="active" class="btn btn-outline-warning">Modifier</button>
     </td>
     <td>
